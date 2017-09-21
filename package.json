@@ -52,6 +52,7 @@
     "style-loader": "^0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "^0.5.9",
+    "react-hot-loader": "^3.0.0-beta.7",
     "webpack": "^3.5.1",
     "webpack-dashboard": "^1.0.0-5",
     "webpack-dev-server": "^2.7.1",
@@ -99,7 +100,8 @@
   "eslintConfig": {
     "env": {
       "browser": true,
-      "jest": true
+      "jest": true,
+      "jquery": true
     },
     "extends": "airbnb",
     "parser": "babel-eslint",
@@ -116,6 +118,15 @@
       "no-param-reassign": "warn",
       "react/prefer-stateless-function": "warn",
       "no-console": 0,
+      "indent": [
+        "error",
+        4
+      ],
+      "max-len": [
+        2,
+        180,
+        4
+      ],
       "arrow-parens": [
         "error",
         "as-needed"
@@ -130,6 +141,10 @@
       "import/no-extraneous-dependencies": 0,
       "import/prefer-default-export": 0,
       "import/no-duplicates": 0,
+      "react/jsx-indent": [
+        "error",
+        4
+      ],
       "react/jsx-filename-extension": [
         1,
         {
