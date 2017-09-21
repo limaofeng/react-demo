@@ -9,6 +9,7 @@
     "lint": "eslint --fix --ext .js src/javascript"
   },
   "dependencies": {
+    "antd": "^2.13.2",
     "apollo-client": "^1.9.2",
     "chalk": "1.1.3",
     "dotenv": "4.0.0",
@@ -36,6 +37,7 @@
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
+    "babel-plugin-import": "^1.5.0",
     "babel-preset-react-app": "^3.0.2",
     "babel-runtime": "^6.26.0",
     "case-sensitive-paths-webpack-plugin": "^2.1.1",
@@ -49,9 +51,11 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "extract-text-webpack-plugin": "3.0.0",
+    "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "0.11.2",
     "html-webpack-plugin": "2.29.0",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "^2.0.6",
     "react-dev-utils": "^4.0.1",

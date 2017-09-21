@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
@@ -159,12 +160,25 @@ module.exports = {
                                     // This is a feature of `babel-loader` for webpack (not Babel itself).
                                     // It enables caching results in ./node_modules/.cache/babel-loader/
                                     // directory for faster rebuilds.
-                                    cacheDirectory: true
+                                    cacheDirectory: true,
+                                    plugins: [['import', { libraryName: 'antd', style: true }]]
                                 },
                             }
                         ],
                         /*
                          */
+                    },
+                    {
+                        test: /\.(less)$/,
+                        use: ExtractTextPlugin.extract({
+                            fallback: 'style-loader',
+                            use: [{
+                                loader: require.resolve('css-loader'),
+                                options: {
+                                    importLoaders: 1,
+                                },
+                            }, require.resolve('less-loader')]
+                        }),
                     },
                     // "postcss" loader applies autoprefixer to our CSS.
                     // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -238,6 +252,11 @@ module.exports = {
         }),
         // Add module names to factory functions so they appear in browser profiler.
         new webpack.NamedModulesPlugin(),
+        new ExtractTextPlugin({
+            filename: 'static/js/index.bundle.css',
+            disable: false,
+            allChunks: true
+        }),
         // Makes some environment variables available to the JS code, for example:
         // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
         new webpack.DefinePlugin(env.stringified),
