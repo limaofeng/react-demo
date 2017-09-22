@@ -59,7 +59,7 @@ const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
 const client = new ApolloClient({
     networkInterface,
     dataIdFromObject: r => (r.id && `${r.__typename}:${r.id}`) || null,
-    // reduxRootSelector: state => state.apollo,
+    reduxRootSelector: state => state.apollo,
     connectToDevTools: true
 });
 
@@ -70,15 +70,12 @@ export const apolloReducer = client.reducer();
 export default function withApollo() {
     return WrappedComponent => class Provider extends Component {
         static propTypes = {
-            store: PropTypes.object,
-        }
-        static defaultProps = {
-            store: null
+            store: PropTypes.object.isRequired,
         }
         render() {
             const { store } = this.props;
             return (<ApolloProvider store={store} client={client}>
-                <WrappedComponent />
+                <WrappedComponent store={store} client={client} />
             </ApolloProvider>)
         }
     };

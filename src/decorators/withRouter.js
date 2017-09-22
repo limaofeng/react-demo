@@ -4,7 +4,7 @@ import { ConnectedRouter, routerReducer as OriginRouterReducer, routerMiddleware
 import { Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
-import { RouteWithSubRoutes } from './Router';
+import { RouteWithSubRoutes } from './router';
 
 function parseQueryString(url) {
     const query = url.indexOf('?') > -1 ? url.replace(/^[^\\?]{0,}\??/, '') : url;
@@ -48,12 +48,14 @@ export const routerReducer = OriginRouterReducer;
 
 export default function withRouter({ routes }) {
     const history = createHistory();
-    return WrappedComponent => () => (<ConnectedRouter history={history}>
-        <Switch>
-            {routes.map((route, index) => (
-                <RouteWithSubRoutes key={index} {...route} />
-            ))}
-            <WrappedComponent />
-        </Switch>
+    return WrappedComponent => props => (<ConnectedRouter history={history}>
+        <div>
+            <WrappedComponent {...props} />
+            <Switch>
+                {routes.map((route, index) => (
+                    <RouteWithSubRoutes key={index} {...route} />
+                ))}
+            </Switch>
+        </div>
     </ConnectedRouter>);
 }

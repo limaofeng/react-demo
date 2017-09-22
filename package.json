@@ -150,6 +150,7 @@
       "no-confusing-arrow": 0,
       "no-shadow": 0,
       "no-underscore-dangle": 0,
+      "no-debugger": 1,
       "no-continue": "warn",
       "no-plusplus": [
         "error",

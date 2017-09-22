@@ -36,5 +36,8 @@ const createReduxStore = (usageMiddlewares = [], reducer = {}) => {
 
 export default function withRedux({ middlewares = [], reducers = {} }) {
     const store = createReduxStore(middlewares, reducers);
-    return WrappedComponent => () => <WrappedComponent store={store} />
+    return WrappedComponent => () => (<div>
+        {process.env.NODE_ENV === 'development' && !window.devToolsExtension && <DevTools store={store} />}
+        <WrappedComponent store={store} />
+    </div>)
 }
