@@ -47,11 +47,9 @@ function registerValidSW(swUrl) {
     navigator.serviceWorker
         .register(swUrl)
         .then(registration => {
-            // eslint-disable-next-line
-      registration.onupdatefound = () => {
+      registration.onupdatefound = () => {// eslint-disable-line
                 const installingWorker = registration.installing
-                // eslint-disable-next-line
-        installingWorker.onstatechange = () => {
+        installingWorker.onstatechange = () => {// eslint-disable-line
                     if (installingWorker.state === 'installed') {
                         if (navigator.serviceWorker.controller) {
                             // At this point, the old content will have been purged and
