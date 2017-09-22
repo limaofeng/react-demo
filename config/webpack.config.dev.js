@@ -49,8 +49,6 @@ module.exports = {
         // Note: instead of the default WebpackDevServer client, we use a custom one
         // to bring better experience for Create React App users. You can replace
         // the line below with these two lines if you prefer the stock client:
-        // require.resolve('webpack-dev-server/client') + '?/',
-        // require.resolve('webpack/hot/dev-server'),
         require.resolve('react-dev-utils/webpackHotDevClient'),
         // Finally, this is your app's code:
         paths.appIndexJs,
@@ -161,7 +159,10 @@ module.exports = {
                                     // It enables caching results in ./node_modules/.cache/babel-loader/
                                     // directory for faster rebuilds.
                                     cacheDirectory: true,
-                                    plugins: [['import', { libraryName: 'antd', style: true }]]
+                                    plugins: [
+                                        ['import', { libraryName: 'antd', style: true }],
+                                        'transform-decorators-legacy',
+                                    ]
                                 },
                             }
                         ],
