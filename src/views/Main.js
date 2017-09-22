@@ -16,7 +16,7 @@ class Main extends Component {
         const { routes, user } = this.props;
         return (
             <div>
-                App 内容123 {user.nickName} 你好啊！
+                App 内容123 {user.nickName} 你好啊！112
                 <Switch>
                     {routes.map((route, i) => (
                         <RouteWithSubRoutes key={i} {...route} />
