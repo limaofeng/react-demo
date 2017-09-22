@@ -22,8 +22,7 @@ function ensureSlash(path, needsSlash) {
 }
 
 const getPublicUrl = appPackageJson =>
-    // eslint-disable-next-line
-    envPublicUrl || require(appPackageJson).homepage;
+    envPublicUrl || require(appPackageJson).homepage;// eslint-disable-line
 
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
 // "public path" at which the app is served.

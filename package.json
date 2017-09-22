@@ -1,7 +1,18 @@
 {
-  "name": "react-web",
+  "name": "react-demo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/limaofeng/react-demo",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:limaofeng/react-demo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/limaofeng/react-demo/issues"
+  },
+  "keywords": ["apollo", "graphql", "react", "redux", "webpack", "router"],
+  "author": "limapfeng",
+  "license": "MIT",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
