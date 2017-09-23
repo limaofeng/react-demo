@@ -69,7 +69,7 @@ const client = new ApolloClient({
     networkInterface,
     dataIdFromObject: r => (r.id && `${r.__typename}:${r.id}`) || null,
     reduxRootSelector: state => state.apollo,
-    connectToDevTools: true
+    connectToDevTools: process.env.NODE_ENV === 'development'
 });
 
 export const apolloMiddleware = () => client.middleware();
