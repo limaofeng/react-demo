@@ -163,34 +163,21 @@ module.exports = {
                             }
                         ],
                     },
-                    {
-                        test: /\.(less)$/,
-                        use: ExtractTextPlugin.extract({
-                            fallback: 'style-loader',
-                            use: [{
-                                loader: require.resolve('css-loader'),
-                                options: {
-                                    importLoaders: 1,
-                                },
-                            }, require.resolve('less-loader')]
-                        }),
-                    },
                     // "postcss" loader applies autoprefixer to our CSS.
                     // "css" loader resolves paths in CSS and adds assets as dependencies.
                     // "style" loader turns CSS into JS modules that inject <style> tags.
                     // In production, we use a plugin to extract that CSS to a file, but
                     // in development "style" loader enables hot editing of CSS.
                     {
-                        test: /\.css$/,
-                        use: [
-                            require.resolve('style-loader'),
-                            {
+                        test: /\.(css|less)$/,
+                        use: ExtractTextPlugin.extract({
+                            fallback: require.resolve('style-loader'),
+                            use: [{
                                 loader: require.resolve('css-loader'),
                                 options: {
                                     importLoaders: 1,
                                 },
-                            },
-                            {
+                            }, {
                                 loader: require.resolve('postcss-loader'),
                                 options: {
                                     // Necessary for external CSS imports to work
@@ -209,8 +196,8 @@ module.exports = {
                                         }),
                                     ],
                                 },
-                            },
-                        ],
+                            }, require.resolve('less-loader')]
+                        }),
                     },
                     // "file" loader makes sure those assets get served by WebpackDevServer.
                     // When you `import` an asset, you get its (virtual) filename.
@@ -248,7 +235,7 @@ module.exports = {
         // Add module names to factory functions so they appear in browser profiler.
         new webpack.NamedModulesPlugin(),
         new ExtractTextPlugin({
-            filename: 'static/js/index.bundle.css',
+            filename: 'static/css/[name].bundle.css',
             disable: false,
             allChunks: true
         }),
@@ -272,8 +259,9 @@ module.exports = {
         // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
         // You can remove this if you don't use Moment.js:
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    // webpack-dev-server enhancement plugins
-    // new DashboardPlugin(dashboard.setData),
+        new webpack.optimize.ModuleConcatenationPlugin()
+        // webpack-dev-server enhancement plugins
+        // new DashboardPlugin(dashboard.setData),
     ],
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

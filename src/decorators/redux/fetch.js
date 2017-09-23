@@ -1,5 +1,3 @@
-import 'whatwg-fetch';
-
 export const defaultParams = {
     mode: 'cors',
     credentials: 'include',

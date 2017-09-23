@@ -126,8 +126,11 @@ module.exports = {
                     },
                 ],
                 include: paths.appSrc,
-            },
-            {
+            }, {
+                test: /\.(graphql|gql)$/,
+                exclude: /node_modules/,
+                loader: 'graphql-tag/loader',
+            }, {
                 // "oneOf" will traverse all following loaders until one will
                 // match the requirements. When no loader matches it will fall
                 // back to the "file" loader at the end of the loader list.
@@ -165,7 +168,7 @@ module.exports = {
                     // use the "style" loader inside the async code so CSS from them won't be
                     // in the main CSS file.
                     {
-                        test: /\.css$/,
+                        test: /\.(css|less)$/,
                         loader: ExtractTextPlugin.extract(
                             Object.assign(
                                 {
@@ -178,8 +181,7 @@ module.exports = {
                                                 minimize: true,
                                                 sourceMap: shouldUseSourceMap,
                                             },
-                                        },
-                                        {
+                                        }, {
                                             loader: require.resolve('postcss-loader'),
                                             options: {
                                                 // Necessary for external CSS imports to work
@@ -199,6 +201,7 @@ module.exports = {
                                                 ],
                                             },
                                         },
+                                        require.resolve('less-loader'),
                                     ],
                                 },
                                 extractTextPluginOptions
@@ -216,7 +219,7 @@ module.exports = {
                         // it's runtime that would otherwise processed through "file" loader.
                         // Also exclude `html` and `json` extensions so they get processed
                         // by webpacks internal loaders.
-                        exclude: [/\.js$/, /\.html$/, /\.json$/],
+                        exclude: [/\.js$/, /\.html$/, /\.json$/, /\.(gql|graphql)$/],
                         options: {
                             name: 'static/media/[name].[hash:8].[ext]',
                         },
@@ -320,6 +323,7 @@ module.exports = {
         // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
         // You can remove this if you don't use Moment.js:
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        new webpack.optimize.ModuleConcatenationPlugin()
     ],
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
