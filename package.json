@@ -10,7 +10,14 @@
   "bugs": {
     "url": "https://github.com/limaofeng/react-demo/issues"
   },
-  "keywords": ["apollo", "graphql", "react", "redux", "webpack", "router"],
+  "keywords": [
+    "apollo",
+    "graphql",
+    "react",
+    "redux",
+    "webpack",
+    "router"
+  ],
   "author": "limapfeng",
   "license": "MIT",
   "scripts": {
@@ -30,6 +37,7 @@
     "graphql-tools": "^1.2.2",
     "history": "^4.7.2",
     "jest": "20.0.4",
+    "nanobar": "^0.4.2",
     "object-assign": "4.1.1",
     "promise": "^8.0.1",
     "react": "^15.6.1",
@@ -123,7 +131,13 @@
       "react-app"
     ],
     "plugins": [
-      ["import", { "libraryName": "antd", "style": true }],
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "style": true
+        }
+      ],
       "transform-decorators-legacy"
     ]
   },

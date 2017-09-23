@@ -3,6 +3,8 @@ import { addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
+import Nanobar from 'nanobar';
+
 const urls = {
     wsapi: 'ws://dev.zbsg.com.cn:8090',
     api: 'http://dev.zbsg.com.cn'
@@ -18,7 +20,14 @@ const networkInterface = createNetworkInterface({ uri: `${urls.api}/graphql` });
 
 networkInterface.use([{
     applyMiddleware(req, next) {
-        // NProgress.start();
+        const options = {
+            classname: 'my-class',
+            id: 'my-id',
+            target: document.getElementById('root')
+        };
+        const nanobar = new Nanobar(options);
+        console.log('-------nanobar------');
+        nanobar.go(30);
         next();
     }
 }, {
