@@ -34,8 +34,13 @@ const createReduxStore = (usageMiddlewares = [], reducer = {}) => {
     return finalCreateStore(combineReducers(reducer));
 };
 
-export default function withRedux({ middlewares = [], reducers = {} }) {
-    const store = createReduxStore(middlewares, reducers);
+let store = null;
+
+// policy = ( only | recreate )
+export default function withRedux({ policy = 'only', middlewares = [], reducers = {} }) {
+    if (!store || policy === 'recreate') {
+        store = createReduxStore(middlewares, reducers);
+    }
     return WrappedComponent => () => (<div>
         {process.env.NODE_ENV === 'development' && !window.devToolsExtension && <DevTools store={store} />}
         <WrappedComponent store={store} />

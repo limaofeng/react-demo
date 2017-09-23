@@ -7,16 +7,18 @@ import reducers from './reducers'
 
 import { routes } from './RouteConfig';
 
-@withRedux({ middlewares: [
-    apolloMiddleware(),
-    routerMiddleware(),
-    compatibleRouterMiddleware()
-],
-reducers: {
-    ...reducers,
-    apollo: apolloReducer,
-    routing: routerReducer
-} })
+@withRedux({
+    middlewares: [
+        apolloMiddleware(),
+        routerMiddleware(),
+        compatibleRouterMiddleware()
+    ],
+    reducers: {
+        ...reducers,
+        apollo: apolloReducer,
+        routing: routerReducer
+    }
+})
 @withApollo()
 @withRouter({ routes: routes() })
 class App extends Component {
