@@ -27,6 +27,7 @@
     "lint": "eslint --fix --ext .js src/javascript"
   },
   "dependencies": {
+    "add-graphql-subscriptions": "^1.0.1",
     "antd": "^2.13.2",
     "apollo-client": "^1.9.2",
     "chalk": "1.1.3",

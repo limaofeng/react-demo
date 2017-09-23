@@ -1,18 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import { addGraphQLSubscriptions } from 'subscriptions-transport-ws';
+import { SubscriptionClient } from 'subscriptions-transport-ws';
+import { addGraphQLSubscriptions } from 'add-graphql-subscriptions';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
 import Nanobar from 'nanobar';
 
 const urls = {
-    wsapi: 'ws://dev.zbsg.com.cn:8090',
-    api: 'http://dev.zbsg.com.cn'
+    wsapi: process.env.REACT_APP_URLS_WSAPI,
+    api: process.env.REACT_APP_URLS_API,
 }
-/*
+
 const wsClient = new SubscriptionClient(`${urls.wsapi}/subscribe`, {
-    reconnect: true
-}); */
+    reconnect: true,
+});
 
 const networkInterface = createNetworkInterface({ uri: `${urls.api}/graphql` });
 
@@ -59,14 +60,12 @@ networkInterface.use([{
         next();
     }
 }]);
-console.warn('addGraphQLSubscriptions = ', addGraphQLSubscriptions)
-/*
 const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
     networkInterface,
     wsClient
-); */
+);
 const client = new ApolloClient({
-    networkInterface,
+    networkInterface: networkInterfaceWithSubscriptions,
     dataIdFromObject: r => (r.id && `${r.__typename}:${r.id}`) || null,
     reduxRootSelector: state => state.apollo,
     connectToDevTools: process.env.NODE_ENV === 'development'
