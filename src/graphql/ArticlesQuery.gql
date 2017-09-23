@@ -1,6 +1,7 @@
+#import "./Article.gql"
+
 query {
     articles {
-        id
-        title
+        ... ArticleInfo
     }
 }
