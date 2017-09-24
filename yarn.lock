@@ -4513,6 +4513,17 @@ loglevel@^1.4.1:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.5.0.tgz#3863984a2c326b986fbb965f378758a6dc8a4324"
 
+logrocket-react@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/logrocket-react/-/logrocket-react-0.0.4.tgz#790581b3e7c3b68ee8ed3eb0ee2cfa76045c9985"
+  dependencies:
+    react "15"
+    react-dom "15"
+
+logrocket@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/logrocket/-/logrocket-0.5.4.tgz#2fb58348d27d0a9699f7a044c882a642608f33a1"
+
 longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
@@ -6092,7 +6103,7 @@ react-dock@^0.2.4:
     lodash.debounce "^3.1.1"
     prop-types "^15.5.8"
 
-"react-dom@^15 || ^16", react-dom@^15.6.1:
+react-dom@15, "react-dom@^15 || ^16", react-dom@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.1.tgz#2cb0ed4191038e53c209eb3a79a23e2a4cf99470"
   dependencies:
@@ -6206,7 +6217,7 @@ react-slick@~0.15.0:
     object-assign "^4.1.0"
     slick-carousel "^1.6.0"
 
-"react@^15 || ^16", react@^15.6.1:
+react@15, "react@^15 || ^16", react@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"
   dependencies:
