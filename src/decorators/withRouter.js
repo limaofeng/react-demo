@@ -16,7 +16,7 @@ function parseQueryString(url) {
     for (let i = 0; i < pairs.length; i++) {
         const KeyVal = pairs[i].split('=');
         if (!KeyVal || KeyVal.length !== 2) {
-            continue;
+            continue; // eslint-disable-line
         }
         const key = decodeURIComponent(KeyVal[0]);// decodeURIComponent
         const val = decodeURIComponent(KeyVal[1]);// unescape

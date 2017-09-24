@@ -45,12 +45,12 @@ networkInterface.use([start, {
         }))(response.json().then(result => {
             const { errors } = result;
             if (errors) {
-                console.error(errors);
+                console.error(errors); // eslint-disable-line
                 if (errors.some(({ statusCode }) => statusCode === 401)) {
-                    console.error('logout', errors)
+                    console.error('logout', errors) // eslint-disable-line
                 }
                 if (errors.some(({ data: { code } }) => code === 100503)) {
-                    console.error('logout', errors)
+                    console.error('logout', errors) // eslint-disable-line
                 }
             }
             return result;
@@ -75,7 +75,7 @@ export const apolloMiddleware = () => client.middleware();
 export const apolloReducer = client.reducer();
 
 export default function withApollo() {
-    return WrappedComponent => class Provider extends Component {
+    return WrappedComponent => class Provider extends Component {// eslint-disable-line        
         static propTypes = {
             store: PropTypes.object.isRequired,
         }

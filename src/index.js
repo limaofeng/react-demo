@@ -15,7 +15,7 @@ render(Root);
 if (module.hot) {
     module.hot.accept('./App', args => {
         if (args) {
-            console.log(args);
+            console.log(args); // eslint-disable-line
         }
         render(Root);
     })
