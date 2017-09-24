@@ -4,7 +4,7 @@ import { addGraphQLSubscriptions } from 'add-graphql-subscriptions';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
-import Nanobar from 'nanobar';
+import { start, done } from './apollo/middleware/nanobar';
 
 const urls = {
     wsapi: process.env.REACT_APP_URLS_WSAPI,
@@ -19,19 +19,18 @@ const networkInterface = createNetworkInterface({ uri: `${urls.api}/graphql` });
 
 // NProgress.configure({ easing: 'ease', speed: 500 });
 
-networkInterface.use([{
+/*
+{
     applyMiddleware(req, next) {
-        const options = {
-            classname: 'my-class',
-            id: 'my-id',
-            target: document.getElementById('root')
-        };
         const nanobar = new Nanobar(options);
         console.log('-------nanobar------');
         nanobar.go(30);
         next();
     }
-}, {
+}
+*/
+
+networkInterface.use([start, {
     applyMiddleware(req, next) {
         if (!req.options.headers) {
             req.options.headers = {}; // Create the header object if needed.
@@ -59,7 +58,7 @@ networkInterface.use([{
         // NProgress.done();
         next();
     }
-}]);
+}, done]);
 const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
     networkInterface,
     wsClient
