@@ -34,6 +34,8 @@
     "graphql-tag": "^2.4.2",
     "graphql-tools": "^1.2.2",
     "history": "^4.7.2",
+    "logrocket": "^0.5.4",
+    "logrocket-react": "^0.0.4",
     "nanobar": "^0.4.2",
     "object-assign": "4.1.1",
     "promise": "^8.0.1",
