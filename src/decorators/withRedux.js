@@ -41,8 +41,13 @@ export default function withRedux({ policy = 'only', middlewares = [], reducers 
     if (!store || policy === 'recreate') {
         store = createReduxStore(middlewares, reducers);
     }
-    return WrappedComponent => () => (<div>
-        {process.env.NODE_ENV === 'development' && !window.devToolsExtension && <DevTools store={store} />}
-        <WrappedComponent store={store} />
-    </div>)
+    return WrappedComponent => () => {
+        if (process.env.NODE_ENV === 'development' && !window.devToolsExtension) {
+            return (<div>
+                <DevTools store={store} />
+                <WrappedComponent store={store} />
+            </div>)
+        }
+        return <WrappedComponent store={store} />;
+    }
 }
