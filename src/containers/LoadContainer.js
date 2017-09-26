@@ -1,23 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { loadOver } from './../reducers/ui'
+import { unload } from './../reducers/ui'
 
 @connect(({ ui: { loading } }) => ({
     loading
 }), dispatch => ({
-    loadOver: () => dispatch(loadOver()),
+    loadOver: () => dispatch(unload()),
 }))
-class LoadingContainer extends Component {
+class LoadContainer extends Component {
     static propTypes = {
-        children: PropTypes.any.isRequired,
+        children: PropTypes.element.isRequired,
         loading: PropTypes.bool.isRequired,
         loadOver: PropTypes.func.isRequired
     }
     componentDidMount() {
         const { loading, loadOver } = this.props
         if (loading) {
-            setTimeout(loadOver, 300);
+            setTimeout(loadOver, 1000);
         }
     }
     render() {
@@ -25,10 +25,11 @@ class LoadingContainer extends Component {
         if (loading) {
             return (<div className="loading-container">
                 <div className="loader" />
+                <div style={{ display: 'none' }}>{children}</div>
             </div>)
         }
         return children;
     }
 }
 
-export default LoadingContainer;
+export default LoadContainer;

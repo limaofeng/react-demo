@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 // 集成 Redux
 import withRedux from './decorators/withRedux';
@@ -28,7 +28,11 @@ import { routes } from './RouteConfig';
 @withApollo()
 @withRouter({ routes: routes() })
 export default class App extends Component {
+    static propTypes = {
+        children: PropTypes.element.isRequired
+    }
     render() {
-        return <div className="empty" />
+        const { children } = this.props;
+        return <div>{children}</div>
     }
 }

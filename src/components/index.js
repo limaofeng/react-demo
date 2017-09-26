@@ -4,7 +4,6 @@ import ActionButton from './ActionButton';
 import TabPanel from './TabPanel';
 import Uploader from './Uploader';
 import Address from './Address';
-import MaskContainer from './MaskContainer';
 import PageSidebar from './PageSidebar';
 import Navbar from './Navbar';
 import ChatBar from './ChatBar';
@@ -20,7 +19,6 @@ export {
     TabPanel,
     Uploader,
     Address,
-    MaskContainer,
     PageSidebar,
     Navbar,
     ChatBar,

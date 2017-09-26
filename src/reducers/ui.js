@@ -5,9 +5,11 @@ const initialState = { status: 'loading', loading: true };
 const changeStatus = status => {
     switch (status) {
     case 'loading':
-        return { status: 'loading', loading: true };
+        return { status: 'loading', loading: true, locking: false };
+    case 'locking':
+        return { status: 'locking', loading: false, locking: true };
     case 'none':
-        return { status: 'none', loading: false };
+        return { status: 'none', loading: false, locking: false };
     default:
         return {}
     }
@@ -23,10 +25,7 @@ export default function reducer(state = initialState, action = {}) {
     }
 }
 
-/**
- * 加载中
- */
-export function loading() {
+export function load() {
     return dispatch => {
         dispatch({
             type: CHANGE_STATUS,
@@ -38,7 +37,31 @@ export function loading() {
     };
 }
 
-export function loadOver() {
+export function unload() {
+    return dispatch => {
+        dispatch({
+            type: CHANGE_STATUS,
+            payload: 'none'
+        });
+        return new Promise(resolve => {
+            resolve(status);
+        });
+    };
+}
+
+export function lock() {
+    return dispatch => {
+        dispatch({
+            type: CHANGE_STATUS,
+            payload: 'locking'
+        });
+        return new Promise(resolve => {
+            resolve(status);
+        });
+    };
+}
+
+export function unlock() {
     return dispatch => {
         dispatch({
             type: CHANGE_STATUS,

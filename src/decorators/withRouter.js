@@ -46,16 +46,16 @@ export const routerMiddleware = () => OriginRouterMiddleware();
 
 export const routerReducer = OriginRouterReducer;
 
+export const history = createHistory();
+
 export default function withRouter({ routes }) {
-    const history = createHistory();
     return WrappedComponent => props => (<ConnectedRouter history={history}>
-        <div>
-            <WrappedComponent {...props} />
+        <WrappedComponent {...props}>
             <Switch>
                 {routes.map((route, index) => (
                     <RouteWithSubRoutes key={index} {...route} />
                 ))}
             </Switch>
-        </div>
+        </WrappedComponent>
     </ConnectedRouter>);
 }
