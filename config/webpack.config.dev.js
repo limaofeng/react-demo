@@ -66,7 +66,7 @@ module.exports = {
         // containing code from all our entry points, and the Webpack runtime.
         filename: 'static/js/[name].bundle.js',
         // There are also additional JS chunk files if you use code splitting.
-        chunkFilename: 'static/js/[name].chunk.js',
+        chunkFilename: 'static/js/[name]-[id].chunk.js',
         // This is the URL that app is served from. We use "/" in development.
         publicPath,
         // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -93,6 +93,8 @@ module.exports = {
             // Support React Native Web
             // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
             'react-native': 'react-native-web',
+            jquery: './../public/assets/js/jquery.min.js',
+            handlebars: require.resolve('handlebars/dist/handlebars.min'),
         },
         plugins: [
             // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -128,7 +130,7 @@ module.exports = {
                 include: paths.appSrc,
             }, {
                 test: /\.(graphql|gql)$/,
-                exclude: /node_modules/,
+                include: paths.appSrc,
                 loader: 'graphql-tag/loader',
             }, {
                 // "oneOf" will traverse all following loaders until one will
@@ -222,10 +224,10 @@ module.exports = {
         ],
     },
     plugins: [
-    // Makes some environment variables available in index.html.
-    // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
-    // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    // In development, this will be an empty string.
+        // Makes some environment variables available in index.html.
+        // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
+        // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+        // In development, this will be an empty string.
         new InterpolateHtmlPlugin(env.raw),
         // Generates an `index.html` file with the <script> injected.
         new HtmlWebpackPlugin({

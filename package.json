@@ -199,6 +199,7 @@
       "import/no-extraneous-dependencies": 0,
       "import/prefer-default-export": 0,
       "import/no-duplicates": 0,
+      "react/no-multi-comp": 0,
       "react/jsx-indent": [
         "error",
         4

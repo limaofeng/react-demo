@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { graphql } from 'react-apollo';
 
-import ARTICLES_QUERY from './../graphql/ArticlesQuery.gql'
+import ARTICLES_QUERY from './../graphqls/ArticlesQuery.gql'
 
 @graphql(ARTICLES_QUERY)
 export default class ArticleList extends Component {

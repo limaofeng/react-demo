@@ -1,4 +1,4 @@
-import Main from './views/Main';
+import MainContainer from './containers/MainContainer';
 import Home from './views/Home';
 import Login from './views/Auth';
 
@@ -11,7 +11,7 @@ export const routes = () => [
     },
     {
         path: '/',
-        component: Main,
+        component: MainContainer,
         routes: [
             {
                 path: '/',

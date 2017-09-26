@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button } from 'antd';
-import logo from './../logo.svg'
 
-import './../App.css'
+import logo from './../logo.svg'
+import PageBody from './../components/PageBody'
+
 import Articles from './ArticleList';
 
-class Home extends Component {
-    render() {
-        return (
+function Home() {
+    return (
+        <PageBody>
             <div className="App">
                 <div className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
@@ -18,8 +19,8 @@ class Home extends Component {
                 </p>
                 <Articles />
             </div>
-        );
-    }
+        </PageBody>
+    );
 }
 
 export default Home;
