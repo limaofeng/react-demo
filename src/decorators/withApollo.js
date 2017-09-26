@@ -4,7 +4,7 @@ import { addGraphQLSubscriptions } from 'add-graphql-subscriptions';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
-import { start, done } from './apollo/middleware/nanobar';
+import { start, done } from './apollo/middleware/nprogress';
 
 const urls = {
     wsapi: process.env.REACT_APP_URLS_WSAPI,
@@ -55,7 +55,6 @@ networkInterface.use([start, {
             }
             return result;
         }));
-        // NProgress.done();
         next();
     }
 }, done]);
