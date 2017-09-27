@@ -174,7 +174,7 @@ class ArticleList extends PureComponent {
           show: true,
           disabled: true,
           key: 'title',
-          render: (text, { id }) => <Link to={`/cms/articles/${id}`}>{text}</Link>
+          render: (text, { id }) => <Link to={`/articles/${id}`}>{text}</Link>
         }, {
           title: '是否发布',
           dataIndex: 'status',
