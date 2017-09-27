@@ -11,7 +11,7 @@ import withRouter, { routerMiddleware, routerReducer, compatibleRouterMiddleware
 import reducers from './reducers';
 
 // Router 配置
-import { routes } from './RouteConfig';
+import modules from './modules';
 
 @withRedux({
   middlewares: [
@@ -26,7 +26,7 @@ import { routes } from './RouteConfig';
   }
 })
 @withApollo()
-@withRouter({ routes: routes() })
+@withRouter({ routes: modules.routes })
 export default class App extends Component {
     static propTypes = {
       children: PropTypes.element.isRequired

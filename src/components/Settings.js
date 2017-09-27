@@ -24,7 +24,6 @@ class Settings extends Component {
       handleClose: PropTypes.func.isRequired,
       title: PropTypes.string.isRequired,
       children: PropTypes.any.isRequired,
-      content: PropTypes.element.isRequired,
       extras: PropTypes.array.isRequired
     }
 
@@ -45,7 +44,7 @@ class Settings extends Component {
     }
 
     render() {
-      const { handleClose, title, children, content, extras } = this.props;
+      const { handleClose, title, children, extras } = this.props;
       const { next, nextIndex } = this.state;
       return (
         <div className="settings-menu-container">
@@ -56,7 +55,7 @@ class Settings extends Component {
                 <button type="button" className="close" onClick={handleClose}><Icon type="close" /></button>
               </div>
               <div className="settings-menu-content">
-                {children || content}
+                {children}
                 <ul className="nav-list-block">
                   {extras.map(({ props: { title: extTitle, summary } }, i) => {
                     const lis = [<li className="nav-list-item" onClick={this.handleOpenNextSettings(i)} role="none">

@@ -1,5 +1,7 @@
-import cms from './cms';
-
 import Feature from './connector';
 
-export default new Feature(cms);
+import cms from './cms';
+
+import main from './../containers/MainContainer';
+
+export default new Feature(main, cms);

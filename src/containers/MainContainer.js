@@ -1,25 +1,24 @@
 import React, { PropTypes, Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Switch } from 'react-router-dom';
 
 import { PageSidebar, Navbar, ChatBar, PageContent, /* MaskContainer, */ } from '../components';
 import LoadContainer from './LoadContainer';
 import LockContainer from './LockContainer';
-// import { RouteWithSubRoutes } from '../decorators/router';
+
+import Feature from './../modules/connector';
 
 import modules from '../modules';
 
 @connect(({ auth: user }) => ({
   user
 }))
-export default class Main extends Component {
+class MainContainer extends Component {
     static propTypes = {
-      routes: PropTypes.array.isRequired,
       user: PropTypes.object.isRequired
     }
     render() {
       const { routes, user,children } = this.props;// eslint-disable-line
-      console.log('----------------------------------', this.props);
       return (
         <LoadContainer>
           <LockContainer>
@@ -31,10 +30,7 @@ export default class Main extends Component {
                   <ChatBar />
                   <PageContent >
                     <Switch>
-                      {modules.routes}
-                      {/* (routes || []).map((route, i) => (
-                        <RouteWithSubRoutes key={i} {...route} />
-                      )) */ }
+                      {modules.pages}
                     </Switch>
                   </PageContent>
                 </div>
@@ -45,3 +41,7 @@ export default class Main extends Component {
       );
     }
 }
+
+export default new Feature({
+  route: <Route path="/" component={MainContainer} />
+});

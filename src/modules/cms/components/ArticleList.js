@@ -7,8 +7,6 @@ import { Popconfirm, message, Select, Menu, Input, Table, Icon, Dropdown, Row, }
 
 import { ActionButton } from '../../../components';
 
-import * as urls from '../../../utils/urls';
-
 // 查询文章某一类文章
 import ARTICLES_QUERY from '../graphqls/articlesConnection.gql';
 import ARTICLE_REMOVE from '../graphqls/article_remove.gql';
@@ -76,22 +74,19 @@ class ArticleAction extends Component {
       const menu = (
         <Menu>
           <Menu.Item>
-            <Link to={`/cms/${item.id}/share`}>分享文章</Link>
-          </Menu.Item>
-          <Menu.Item>
-            <a target="_blank" href={`${urls.wxPath}/cms/${item.uuid}`}>微信查看文章</a>
+            <Link to={`/${item.id}/share`}>推荐到文章</Link>
           </Menu.Item>
         </Menu>
       );
 
       return (<span>
-        <Link to={`/cms/articles/${item.id}`}>编辑文章</Link>
+        <Link to={`/articles/${item.id}`}>编辑文章</Link>
         <span className="ant-divider" />
         <ArticleDelete id={item.id} onDelete={refresh} />
         <span className="ant-divider" />
         <Dropdown overlay={menu}>
           <a className="ant-dropdown-link">
-                    操作<Icon type="down" />
+              操作<Icon type="down" />
           </a>
         </Dropdown>
       </span>);
@@ -288,7 +283,7 @@ export default class ArticleListWrapper extends Component {
 
     handleNewArticle = ({ submit }) => {
       const { history: { push } } = this.props;
-      submit({ title: '未命名标题', content: '默认内容' }).then(({ data: { article: { id } } }) => push(`/cms/articles/${id}`));
+      submit({ title: '未命名标题', content: '默认内容' }).then(({ data: { article: { id } } }) => push(`/articles/${id}`));
     }
 
     render() {

@@ -1,32 +1,23 @@
 import React, { PropTypes, Component, PureComponent } from 'react';
 import { graphql, withApollo } from 'react-apollo';
-import gql from 'graphql-tag';
-import { isEqual } from 'lodash';
 import { withRouter } from 'react-router-dom';
-import moment from 'moment';
 
-import { Menu, Dropdown, Button, Row, Col, Icon, message, Radio, Form, Input, Checkbox, DatePicker, TimePicker, Upload, Modal, Tag, Select, Spin } from 'antd';
+import { Icon, message, Input, Modal } from 'antd';
 
 import classnames from 'classnames';
-import Ueditor from '../Ueditor/Ueditor';
-import { openNotificationWithIcon } from './../../components/Modal/Pubfun';
-import * as config from '../../config/urls';
+import Ueditor from '../components/Ueditor';
 
-import { PageBody } from './../../components';
-import { lazyUpdate, diff } from './../../utils';
+import { PageBody } from './../../../components';
+import { lazy as lazyUpdate } from './../../../utils/lazy';
 
-import ArticleSettings from './ArticleSettings';
+import ArticleSettings from '../components/ArticleSettings';
 
-import './ArticleForm.less';
+import './ArticleEdit.less';
 
-import ARITCLE_QUERY from './gql/article.gql';
-import ARTICLE_UPDATE from './gql/article_update.gql';
-import ARTICLE_REMOVE from './gql/article_remove.gql';
+import ARITCLE_QUERY from '../graphqls/article.gql';
+import ARTICLE_UPDATE from '../graphqls/article_update.gql';
+import ARTICLE_REMOVE from '../graphqls/article_remove.gql';
 
-const FormItem = Form.Item;
-const Option = Select.Option;
-const MonthPicker = DatePicker.MonthPicker;
-const RangePicker = DatePicker.RangePicker;
 const confirm = Modal.confirm;
 
 @withRouter
@@ -35,7 +26,7 @@ const confirm = Modal.confirm;
     ...props,
     remove: () => props.mutate({
       variables: { id }
-    }).then(data => {
+    }).then(() => {
       message.info('删除成功');
       goBack();
     })
@@ -70,8 +61,10 @@ class ArticleDelete extends Component {
 
 class ArticleActions extends PureComponent {
     static propTypes = {
+      article: PropTypes.object.isRequired,
       submitting: PropTypes.bool.isRequired,
-      draft: PropTypes.bool.isRequired
+      draft: PropTypes.bool.isRequired,
+      handleSave: PropTypes.func.isRequired
     }
 
     constructor(props) {
@@ -114,7 +107,7 @@ class ArticleActions extends PureComponent {
 
     render() {
       const { submitting, draft, article } = this.props;
-      const { style, action, title } = this.state;
+      const { style, title } = this.state;
 
       const menus = [];
       if (draft) {
@@ -186,7 +179,6 @@ class ArticleForm extends PureComponent {
 
     // 操作保存方法
     handleSave = action => {
-      const { update } = this.props;
       const { article } = this.state;
       switch (action) {
         case 'publish':
@@ -234,7 +226,7 @@ class ArticleForm extends PureComponent {
 
     render() {
       const { article: { status, ...article } } = this.props;
-      const { openSettings, submitting, url } = this.state;
+      const { openSettings, submitting } = this.state;
       return (<div className={classnames({ 'settings-menu-expanded': openSettings })}>
         <section className="article-view" onClick={this.handleCloseSettings} role="none">
           <header className="view-header">
