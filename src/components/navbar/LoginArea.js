@@ -91,7 +91,7 @@ class LoginArea extends Component {
                 $.alert.error('新密码两次输入不一致');
                 return false;
               }
-              console.log(id, oldpwd)
+              console.log(id, oldpwd);
               /*
                         dispatch(resetpwd(_id, { new_password: newpwd, old_password: oldpwd })).then(result => {
                             console.log(result);

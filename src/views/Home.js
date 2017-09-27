@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from 'antd';
 
-import logo from './../logo.svg'
-import PageBody from './../components/PageBody'
+import logo from './../logo.svg';
+import PageBody from './../components/PageBody';
 
 import Articles from './ArticleList';
 

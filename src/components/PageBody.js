@@ -63,8 +63,8 @@ function getWindowHeight() {
 export default class PageBody extends Component {
     static propTypes = {
       fullscreen: PropTypes.bool,
-      menus: PropTypes.array,
-      location: PropTypes.object,
+      // menus: PropTypes.array,
+      // location: PropTypes.object,
       children: PropTypes.any.isRequired
     };
 
@@ -91,11 +91,11 @@ export default class PageBody extends Component {
     }
 
     render() {
-      const { location, fullscreen, children, menus } = this.props;
-      const { height } = this.state;
+      // <Container location={location} height={height} menus={menus}>  </Container>
+      const { fullscreen, children } = this.props;// location, menus const { height } = this.state;
       if (fullscreen) {
         return (<div className="page-body no-padding" style={{ display: children.length ? 'flex' : 'block' }}>
-          <Container location={location} height={height} menus={menus}> {children} </Container>
+          {children}
         </div>);
       }
       return (<div className="page-body" style={{ display: children.length ? 'flex' : 'block' }}>{children}</div>);

@@ -9,7 +9,7 @@ import { start, done } from './apollo/middleware/nprogress';
 const urls = {
   wsapi: process.env.REACT_APP_URLS_WSAPI,
   api: process.env.REACT_APP_URLS_API,
-}
+};
 
 const wsClient = new SubscriptionClient(`${urls.wsapi}/subscribe`, {
   reconnect: true,
@@ -82,7 +82,7 @@ export default function withApollo() {
           const { store } = this.props;
           return (<ApolloProvider store={store} client={client}>
             <WrappedComponent store={store} client={client} />
-          </ApolloProvider>)
+          </ApolloProvider>);
         }
   };
 }

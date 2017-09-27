@@ -59,7 +59,7 @@ class ContactList extends Component {
           color: themeprimary,
           height: $(window).height() - (86 + additionalHeight)
         });
-      })
+      });
     }
 
     render() {
@@ -173,7 +173,7 @@ class ChatList extends Component {
           color: themeprimary,
           height: $(window).height() - (250 + additionalHeight)
         });
-      })
+      });
     }
     render() {
       return (

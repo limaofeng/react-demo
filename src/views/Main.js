@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { RouteWithSubRoutes } from './../decorators/router'
+import { RouteWithSubRoutes } from './../decorators/router';
 
 @connect(({ auth: user }) => ({
   user

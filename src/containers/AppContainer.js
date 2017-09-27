@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { AppContainer as ReactHotContainer } from 'react-hot-loader';
 
+/*
 if (process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line no-unused-vars,react/no-deprecated
   let createClass = React.createClass;
@@ -11,9 +12,9 @@ if (process.env.NODE_ENV === 'development') {
       createClass = nextCreateClass;
     },
   });
-  const { whyDidYouUpdate } = require('why-did-you-update')
-  whyDidYouUpdate(React)
-}
+  const { whyDidYouUpdate } = require('why-did-you-update');
+  whyDidYouUpdate(React);
+} */
 
 class AppContainer extends Component {
     static propTypes = {
@@ -22,7 +23,7 @@ class AppContainer extends Component {
     render() {
       const { children } = this.props;
       if (process.env.NODE_ENV === 'development') {
-        return <ReactHotContainer>{children}</ReactHotContainer>
+        return <ReactHotContainer>{children}</ReactHotContainer>;
       }
       return children;
     }

@@ -2,7 +2,7 @@ import { defaultParams as defaultFetchParams } from '../fetch';
 
 const urls = {
   api: 'http://dev.zbsg.com.cn'
-}
+};
 
 export default function request({ dispatch }) {
   return next => async action => {

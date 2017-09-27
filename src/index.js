@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import moment from 'moment';
 
-import { AppContainer } from './containers'
+import { AppContainer } from './containers';
 import './index.less';
 import Root from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -23,7 +23,7 @@ if (module.hot) {
             console.log(args); // eslint-disable-line
     }
     render(Root);
-  })
+  });
 }
 
 registerServiceWorker();

@@ -40,7 +40,7 @@ export const compatibleRouterMiddleware = () => () => next => action => {
     return next({ ...action });
   }
   return next(action);
-}
+};
 
 export const routerMiddleware = () => OriginRouterMiddleware();
 

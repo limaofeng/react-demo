@@ -16,6 +16,6 @@ export const done = {
     NProgress.done();
     next();
   }
-}
+};
 
 export default { start, done };

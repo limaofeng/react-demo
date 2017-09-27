@@ -46,8 +46,8 @@ export default function withRedux({ policy = 'only', middlewares = [], reducers 
       return (<div>
         <DevTools store={store} />
         <WrappedComponent store={store} />
-      </div>)
+      </div>);
     }
     return <WrappedComponent store={store} />;
-  }
+  };
 }

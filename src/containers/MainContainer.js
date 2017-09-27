@@ -5,9 +5,9 @@ import { Switch } from 'react-router-dom';
 import { PageSidebar, Navbar, ChatBar, PageContent, /* MaskContainer, */ } from '../components';
 import LoadContainer from './LoadContainer';
 import LockContainer from './LockContainer';
-import { RouteWithSubRoutes } from '../decorators/router'
+// import { RouteWithSubRoutes } from '../decorators/router';
 
-// layout.lock.display ? <MaskContainer type={layout.lock.box} /> : [] 
+import modules from '../modules';
 
 @connect(({ auth: user }) => ({
   user
@@ -18,7 +18,8 @@ export default class Main extends Component {
       user: PropTypes.object.isRequired
     }
     render() {
-      const { routes, user } = this.props;
+      const { routes, user,children } = this.props;// eslint-disable-line
+      console.log('----------------------------------', this.props);
       return (
         <LoadContainer>
           <LockContainer>
@@ -30,9 +31,10 @@ export default class Main extends Component {
                   <ChatBar />
                   <PageContent >
                     <Switch>
-                      {(routes || []).map((route, i) => (
+                      {modules.routes}
+                      {/* (routes || []).map((route, i) => (
                         <RouteWithSubRoutes key={i} {...route} />
-                      ))}
+                      )) */ }
                     </Switch>
                   </PageContent>
                 </div>

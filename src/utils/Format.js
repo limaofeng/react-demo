@@ -130,9 +130,9 @@ export function capitalize(value) {
 export function usMoney(v) {
   let iv = (Math.round((v - 0) * 100)) / 100;
   if ((iv === Math.floor(iv))) {
-    iv = `${iv}.00`
+    iv = `${iv}.00`;
   } else {
-    iv = ((iv * 10 === Math.floor(iv * 10)) ? `${iv}0` : iv)
+    iv = ((iv * 10 === Math.floor(iv * 10)) ? `${iv}0` : iv);
   }
   iv = String(iv);
   const ps = iv.split('.');
@@ -460,7 +460,7 @@ export function param(params) {
       setParams(p, 0, [p]);
       delete params[p];
     }
-  })
+  });
   return params;
 }
 
@@ -529,7 +529,7 @@ export function fmoney(v) {
   if (v === Math.floor(v)) {
     v = `${v}.00`;
   } else {
-    v = (v * 10 === Math.floor(v * 10)) ? `${v}0` : v
+    v = (v * 10 === Math.floor(v * 10)) ? `${v}0` : v;
   }
   v = String(v);
   const ps = v.split('.');

@@ -170,7 +170,7 @@ class NavbarHeaderRight extends Component {
           size: '3px',
           color: themeprimary
         });
-      })
+      });
     }
 
     initiateSettings = () => {

@@ -1,14 +1,14 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 
 // 集成 Redux
 import withRedux from './decorators/withRedux';
-// 集成 Apollo 
+// 集成 Apollo
 import withApollo, { apolloMiddleware, apolloReducer } from './decorators/withApollo';
 // 集成 React-Router
 import withRouter, { routerMiddleware, routerReducer, compatibleRouterMiddleware } from './decorators/withRouter';
 
 // Redux 配置
-import reducers from './reducers'
+import reducers from './reducers';
 
 // Router 配置
 import { routes } from './RouteConfig';
@@ -33,6 +33,6 @@ export default class App extends Component {
     }
     render() {
       const { children } = this.props;
-      return <div>{children}</div>
+      return <div>{children}</div>;
     }
 }

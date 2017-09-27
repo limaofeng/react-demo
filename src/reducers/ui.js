@@ -11,15 +11,15 @@ const changeStatus = status => {
     case 'none':
       return { status: 'none', loading: false, locking: false };
     default:
-      return {}
+      return {};
   }
-}
+};
 
 export default function reducer(state = initialState, action = {}) {
   const { type, payload } = action;
   switch (type) {
     case CHANGE_STATUS:
-      return { ...state, ...changeStatus(payload) }
+      return { ...state, ...changeStatus(payload) };
     default:
       return state;
   }

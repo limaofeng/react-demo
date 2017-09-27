@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { unload } from './../reducers/ui'
+import { unload } from './../reducers/ui';
 
 @connect(({ ui: { loading } }) => ({
   loading
@@ -15,7 +15,7 @@ class LoadContainer extends Component {
       loadOver: PropTypes.func.isRequired
     }
     componentDidMount() {
-      const { loading, loadOver } = this.props
+      const { loading, loadOver } = this.props;
       if (loading) {
         setTimeout(loadOver, 1000);
       }
@@ -26,7 +26,7 @@ class LoadContainer extends Component {
         return (<div className="loading-container">
           <div className="loader" />
           <div style={{ display: 'none' }}>{children}</div>
-        </div>)
+        </div>);
       }
       return children;
     }

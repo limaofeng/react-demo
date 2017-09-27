@@ -188,10 +188,7 @@
           "allowForLoopAfterthoughts": true
         }
       ],
-      "semi": [
-        0,
-        "never"
-      ],
+      "semi": 2,
       "import/no-extraneous-dependencies": 0,
       "import/prefer-default-export": 0,
       "import/no-duplicates": 0,
