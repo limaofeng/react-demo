@@ -122,14 +122,14 @@ class Uploader extends Component {
       return (
         <div className="uploader">
           <Upload
-              multiple={multiple}
-              action={`${urls.api}/files?dir=team`}
-              name="attach"
-              listType="picture-card"
-              fileList={fileList}
-              onPreview={this.handlePreview}
-              onChange={this.handleChange}
-              showUploadList={showUploadList}
+            multiple={multiple}
+            action={`${urls.api}/files?dir=team`}
+            name="attach"
+            listType="picture-card"
+            fileList={fileList}
+            onPreview={this.handlePreview}
+            onChange={this.handleChange}
+            showUploadList={showUploadList}
           >
             {children.length ? children : null}
           </Upload>

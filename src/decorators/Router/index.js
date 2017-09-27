@@ -21,9 +21,9 @@ const fakeAuth = {
 export const RouteWithSubRoutes = route => {
   if (route.access === 'Public') { // default Protected
     return (<Route
-        path={route.path}
-        exact={route.exact}
-        render={props => (
+      path={route.path}
+      exact={route.exact}
+      render={props => (
         <route.component {...props} routes={route.routes} />
       )}
     />);

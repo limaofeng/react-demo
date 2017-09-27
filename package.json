@@ -196,10 +196,6 @@
       "import/prefer-default-export": 0,
       "import/no-duplicates": 0,
       "react/no-multi-comp": 0,
-      "react/jsx-indent-props": [
-        2,
-        4
-      ],
       "react/no-array-index-key": [
         1
       ],

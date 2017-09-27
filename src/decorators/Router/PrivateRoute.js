@@ -10,9 +10,9 @@ export default class PrivateRoute extends Route {
       return <Redirect exact from={route.path} to={route.to} />;
     }
     return (<Route
-        path={route.path}
-        exact={route.exact}
-        render={props => {
+      path={route.path}
+      exact={route.exact}
+      render={props => {
         if (!user) {
           return (<Redirect to={{ pathname: '/login', state: { from: props.location } }} />);
         }

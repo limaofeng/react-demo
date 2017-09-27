@@ -83,12 +83,12 @@ export default class CitySelect extends Component {
       return (<div style={{ width: _width }}>
         <div style={{ padding: _padding }}>
           <Cascader
-              options={this.state.options}
-              loadData={this.loadData}
-              onChange={this.onChange}
+            options={this.state.options}
+            loadData={this.loadData}
+            onChange={this.onChange}
             changeOnSelect
             style={{ width: '100%' }}
-              placeholder={_selectPlaceholder}
+            placeholder={_selectPlaceholder}
           />
         </div>
         {isAddress &&

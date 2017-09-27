@@ -329,21 +329,21 @@ class NavbarHeaderRight extends Component {
                 </a>
                 <ul className="pull-right dropdown-menu dropdown-arrow dropdown-messages">
                   <MessageItem
-                      sender="Divyia Austin"
+                    sender="Divyia Austin"
                     time="2 minutes ago"
                     subject="Here's the recipe for apple pie"
                     body="to identify the sending application when the senders image is shown for the main icon"
                   />
                   <MessageItem
                     sender="Bing.com"
-                      time="Yesterday"
-                      subject="Bing Newsletter: The January Issue‏"
+                    time="Yesterday"
+                    subject="Bing Newsletter: The January Issue‏"
                     body="Discover new music just in time for the Grammy® Awards."
                   />
                   <MessageItem
-                      sender="Nicolas"
-                      time="Friday, September 22"
-                      subject="New 4K Cameras"
+                    sender="Nicolas"
+                    time="Friday, September 22"
+                    subject="New 4K Cameras"
                     body="The 4K revolution has come over the horizon and is reaching the general populous"
                   />
                 </ul>
