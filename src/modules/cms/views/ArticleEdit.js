@@ -8,7 +8,7 @@ import classnames from 'classnames';
 import Ueditor from '../components/Ueditor';
 
 import { PageBody } from './../../../components';
-import { lazy as lazyUpdate } from './../../../utils/lazy';
+import { lazy as lazyUpdate } from './../../../helpers/lazy';
 
 import ArticleSettings from '../components/ArticleSettings';
 
@@ -162,7 +162,6 @@ class ArticleForm extends PureComponent {
         submitting: false
       };
       this.lazy = lazyUpdate({ title, content, status }, { onlyDiff: true });
-      console.log('new ArticleForm');
     }
 
     handleOpenSettings = e => {

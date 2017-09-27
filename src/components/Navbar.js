@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // import { Upload, Icon, message } from 'antd';
 
 import LoginArea from './navbar/LoginArea';
-import { lazy } from './../utils/lazy';
+import { lazy } from './../helpers/lazy';
 // import { logout, resetpwd } from '../reducers/auth';
 
 /* global themeprimary readCookie setCookiesForFixedSettings */

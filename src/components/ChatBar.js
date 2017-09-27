@@ -1,7 +1,7 @@
 /* global readCookie themeprimary */
 import React, { Component, PropTypes } from 'react';
 
-import { lazy } from './../utils/lazy';
+import { lazy } from './../helpers/lazy';
 
 class Contact extends Component {
     static propTypes = {

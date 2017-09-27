@@ -7,7 +7,7 @@ import { message, Icon, Modal } from 'antd';
 import { PageBody, TreeSidebar } from '../../../components';
 
 import ArticleList from './../components/ArticleList';
-import * as Format from '../../../utils/Format';
+import * as Format from '../../../helpers/Format';
 
 import { CategorySubmitForm, CategoryUpdateForm } from '../components/CategoryForm';
 
@@ -240,10 +240,6 @@ export default class Article extends PureComponent {
     static propTypes = {
       location: PropTypes.object.isRequired,
       history: PropTypes.object.isRequired
-    }
-    constructor(props) {
-      super(props);
-      console.log('new Articles');
     }
     handleChange = id => {
       const { history } = this.props;

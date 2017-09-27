@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withApollo } from 'react-apollo';
 import { Cascader, Input } from 'antd';
 
-import * as Format from '../utils/Format';
+import * as Format from '../helpers/Format';
 import AREAS_QUERY from './../graphqls/areas.gql';
 
 @connect(({ apollo: { data } }) => ({ data }))

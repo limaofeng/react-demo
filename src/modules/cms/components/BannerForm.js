@@ -11,7 +11,7 @@ import {
 } from 'antd';
 
 
-import * as utils from '../../utils/Format';
+import * as utils from '../../helpers/Format';
 import { picturePath } from '../../config/urls';
 import { PageBody, TabPanel, Widget, FormGroup } from '../../components';
 

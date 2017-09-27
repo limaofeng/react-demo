@@ -8,10 +8,6 @@ export default class ArticleList extends Component {
     static propTypes = {
       data: PropTypes.object.isRequired
     }
-    constructor(props) {
-      super(props);
-      console.log('new ArticleList');
-    }
     render() {
       const { data: { articles, loading } } = this.props;
       if (loading) {

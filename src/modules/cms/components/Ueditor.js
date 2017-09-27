@@ -1,6 +1,6 @@
 /* global UE */
 import React, { PureComponent, PropTypes } from 'react';
-import * as urls from '../../../utils/urls';
+import * as urls from '../../../helpers/urls';
 
 class Ueditor extends PureComponent {
     static propTypes = {

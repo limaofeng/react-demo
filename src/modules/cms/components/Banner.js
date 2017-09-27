@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import * as UIActions from '../../redux/modules/ui/index';
-import * as utils from '../../utils/Format';
+import * as utils from '../../helpers/Format';
 // 操作按钮
 import { PageBody, TabPanel, ActionButton } from '../../components';
 import { Popconfirm, Spin, Form, Switch, Radio, Input, Table, Icon, Button, Menu, Dropdown, Card, Affix, Modal, AutoComplete } from 'antd';

@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import { isEqual } from 'lodash';
 
-import * as Format from '../utils/Format';
+import * as Format from '../helpers/Format';
 
 import QUERY_MENUS from '../graphqls/menus.gql';
 
@@ -242,7 +242,7 @@ class PageSidebar extends Component {
                 $('li.active', '.sidebar-menu').removeClass('active').parents('li').removeClass('open active');
                 // $('li.open','.sidebar-menu').removeClass('open');
                 $li.addClass('active').closest('.submenu').parent().addClass('open active');
-            } 
+            }
         }
     } */
 

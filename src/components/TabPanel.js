@@ -7,7 +7,7 @@ import { assign } from 'lodash';
 
 import { Modal, Button, Icon, Tabs, Checkbox } from 'antd';
 
-import * as format from '../utils/Format';
+import * as format from '../helpers/Format';
 
 const Tab = Tabs.TabPane;
 const CheckboxGroup = Checkbox.Group;

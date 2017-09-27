@@ -9,7 +9,7 @@ import { Settings, Uploader, FormGroup } from './../../../components';
 import ARITCLE_QUERY from '../graphqls/article.gql';
 import ARTICLETAGS_QUERY from '../graphqls/article_tags.gql';
 
-import { lazy as lazyUpdate } from './../../../utils/lazy';
+import { lazy as lazyUpdate } from './../../../helpers/lazy';
 
 const ExtraSettings = Settings.ExtraSettings;
 const FormItem = Form.Item;
