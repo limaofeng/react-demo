@@ -1,0 +1,22 @@
+query ($id: String!) {
+  category:articleCategory(id: $id) {
+    id
+    type
+    name
+    layer
+    path
+    description
+    sort
+    parent{
+      id
+    }
+    cover {
+      path
+    }
+    uuid
+    creator
+    modifier
+    createTime
+    modifyTime
+  }
+}

@@ -1,0 +1,22 @@
+mutation ($entity: submitCategoryInput!) {
+    category: patchCategory(entity: $entity) {
+        id
+        name
+        layer
+        type
+        path
+        description
+        sort
+        parent {
+            id
+        }
+        cover {
+            path
+        }
+        uuid
+        creator
+        modifier
+        createTime
+        modifyTime
+    }
+}

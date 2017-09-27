@@ -1,0 +1,45 @@
+mutation ($entity: submitArticleInput!, $push: SubmitArticlePushInput) {
+  article: submitArticle(entity: $entity, push: $push) {
+    id
+    title
+    summary
+    status
+    cover {
+      path
+      name
+      ext
+      description
+      size
+    }
+    author
+    publishDate(format:"YYYY-MM-DD HH:mm:ss")
+    category {
+      id
+      name
+    }
+    content
+    metaData {
+      title
+      description
+    }
+    tags
+    sn
+    push {
+      id
+      sex
+      msgType
+      msgId
+      msgTitle
+      minAge
+      maxAge
+      acquiredTypes
+      chronicTypes
+      pushDate
+    }
+    uuid
+    creator
+    modifier
+    createTime
+    modifyTime
+  }
+}

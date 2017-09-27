@@ -1,0 +1,277 @@
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_open:after {
+    font-size: 12px;
+    transform: scale(.58333333) rotate(0deg);
+    zoom: 1;
+    display: inline-block;
+    font-family: anticon;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    content: "\E606";
+    font-weight: 700;
+    transition: transform .3s,-webkit-transform .3s;
+}
+.ant-select-tree li span.ant-select-tree-switcher.ant-select-tree-switcher_close:after {
+    font-size: 12px;
+    transform: scale(.58333333) rotate(0deg);
+    zoom: 1;
+    display: inline-block;
+    font-family: anticon;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    content: "\E606";
+    font-weight: 700;
+    transition: transform .3s,-webkit-transform .3s;
+}
+.frame-container {
+    font-size: 12px;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color:#ffffff;
+    padding-top: 45px;
+    box-sizing: border-box;
+    position: relative;
+
+    .frame-sidebar{
+        box-sizing: border-box;
+        overflow:auto;
+        width: 200px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        border-right: 1px solid #CCCCCC;
+        background-color:#fff;
+        padding-top: 40px;
+        box-sizing: border-box;
+
+        .inside-scroll{
+            box-sizing: border-box;
+            overflow: auto;
+            height: calc(~"100vh - 125px");
+
+            &::-webkit-scrollbar{
+                display: none;
+            }
+
+        }
+
+    }
+
+    .frame-body{
+        margin-top: -45px;
+        position: relative;
+        margin-left: 200px;
+        padding: 0;
+        overflow: auto;
+        background-color: #ffffff;
+        padding-top:40px;
+        padding-left: 20px;
+        padding-right:20px;
+        padding-bottom: 50px;
+        height: calc(~"100vh - 85px");
+        
+        &::-webkit-scrollbar{
+            display: none;
+        }
+        
+    }
+    
+}
+
+.dicts-title-ellipsis {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 250px;
+}
+
+.dicts-description-ellipsis {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: calc(~"100vw - 1350px");
+}
+
+.menuTree{
+    
+    .action-icons {
+        position: fixed;
+        margin-top: -40px;
+        width: 199px;
+        height: 45px;
+        line-height: 45px;
+        text-align: end;
+        font-size: 22px;
+        padding-right:10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        background-color: white;
+        z-index: 100;
+        border-bottom: 1px solid #CCCCCC;
+
+        i {
+            padding-left: 10px;
+            font-size: 18px;
+            color: #108ee9;
+            cursor: pointer;
+        }
+
+    }
+}
+
+.fan-menu{
+
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    .fan-menu-item-group-list {
+
+        &.fan-menu-hidden {
+            display: none;
+        }
+
+    }
+
+    .fan-menu-item {
+        position: relative;
+
+        button {
+            position: absolute;
+            height: 25px;
+            width: 25px;
+            top: 0px;
+            right: 41px;
+            margin-right: 5px;
+            margin-top: 10px;
+            opacity: 0;
+        }
+
+        &:hover > button{
+            transition: all .2s ease 0s;
+            opacity: 1;
+        }
+        
+        .menu-item-title {
+            padding-left: 15px;
+            padding-right: 16px;
+            height: 45px;
+            line-height: 45px;
+            cursor:default;
+            display: flex;
+            box-sizing: border-box;
+            text-overflow: ellipsis;
+
+            &.menu-item-selected {
+                background-color:#ECF6FD;
+                border-right: 3px solid #108EE9;
+                padding-right: 13px !important;
+                color: #108ee9;
+
+                a {
+                    color: #108ee9;
+                }
+            }
+
+            i{
+                &::after {
+                    display: inline-block;
+                    cursor: pointer;
+                    height: 45px;
+                    line-height: 45px;
+                    width: 20px;
+                    font-family: anticon!important;
+                    transform: scale(.66666667) rotate(0deg);
+                    font-style: normal;
+                    transition:all .2s ease 0s;
+                    font-size: 10px;
+                    vertical-align: baseline;
+                    text-align:center;
+                    zoom: 1;
+                    content: "\E61D";
+                }
+                &:hover {
+                    color: #108ee9;
+                }
+                &.rotates::after{
+                    transform: rotate(180deg) scale(.75);
+                }
+            }
+
+            a {
+                display: block;
+                color: rgba(0,0,0,.65);
+            }
+
+            &:hover a{
+                color: #108ee9
+            }
+
+            div.item-title{
+                flex: 1;
+                overflow: hidden;
+                font-size: 12px;
+                font-weight: 400;
+                opacity: .67;
+            }
+
+        }
+        
+
+    }
+
+    .ul_List {
+        
+        .list_title{
+            height: 45px;
+            cursor:default;
+            line-height: 45px;
+            display: flex;
+
+            span{
+                display: inline-block;
+                height: 45px;
+                line-height: 45px;
+                width: 20px;
+                transition:all .2s ease 0s;
+                font-size: 10px;
+                text-align:center ;
+            }
+
+        }
+
+        .ant-modal-mask{
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            box-shadow: none;
+        }
+
+    }
+
+
+}
+
+.frame-body::-webkit-scrollbar{
+    display: none;
+}
+.frame-container .frame-body .article_search{
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    margin-bottom: 20px;
+}
+.frame-container .frame-body .article_search input{
+    height: 35px;
+}
+.frame-container .frame-body .article_search strong{
+    display: inline-block;
+    height: 33px;
+    font-size: 22px;
+    float: right;
+    line-height: 33px;
+    font-weight: 500;
+    margin-right: 30px;
+
+}
