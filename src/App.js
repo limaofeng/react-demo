@@ -14,25 +14,25 @@ import reducers from './reducers'
 import { routes } from './RouteConfig';
 
 @withRedux({
-    middlewares: [
-        apolloMiddleware(),
-        routerMiddleware(),
-        compatibleRouterMiddleware()
-    ],
-    reducers: {
-        ...reducers,
-        apollo: apolloReducer,
-        routing: routerReducer
-    }
+  middlewares: [
+    apolloMiddleware(),
+    routerMiddleware(),
+    compatibleRouterMiddleware()
+  ],
+  reducers: {
+    ...reducers,
+    apollo: apolloReducer,
+    routing: routerReducer
+  }
 })
 @withApollo()
 @withRouter({ routes: routes() })
 export default class App extends Component {
     static propTypes = {
-        children: PropTypes.element.isRequired
+      children: PropTypes.element.isRequired
     }
     render() {
-        const { children } = this.props;
-        return <div>{children}</div>
+      const { children } = this.props;
+      return <div>{children}</div>
     }
 }

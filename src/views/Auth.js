@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 class Login extends Component {
-    render() {
-        return (
-            <div>
+  render() {
+    return (
+      <div>
                 登陆页面
-            </div>
-        );
-    }
+      </div>
+    );
+  }
 }
 
 export default Login;

@@ -13,17 +13,17 @@ import TreeSidebar from './TreeSidebar';
 import Settings from './Settings';
 
 export {
-    PageBody,
-    PageContent,
-    ActionButton,
-    TabPanel,
-    Uploader,
-    Address,
-    PageSidebar,
-    Navbar,
-    ChatBar,
-    Widget,
-    FormGroup,
-    TreeSidebar,
-    Settings
+  PageBody,
+  PageContent,
+  ActionButton,
+  TabPanel,
+  Uploader,
+  Address,
+  PageSidebar,
+  Navbar,
+  ChatBar,
+  Widget,
+  FormGroup,
+  TreeSidebar,
+  Settings
 };

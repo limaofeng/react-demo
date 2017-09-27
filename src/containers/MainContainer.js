@@ -10,36 +10,36 @@ import { RouteWithSubRoutes } from '../decorators/router'
 // layout.lock.display ? <MaskContainer type={layout.lock.box} /> : [] 
 
 @connect(({ auth: user }) => ({
-    user
+  user
 }))
 export default class Main extends Component {
     static propTypes = {
-        routes: PropTypes.array.isRequired,
-        user: PropTypes.object.isRequired
+      routes: PropTypes.array.isRequired,
+      user: PropTypes.object.isRequired
     }
     render() {
-        const { routes, user } = this.props;
-        return (
-            <LoadContainer>
-                <LockContainer>
-                    <div>
-                        <Navbar />
-                        <div className="main-container container-fluid">
-                            <div className="page-container">
-                                <PageSidebar uid={user.id} />
-                                <ChatBar />
-                                <PageContent >
-                                    <Switch>
-                                        {(routes || []).map((route, i) => (
-                                            <RouteWithSubRoutes key={i} {...route} />
-                                        ))}
-                                    </Switch>
-                                </PageContent>
-                            </div>
-                        </div>
-                    </div>
-                </LockContainer>
-            </LoadContainer>
-        );
+      const { routes, user } = this.props;
+      return (
+        <LoadContainer>
+          <LockContainer>
+            <div>
+              <Navbar />
+              <div className="main-container container-fluid">
+                <div className="page-container">
+                  <PageSidebar uid={user.id} />
+                  <ChatBar />
+                  <PageContent >
+                    <Switch>
+                      {(routes || []).map((route, i) => (
+                        <RouteWithSubRoutes key={i} {...route} />
+                      ))}
+                    </Switch>
+                  </PageContent>
+                </div>
+              </div>
+            </div>
+          </LockContainer>
+        </LoadContainer>
+      );
     }
 }

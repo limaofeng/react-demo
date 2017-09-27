@@ -3,7 +3,7 @@ import logger from './logger';
 import request from './request';
 
 export default [
-    thunk,
-    request,
-    logger
+  thunk,
+  request,
+  logger
 ];

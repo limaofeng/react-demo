@@ -1,18 +1,18 @@
 export const defaultParams = {
-    mode: 'cors',
-    credentials: 'include',
-    headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json; charset=utf-8'
-    }
+  mode: 'cors',
+  credentials: 'include',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json; charset=utf-8'
+  }
 };
 
 export function get(url, params = {}) {
-    return fetch(url, {
-        ...defaultParams,
-        ...params,
-        method: 'get'
-    });
+  return fetch(url, {
+    ...defaultParams,
+    ...params,
+    method: 'get'
+  });
 }
 
 /**
@@ -21,10 +21,10 @@ export function get(url, params = {}) {
  * @return {Promise}
  */
 export function read(url) {
-    return fetch(url, {
-        ...defaultParams,
-        method: 'get'
-    });
+  return fetch(url, {
+    ...defaultParams,
+    method: 'get'
+  });
 }
 
 /**
@@ -34,11 +34,11 @@ export function read(url) {
  * @return {Promise}
  */
 export function create(url, body = {}) {
-    return fetch(url, {
-        ...defaultParams,
-        method: 'post',
-        body: JSON.stringify(body)
-    });
+  return fetch(url, {
+    ...defaultParams,
+    method: 'post',
+    body: JSON.stringify(body)
+  });
 }
 
 /**
@@ -48,11 +48,11 @@ export function create(url, body = {}) {
  * @return {Promise}
  */
 export function update(url, body = {}) {
-    return fetch(url, {
-        ...defaultParams,
-        method: 'put',
-        body: JSON.stringify(body)
-    });
+  return fetch(url, {
+    ...defaultParams,
+    method: 'put',
+    body: JSON.stringify(body)
+  });
 }
 
 /**
@@ -62,11 +62,11 @@ export function update(url, body = {}) {
  * @return {Promise}
  */
 export function patch(url, body = {}) {
-    return fetch(url, {
-        ...defaultParams,
-        method: 'PATCH',
-        body: JSON.stringify(body)
-    });
+  return fetch(url, {
+    ...defaultParams,
+    method: 'PATCH',
+    body: JSON.stringify(body)
+  });
 }
 
 
@@ -76,9 +76,9 @@ export function patch(url, body = {}) {
  * @return {Promise}
  */
 export function destroy(url, body = {}) {
-    return fetch(url, {
-        ...defaultParams,
-        method: 'delete',
-        body: JSON.stringify(body)
-    });
+  return fetch(url, {
+    ...defaultParams,
+    method: 'delete',
+    body: JSON.stringify(body)
+  });
 }

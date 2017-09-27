@@ -7,36 +7,36 @@ import { withRouter } from 'react-router-dom';
 @withRouter
 class Add extends Component {
     static propTypes = {
-        history: PropTypes.object.isRequired,
-        to: PropTypes.any,
-        onClick: PropTypes.func
+      history: PropTypes.object.isRequired,
+      to: PropTypes.any,
+      onClick: PropTypes.func
     }
 
     static defaultProps = {
-        onClick: null,
-        to: null
+      onClick: null,
+      to: null
     }
 
     handleClick = () => {
-        const { onClick: forward, to, history: { push } } = this.props;
-        (forward || (() => {
-            if (typeof to === 'string') {
-                push(to);
-            } else {
-                const { path, state = null } = to;
-                push(path, state);
-            }
-        }))(this.props);
+      const { onClick: forward, to, history: { push } } = this.props;
+      (forward || (() => {
+        if (typeof to === 'string') {
+          push(to);
+        } else {
+          const { path, state = null } = to;
+          push(path, state);
+        }
+      }))(this.props);
     }
 
     render() {
-        return (<div className="fixed-bottom">
-            {/*
+      return (<div className="fixed-bottom">
+        {/*
             <FloatingActionButton secondary onClick={this.handleClick} >
                 <ContentAdd />
             </FloatingActionButton>
             */}
-        </div>);
+      </div>);
     }
 }
 

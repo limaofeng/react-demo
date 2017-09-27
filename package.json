@@ -24,7 +24,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "lint": "eslint --fix --ext .js src/javascript"
+    "lint": "eslint --fix --ext .js src"
   },
   "dependencies": {
     "add-graphql-subscriptions": "^1.0.1",
@@ -168,10 +168,6 @@
       "no-param-reassign": "warn",
       "react/prefer-stateless-function": "warn",
       "no-console": 1,
-      "indent": [
-        "error",
-        4
-      ],
       "max-len": [
         2,
         180,
@@ -200,10 +196,6 @@
       "import/prefer-default-export": 0,
       "import/no-duplicates": 0,
       "react/no-multi-comp": 0,
-      "react/jsx-indent": [
-        "error",
-        4
-      ],
       "react/jsx-indent-props": [
         2,
         4

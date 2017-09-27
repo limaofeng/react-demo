@@ -9,29 +9,29 @@ const initialState = localStorage.getItem('zbsg_admin_auth');
 let timer;
 
 export default function reducer(state = initialState, action = {}) {
-    const { type, payload } = action;
-    let newstate = state;
-    if (typeof state === 'string') {
-        newstate = JSON.parse(state);
-    }
-    if (newstate && process.env.NODE_ENV === 'production') {
-        /* LogRocket.identify('b62az1/shzbsg-admin', {
+  const { type, payload } = action;
+  let newstate = state;
+  if (typeof state === 'string') {
+    newstate = JSON.parse(state);
+  }
+  if (newstate && process.env.NODE_ENV === 'production') {
+    /* LogRocket.identify('b62az1/shzbsg-admin', {
             name: newstate.nickName,
             email: newstate.email,
 
             // Add your own custom user variables here, ie:
             subscriptionType: 'pro'
         }); */
-    }
-    switch (type) {
+  }
+  switch (type) {
     case SAVE_USER:
-        return { ...payload };
+      return { ...payload };
     case REMOVE_USER:
-        clearInterval(timer);
-        return null;
+      clearInterval(timer);
+      return null;
     default:
-        return newstate;
-    }
+      return newstate;
+  }
 }
 
 /**
@@ -39,27 +39,27 @@ export default function reducer(state = initialState, action = {}) {
  * @param {User} user 用户对象
  */
 export function save(user) {
-    return dispatch => {
-        localStorage.setItem('zbsg_admin_auth', JSON.stringify(user));
-        dispatch({
-            type: SAVE_USER,
-            payload: user
-        });
-    };
+  return dispatch => {
+    localStorage.setItem('zbsg_admin_auth', JSON.stringify(user));
+    dispatch({
+      type: SAVE_USER,
+      payload: user
+    });
+  };
 }
 
 /**
  * 用户退出
  */
 export function logout() {
-    return dispatch => {
-        localStorage.removeItem('zbsg_admin_auth');
-        dispatch({
-            type: REMOVE_USER,
-            payload: null
-        });
-        return new Promise(resolve => {
-            resolve(dispatch(push('/login')));
-        });
-    };
+  return dispatch => {
+    localStorage.removeItem('zbsg_admin_auth');
+    dispatch({
+      type: REMOVE_USER,
+      payload: null
+    });
+    return new Promise(resolve => {
+      resolve(dispatch(push('/login')));
+    });
+  };
 }

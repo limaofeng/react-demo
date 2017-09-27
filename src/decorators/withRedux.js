@@ -10,44 +10,44 @@ import middleware from './redux/middleware';
 import DevTools from './redux/DevTools';
 
 function getDebugSessionKey() {
-    // You can write custom logic here!
-    // By default we try to read the key from ?debug_session=<key> in the address bar
-    const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/);
-    return (matches && matches.length > 0) ? matches[1] : null;
+  // You can write custom logic here!
+  // By default we try to read the key from ?debug_session=<key> in the address bar
+  const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/);
+  return (matches && matches.length > 0) ? matches[1] : null;
 }
 
 const createReduxStore = (usageMiddlewares = [], reducer = {}) => {
-    let finalCreateStore;
-    if (process.env.NODE_ENV === 'development') {
-        finalCreateStore = compose(
-            applyMiddleware.apply(this, middleware.concat(usageMiddlewares)),
-            // Provides support for DevTools:
-            window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
-            // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
-            persistState(getDebugSessionKey())
-        )(createStore);
-    } else {
-        finalCreateStore = compose(
-            applyMiddleware.apply(this, middleware.concat(usageMiddlewares)) // .concat(LogRocket.reduxMiddleware())
-        )(createStore);
-    }
-    return finalCreateStore(combineReducers(reducer));
+  let finalCreateStore;
+  if (process.env.NODE_ENV === 'development') {
+    finalCreateStore = compose(
+      applyMiddleware.apply(this, middleware.concat(usageMiddlewares)),
+      // Provides support for DevTools:
+      window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
+      // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
+      persistState(getDebugSessionKey())
+    )(createStore);
+  } else {
+    finalCreateStore = compose(
+      applyMiddleware.apply(this, middleware.concat(usageMiddlewares)) // .concat(LogRocket.reduxMiddleware())
+    )(createStore);
+  }
+  return finalCreateStore(combineReducers(reducer));
 };
 
 let store = null;
 
 // policy = ( only | recreate )
 export default function withRedux({ policy = 'only', middlewares = [], reducers = {} }) {
-    if (!store || policy === 'recreate') {
-        store = createReduxStore(middlewares, reducers);
+  if (!store || policy === 'recreate') {
+    store = createReduxStore(middlewares, reducers);
+  }
+  return WrappedComponent => () => {
+    if (process.env.NODE_ENV === 'development' && !window.devToolsExtension) {
+      return (<div>
+        <DevTools store={store} />
+        <WrappedComponent store={store} />
+      </div>)
     }
-    return WrappedComponent => () => {
-        if (process.env.NODE_ENV === 'development' && !window.devToolsExtension) {
-            return (<div>
-                <DevTools store={store} />
-                <WrappedComponent store={store} />
-            </div>)
-        }
-        return <WrappedComponent store={store} />;
-    }
+    return <WrappedComponent store={store} />;
+  }
 }

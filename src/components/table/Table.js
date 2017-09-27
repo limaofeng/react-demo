@@ -23,9 +23,9 @@ export default class Table extends Component {
 //         search: React.PropTypes.string,
 //         data: React.PropTypes.object,
     static propTypes = {
-        data: React.PropTypes.object.isRequired,
-        view: React.PropTypes.object.isRequired,
-        operate: React.PropTypes.object
+      data: React.PropTypes.object.isRequired,
+      view: React.PropTypes.object.isRequired,
+      operate: React.PropTypes.object
     }
 
     // static defaultProps = {
@@ -41,105 +41,105 @@ export default class Table extends Component {
     //     }
     // };
     constructor(p) {
-        super(p);
-        const { view } = this.props;
-        const stateDate = {
-            view: {
-                class: 'Hover',
-                isSimple: false,
-                with: {}
-            },
-            class: {
-                Hover: 'table table-hover',
-                Condensed: 'table table-hover table-striped table-bordered table-condensed',
-                Bordered: 'table table-bordered table-hover',
-                Stripped: 'table table-hover table-striped table-bordered',
-                Editable: 'table table-striped table-hover table-bordered dataTable'
-            },
-            tdata: [],
-            thead: [],
-            tbody: {},
-            operate: {
-                sorts: [],
-                searchs: [],
-                checks: [],
-                adds: [],
-                toperates: [],
-                others: []
-            }
-        };
-        $.extend(true, stateDate, this.props);
-        this.state = stateDate;
+      super(p);
+      const { view } = this.props;
+      const stateDate = {
+        view: {
+          class: 'Hover',
+          isSimple: false,
+          with: {}
+        },
+        class: {
+          Hover: 'table table-hover',
+          Condensed: 'table table-hover table-striped table-bordered table-condensed',
+          Bordered: 'table table-bordered table-hover',
+          Stripped: 'table table-hover table-striped table-bordered',
+          Editable: 'table table-striped table-hover table-bordered dataTable'
+        },
+        tdata: [],
+        thead: [],
+        tbody: {},
+        operate: {
+          sorts: [],
+          searchs: [],
+          checks: [],
+          adds: [],
+          toperates: [],
+          others: []
+        }
+      };
+      $.extend(true, stateDate, this.props);
+      this.state = stateDate;
     }
     componentDidMount() {
-        const { data, view } = this.state;
-        const zhis = this;
-        let footer = view.with.footer;
-        if (data && typeof data === 'object') {
-            if (data.static) {
-                console.log('加载静态数据');
-                console.log(data);
-                let thead = [];
-                if (data.thead) {
-                    thead = data.thead;
-                } else {
-                    Object.keys(data.static).map((v, i) => {
-                        if (i < 3) {
-                            const x = { code: v };
-                            x[v] = v;
-                            thead.push(x);
-                        }
-                    });
-                }
-                if (!footer && typeof data.static === 'object' && data.static.items && data.static.count) {
-                    footer = { pager: data.static };
-                }
-                this.setState({ tdata: data.static, thead, footer });
-            } else if (data.source && typeof data.source === 'string') {
-                console.log('加载ajax数据');
-                this.setTableData(data, footer);
-            } else {
-                console.error('没有可初始化的数据来源');
-            }
+      const { data, view } = this.state;
+      const zhis = this;
+      let footer = view.with.footer;
+      if (data && typeof data === 'object') {
+        if (data.static) {
+          console.log('加载静态数据');
+          console.log(data);
+          let thead = [];
+          if (data.thead) {
+            thead = data.thead;
+          } else {
+            Object.keys(data.static).map((v, i) => {
+              if (i < 3) {
+                const x = { code: v };
+                x[v] = v;
+                thead.push(x);
+              }
+            });
+          }
+          if (!footer && typeof data.static === 'object' && data.static.items && data.static.count) {
+            footer = { pager: data.static };
+          }
+          this.setState({ tdata: data.static, thead, footer });
+        } else if (data.source && typeof data.source === 'string') {
+          console.log('加载ajax数据');
+          this.setTableData(data, footer);
         } else {
-            console.error('没有可初始化的数据来源');
+          console.error('没有可初始化的数据来源');
         }
+      } else {
+        console.error('没有可初始化的数据来源');
+      }
     }
     setTableData = (pd, footer, params, callback) => {
-        utils.ajax({ url: pd.search || pd.source, data: params || {} }, (d) => {
-            const thead = pd.thead;
-            let tdata = [];
-            if ($.isArray(d)) {
-                tdata = d;
-            } else if (pd.tbody && pd.tbody.source) {
-                try {
-                    tdata = eval(`d.${pd.tbody.source}`);
-                } catch (e) {
-                    console.error(e);
-                    $.alert.error('获取数据失败');
-                }
-            } else if (d.items) {
-                tdata = d.items;
-            }
+      utils.ajax({ url: pd.search || pd.source, data: params || {} }, d => {
+        const thead = pd.thead;
+        let tdata = [];
+        if ($.isArray(d)) {
+          tdata = d;
+        } else if (pd.tbody && pd.tbody.source) {
+          try {
+            tdata = eval(`d.${pd.tbody.source}`);
+          } catch (e) {
+            console.error(e);
+            $.alert.error('获取数据失败');
+          }
+        } else if (d.items) {
+          tdata = d.items;
+        }
 
-            if (!footer && typeof d === 'object' && d.items && d.count) {
-                footer = { pager: d };
-            }
-            this.setState({ tdata, thead, footer }, callback);
-        });
+        if (!footer && typeof d === 'object' && d.items && d.count) {
+          footer = { pager: d };
+        }
+        this.setState({ tdata, thead, footer }, callback);
+      });
     }
 
     render() {
-        const { view, tdata, thead, footer, operate, data } = this.state;
-        const tclass = this.state.class[view.class] ? this.state.class[view.class] : view.class;
+      const { view, tdata, thead, footer, operate, data } = this.state;
+      const tclass = this.state.class[view.class] ? this.state.class[view.class] : view.class;
 
-        return (<div>
-            {
-                view.isSimple ?
-                    <SimpleTable location={this.props.location} class={tclass} header={view.with.header} footer={footer} pager={view.pager} width={view.width} tdata={tdata} thead={thead} page={this.page} />
-                    :
-                    <HardTable view={view} data={data} location={this.props.location} class={tclass} header={view.with.header} footer={footer} pager={view.pager} width={view.width} tdata={tdata} thead={thead} operate={operate} freshTbody={this.setTableData} />
-            }
-        </div>);
+      return (<div>
+        {
+          view.isSimple ?
+            <SimpleTable location={this.props.location} class={tclass} header={view.with.header} footer={footer} pager={view.pager} width={view.width} tdata={tdata} thead={thead} page={this.page} />
+            :
+            <HardTable view={view} data={data} location={this.props.location} class={tclass} header={view.with.header} footer={footer} pager={view.pager} width={view.width} tdata={tdata} thead={thead} operate={operate} freshTbody={this.setTableData} />
+        }
+      </div>);
     }
 }
