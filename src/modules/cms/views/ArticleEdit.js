@@ -14,7 +14,7 @@ import ArticleSettings from '../components/ArticleSettings';
 
 import './ArticleEdit.less';
 
-import ARITCLE_QUERY from '../graphqls/article.gql';
+import ARITCLE_QUERY from '../graphqls/ArticleQuery.gql';
 import ARTICLE_UPDATE from '../graphqls/article_update.gql';
 import ARTICLE_REMOVE from '../graphqls/article_remove.gql';
 

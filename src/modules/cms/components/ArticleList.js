@@ -8,7 +8,7 @@ import { Popconfirm, message, Select, Menu, Input, Table, Icon, Dropdown, Row, }
 import { ActionButton } from '../../../components';
 
 // 查询文章某一类文章
-import ARTICLES_QUERY from '../graphqls/articlesConnection.gql';
+import ARTICLES_QUERY from '../graphqls/ArticlesConnection.gql';
 import ARTICLE_REMOVE from '../graphqls/article_remove.gql';
 import ARTICLE_SUBMIT from '../graphqls/article_submit.gql';
 

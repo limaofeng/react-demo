@@ -1,0 +1,7 @@
+#import "./Article.gql"
+
+query ($id: ID!, $type: String) {
+  article(id: $id, type: $type) {
+    ... ArticleInfo
+  }
+}

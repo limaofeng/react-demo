@@ -6,7 +6,7 @@ import { Icon, Form, Input, DatePicker, Select } from 'antd';
 
 import { Settings, Uploader, FormGroup } from './../../../components';
 
-import ARITCLE_QUERY from '../graphqls/article.gql';
+import ARITCLE_QUERY from '../graphqls/ArticleQuery.gql';
 import ARTICLETAGS_QUERY from '../graphqls/article_tags.gql';
 
 import { lazy as lazyUpdate } from './../../../helpers/lazy';

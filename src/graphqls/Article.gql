@@ -1,4 +1,0 @@
-fragment ArticleInfo on Article {
-    id
-    title
-}

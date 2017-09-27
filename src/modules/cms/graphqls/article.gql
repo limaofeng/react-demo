@@ -1,5 +1,4 @@
-query ($id: ID!, $type: String) {
-  article(id: $id, type: $type) {
+fragment ArticleInfo on Article {
     id
     title
     summary
@@ -41,5 +40,4 @@ query ($id: ID!, $type: String) {
     modifier
     createTime
     modifyTime
-  }
 }
