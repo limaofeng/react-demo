@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import moment from 'moment';
+
 import { AppContainer } from './containers'
 import './index.less';
 import Root from './App';
 import registerServiceWorker from './registerServiceWorker';
+import 'moment/locale/zh-cn';// eslint-disable-line
+
+moment.locale('zh-cn');
 
 const render = Component => {
   ReactDOM.render(<AppContainer><Component /></AppContainer>, document.getElementById('root'));
