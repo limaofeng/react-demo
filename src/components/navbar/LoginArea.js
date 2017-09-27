@@ -51,7 +51,7 @@ class Avatar extends Component {
             onChange={this.handleChange}
           >
             <div>
-              <img alt="" src="assets/img/avatars/adam-jansen.jpg" className="avatar" />
+              <img alt="" src="/assets/img/avatars/adam-jansen.jpg" className="avatar" />
               <span className="caption">修改照片</span>
             </div>
           </Upload>
@@ -161,7 +161,7 @@ class LoginArea extends Component {
           <a className="login-area" data-toggle="dropdown" role="none">
             <div title="View your public profile">
               <div className="avatar" title="View your public profile">
-                <img src="assets/img/avatars/adam-jansen.jpg" alt="" />
+                <img src="/assets/img/avatars/adam-jansen.jpg" alt="" />
               </div>
               <section>
                 <h2><span className="profile"><span>{user.nickName || 'David Stevenson'}</span></span></h2>
@@ -184,7 +184,7 @@ class LoginArea extends Component {
                   <a
                     className="colorpick-btn"
                     style={{ backgroundColor: '#108ee9' }}
-                    rel="assets/css/skins/blue.min.css"
+                    rel="/assets/css/skins/blue.min.css"
                     role="none"
                   />
                 </li>
@@ -192,77 +192,77 @@ class LoginArea extends Component {
                   <a
                     className="colorpick-btn"
                     style={{ backgroundColor: '#2dc3e8' }}
-                    rel="assets/css/skins/azure.min.css"
+                    rel="/assets/css/skins/azure.min.css"
                   />
                 </li>
                 <li>
                   <a
                     className="colorpick-btn"
                     style={{ backgroundColor: '#03B3B2' }}
-                    rel="assets/css/skins/teal.min.css"
+                    rel="/assets/css/skins/teal.min.css"
                   />
                 </li>
                 <li>
                   <a
                     className="colorpick-btn"
                     style={{ backgroundColor: '#53a93f' }}
-                    rel="assets/css/skins/green.min.css"
+                    rel="/assets/css/skins/green.min.css"
                   />
                 </li>
                 <li>
                   <a
                     className="colorpick-btn"
                     style={{ backgroundColor: '#FF8F32' }}
-                    rel="assets/css/skins/orange.min.css"
+                    rel="/assets/css/skins/orange.min.css"
                   />
                 </li>
                 <li>
                   <a
                     className="colorpick-btn"
                     style={{ backgroundColor: '#cc324b' }}
-                    rel="assets/css/skins/pink.min.css"
+                    rel="/assets/css/skins/pink.min.css"
                   />
                 </li>
                 <li>
                   <a
                     className="colorpick-btn"
                     style={{ backgroundColor: '#AC193D' }}
-                    rel="assets/css/skins/darkred.min.css"
+                    rel="/assets/css/skins/darkred.min.css"
                   />
                 </li>
                 <li>
                   <a
                     className="colorpick-btn"
                     style={{ backgroundColor: '#8C0095' }}
-                    rel="assets/css/skins/purple.min.css"
+                    rel="/assets/css/skins/purple.min.css"
                   />
                 </li>
                 <li>
                   <a
                     className="colorpick-btn"
                     style={{ backgroundColor: '#0072C6' }}
-                    rel="assets/css/skins/darkblue.min.css"
+                    rel="/assets/css/skins/darkblue.min.css"
                   />
                 </li>
                 <li>
                   <a
                     className="colorpick-btn"
                     style={{ backgroundColor: '#585858' }}
-                    rel="assets/css/skins/gray.min.css"
+                    rel="/assets/css/skins/gray.min.css"
                   />
                 </li>
                 <li>
                   <a
                     className="colorpick-btn"
                     style={{ backgroundColor: '#474544' }}
-                    rel="assets/css/skins/black.min.css"
+                    rel="/assets/css/skins/black.min.css"
                   />
                 </li>
                 <li>
                   <a
                     className="colorpick-btn"
                     style={{ backgroundColor: '#001940' }}
-                    rel="assets/css/skins/deepblue.min.css"
+                    rel="/assets/css/skins/deepblue.min.css"
                   />
                 </li>
               </ul>

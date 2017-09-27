@@ -20,7 +20,7 @@ class LockContainer extends Component {
           <div className="lock-container animated fadeInDown">
             <div className="lock-box text-align-center">
               <div className="lock-username">DIVYIA PHILLIPS</div>
-              <img src="assets/img/avatars/divyia.jpg" alt="divyia avatar" />
+              <img src="/assets/img/avatars/divyia.jpg" alt="divyia avatar" />
               <div className="lock-password">
                 <form className="form-inline" action="index.html">
                   <div className="form-group">

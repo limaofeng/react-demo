@@ -45,7 +45,7 @@ AccountItem.propTypes = {
 const MessageItem = ({ sender, time, subject, body }) => (
   <li>
     <a>
-      <img src="assets/img/avatars/divyia.jpg" className="message-avatar" alt="Divyia Austin" />
+      <img src="/assets/img/avatars/divyia.jpg" className="message-avatar" alt="Divyia Austin" />
       <div className="message">
         <span className="message-sender">
           {sender}
@@ -94,7 +94,7 @@ const NavbarBrand = () => (
   <div className="navbar-header pull-left">
     <a className="navbar-brand">
       <small>
-        <img src="assets/img/logo.png" alt="" />
+        <img src="/assets/img/logo.png" alt="" />
       </small>
     </a>
   </div>

@@ -17,6 +17,10 @@ class MainContainer extends Component {
     static propTypes = {
       user: PropTypes.object.isRequired
     }
+    constructor(props) {
+      super(props);
+      console.log('new main container');
+    }
     render() {
       const { routes, user,children } = this.props;// eslint-disable-line
       return (
@@ -28,7 +32,7 @@ class MainContainer extends Component {
                 <div className="page-container">
                   <PageSidebar uid={user.id} />
                   <ChatBar />
-                  <PageContent >
+                  <PageContent>
                     <Switch>
                       {modules.pages}
                     </Switch>

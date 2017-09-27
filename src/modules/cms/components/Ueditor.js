@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+/* global UE */
+import React, { PureComponent, PropTypes } from 'react';
 import * as urls from '../../../utils/urls';
 
-/* global UE */
-class Ueditor extends Component {
+class Ueditor extends PureComponent {
     static propTypes = {
       id: PropTypes.string.isRequired,
       onChange: PropTypes.func,
@@ -14,22 +14,12 @@ class Ueditor extends Component {
       onChange: () => {}
     }
 
-    constructor(props) {
-      super(props);
-      this.state = {};
-    }
-
     componentDidMount() {
       this.initEditor();
     }
+
     componentWillUnmount() {
-      // 组件卸载后，清除放入库的id
-      /*
-      try {
-        UE.delEditor(this.props.id);
-      } catch (e) {
-        console.error(e);
-      } */
+      UE.delEditor(this.props.id);
     }
 
     initEditor() {
@@ -39,6 +29,8 @@ class Ueditor extends Component {
         if (!ueditor) {
           UE.delEditor(id);
           this.initEditor();
+          console.warn(`id = ${id} \t ready = ${ueditor} \t defaultValue = ${defaultValue} reinitEditor`);
+          return;
         }
         if (defaultValue) {
           this.editor.setContent(defaultValue);

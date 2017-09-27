@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import classnames from 'classnames';
 
 import { unload } from './../reducers/ui';
 
@@ -22,13 +23,12 @@ class LoadContainer extends Component {
     }
     render() {
       const { children, loading } = this.props;
-      if (loading) {
-        return (<div className="loading-container">
+      return (<div>
+        <div className={classnames('loading-container', { 'loading-inactive': !loading })}>
           <div className="loader" />
-          <div style={{ display: 'none' }}>{children}</div>
-        </div>);
-      }
-      return children;
+        </div>
+        {children}
+      </div>);
     }
 }
 

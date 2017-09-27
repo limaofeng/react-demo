@@ -162,6 +162,7 @@ class ArticleForm extends PureComponent {
         submitting: false
       };
       this.lazy = lazyUpdate({ title, content, status }, { onlyDiff: true });
+      console.log('new ArticleForm');
     }
 
     handleOpenSettings = e => {
@@ -257,7 +258,6 @@ export default class EditArticle extends Component {
     static propTypes = {
       data: PropTypes.object.isRequired
     }
-
     render() {
       const { data: { loading, article = {} } } = this.props;
       if (loading) {
