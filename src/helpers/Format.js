@@ -1,4 +1,4 @@
-/* eslint no-plusplus: 0 */
+/* eslint-disable no-plusplus */
 /* eslint one-var: 0 */
 /* eslint no-eval: 0 */
 /* eslint no-mixed-operators: 0 */

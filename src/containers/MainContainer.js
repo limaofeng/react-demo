@@ -1,16 +1,17 @@
 import React, { PropTypes, Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { PageSidebar, Navbar, ChatBar, PageContent, /* MaskContainer, */ } from '../components';
+import PrivateRoute from '../decorators/router/PrivateRoute';
+
+import { PageSidebar, Navbar, ChatBar, PageContent } from '../components';
 import LoadContainer from './LoadContainer';
 import LockContainer from './LockContainer';
 
-import Feature from './../modules/connector';
-
+import Feature from '../modules/connector';
 import modules from '../modules';
 
-@connect(({ auth: user }) => ({
+@connect(({ currentUser: user }) => ({
   user
 }))
 class MainContainer extends Component {
@@ -28,7 +29,7 @@ class MainContainer extends Component {
                 <div className="page-container">
                   <PageSidebar uid={user.id} />
                   <ChatBar />
-                  <PageContent>
+                  <PageContent breadcrumbs={modules.navItems}>
                     <Switch>
                       {modules.pages}
                     </Switch>
@@ -43,5 +44,5 @@ class MainContainer extends Component {
 }
 
 export default new Feature({
-  route: <Route path="/" component={MainContainer} />
+  route: <PrivateRoute path="/" component={MainContainer} />
 });

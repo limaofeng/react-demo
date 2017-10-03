@@ -1,13 +1,12 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* global createCookie bootbox */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { push } from 'react-router-redux';
+// import { push } from 'react-router-redux';
 import { Upload, message } from 'antd';
 import { connect } from 'react-redux';
 
-import { logout } from '../../reducers/auth';
-
-/* eslint jsx-a11y/anchor-has-content: 0 */
-/* global createCookie bootbox */
+// import { logout } from '../../reducers/auth';
 
 /*
 function getBase64(img, callback) {
@@ -60,11 +59,11 @@ class Avatar extends Component {
     }
 }
 
-@connect(({ auth: user }) => ({ user }))
+@connect(({ currentUser: user }) => ({ user }))
 class LoginArea extends Component {
     static propTypes = {
       user: PropTypes.object.isRequired,
-      dispatch: PropTypes.func.isRequired,
+      // dispatch: PropTypes.func.isRequired,
     };
     componentDidMount() {
       this.initiateSettings();
@@ -115,10 +114,11 @@ class LoginArea extends Component {
     }
     logout = e => {
       e.preventDefault();
-      const { dispatch } = this.props;
+      // const { dispatch } = this.props;
+      /*
       dispatch(logout()).then(() => {
         dispatch(push('/login'));
-      });
+      }); */
       this.hidden();
     }
     skin = skinRel => {

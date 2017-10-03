@@ -1,5 +1,6 @@
 fragment ArticleInfo on Article {
     id
+    sn
     title
     summary
     status
@@ -22,19 +23,6 @@ fragment ArticleInfo on Article {
       description
     }
     tags
-    sn
-    push {
-      id
-      sex
-      msgType
-      msgId
-      msgTitle
-      minAge
-      maxAge
-      acquiredTypes
-      chronicTypes
-      pushDate
-    }
     uuid
     creator
     modifier

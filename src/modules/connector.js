@@ -1,4 +1,4 @@
-/* eslint prefer-rest-params: 0 */
+/* eslint-disable prefer-rest-params */
 import React from 'react';
 
 import { merge, map, union, without, castArray } from 'lodash';

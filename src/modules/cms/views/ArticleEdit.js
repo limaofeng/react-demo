@@ -1,6 +1,7 @@
 import React, { PropTypes, Component, PureComponent } from 'react';
 import { graphql, withApollo } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
+import Helmet from 'react-helmet';
 
 import { Icon, message, Input, Modal } from 'antd';
 
@@ -227,7 +228,9 @@ class ArticleForm extends PureComponent {
     render() {
       const { article: { status, ...article } } = this.props;
       const { openSettings, submitting } = this.state;
+
       return (<div className={classnames({ 'settings-menu-expanded': openSettings })}>
+        <Helmet title={article.title} meta={[{ name: '文章详情', content: '文章详情 - content' }]} />
         <section className="article-view" onClick={this.handleCloseSettings} role="none">
           <header className="view-header">
             <h2 className="view-title">

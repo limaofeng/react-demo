@@ -26,6 +26,7 @@
     "test": "node scripts/test.js --env=jsdom",
     "lint": "eslint --fix --ext .js src"
   },
+  "theme": "./config/theme.js",
   "dependencies": {
     "add-graphql-subscriptions": "^1.0.1",
     "antd": "^2.13.2",
@@ -42,6 +43,7 @@
     "react": "^15.6.1",
     "react-apollo": "^1.4.15",
     "react-dom": "^15.6.1",
+    "react-helmet": "^5.2.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -177,6 +179,7 @@
         "error",
         "as-needed"
       ],
+      "consistent-return": 0,
       "no-confusing-arrow": 0,
       "no-shadow": 0,
       "no-underscore-dangle": 0,

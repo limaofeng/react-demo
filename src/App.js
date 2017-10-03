@@ -7,10 +7,9 @@ import withApollo, { apolloMiddleware, apolloReducer } from './decorators/withAp
 // 集成 React-Router
 import withRouter, { routerMiddleware, routerReducer, compatibleRouterMiddleware } from './decorators/withRouter';
 
-// Redux 配置
 import reducers from './reducers';
 
-// Router 配置
+// Router 与 Redux 配置
 import modules from './modules';
 
 @withRedux({
@@ -21,6 +20,7 @@ import modules from './modules';
   ],
   reducers: {
     ...reducers,
+    ...modules.reducers,
     apollo: apolloReducer,
     routing: routerReducer
   }

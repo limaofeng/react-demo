@@ -60,13 +60,14 @@ class PageContent extends Component {
                 <i className="fa fa-home" />
                 <Link to="/">Home</Link>
               </li>
-              {
+              {breadcrumbs}
+              {/*
                 breadcrumbs.map((item, i) => {
                   if (i === breadcrumbs.length - 1) {
                     return (<li key={i} className="active">{item.text}</li>);
                   }
                   return (<li key={i}><a href="">{item.text}</a></li>);
-                })
+                }) */
               }
             </ul>
           </div>
@@ -88,7 +89,7 @@ class PageContent extends Component {
 
 /*
                 <div className={classnames('page-body', this.props.noPadding ? 'no-padding' : '')}>
-                    
+
                 </div>
 <div className="header-buttons">
     <a className="sidebar-toggler" onClick={this.sideBarClick}>

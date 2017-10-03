@@ -4,7 +4,7 @@ const SAVE_USER = 'auth/SAVE_USER';
 const REMOVE_USER = 'auth/REMOVE_USER';
 // import LogRocket from 'logrocket';
 
-const initialState = localStorage.getItem('zbsg_admin_auth');
+const initialState = localStorage.getItem('auth');
 
 let timer;
 
@@ -40,7 +40,7 @@ export default function reducer(state = initialState, action = {}) {
  */
 export function save(user) {
   return dispatch => {
-    localStorage.setItem('zbsg_admin_auth', JSON.stringify(user));
+    localStorage.setItem('auth', JSON.stringify(user));
     dispatch({
       type: SAVE_USER,
       payload: user
@@ -53,7 +53,7 @@ export function save(user) {
  */
 export function logout() {
   return dispatch => {
-    localStorage.removeItem('zbsg_admin_auth');
+    localStorage.removeItem('auth');
     dispatch({
       type: REMOVE_USER,
       payload: null

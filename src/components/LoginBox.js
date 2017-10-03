@@ -56,7 +56,7 @@ class LoginBox extends Component {
       validateFields((err, { username, password }) => {
         if (!err) {
           console.log(username, password);
-          submit(reset => {
+          submit(() => {
             login(username, password).then(({ data: { login: user } }) => {
               $('#loginBox').removeClass('animated fadeInDown').addClass('animated fadeOutUp')
                 .delay(1000, 'mx')
@@ -68,8 +68,7 @@ class LoginBox extends Component {
             }).catch(({ graphQLErrors }) => {
               const errorMessages = graphQLErrors.map(({ data }) => data.message);
               message.error(errorMessages);
-            }).then(reset)
-              .catch(reset);
+            });// .then(reset).catch(reset);
           });
         }
       });

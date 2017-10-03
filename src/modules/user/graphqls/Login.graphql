@@ -1,0 +1,10 @@
+mutation ($username: String!, $password: String) {
+  login(username: $username, password: $password) {
+    id
+    nickName
+    profile {
+      name
+      mobile
+    }
+  }
+}
