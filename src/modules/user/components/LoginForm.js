@@ -51,7 +51,8 @@ class LoginForm extends Component {
         </FormItem>
         <div className="loginbox-submit">
           <input type="button" className="btn btn-primary btn-block" value="Login" />
-          <Button type="primary" disabled={submitting} htmlType="submit" className="btn btn-primary btn-block">
+          {/* btn btn-primary  */}
+          <Button type="primary" disabled={submitting} htmlType="submit" className="btn-block">
             { submitting ? <i className="fa fa-circle-o-notch fa-spin" /> : '登录' }
           </Button>
         </div>
