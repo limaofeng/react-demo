@@ -27,4 +27,4 @@ yarn-error.log*
 .idea/
 
 # backup
-src/modules/backup/
+README.md

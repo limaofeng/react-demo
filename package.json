@@ -26,7 +26,6 @@
     "test": "node scripts/test.js --env=jsdom",
     "lint": "eslint --fix --ext .js src"
   },
-  "theme": "./config/theme.js",
   "dependencies": {
     "add-graphql-subscriptions": "^1.0.1",
     "antd": "^2.13.2",

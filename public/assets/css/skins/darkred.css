@@ -525,5 +525,16 @@ input[type=checkbox].checkbox-slider.colored-primary.toggle + .text:after {
 .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
   border-color: #AC193D !important;
 }
+.ant-input-group-addon .ant-select-open .ant-select-selection,
+.ant-input-group-addon .ant-select-focused .ant-select-selection {
+  color: #AC193D !important;
+}
+a {
+  color: #AC193D;
+}
+.ant-pagination-item-active {
+  background-color: #AC193D;
+  border-color: #AC193D;
+}
 
 /*# sourceMappingURL=darkred.css.map */
