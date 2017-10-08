@@ -9,7 +9,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 
 const lessPaths = ['public/assets/css/skins/*.less'];
-const jsPaths = ['public/assets/*.js'];
+const jsPaths = ['public/assets/js/*.js'];
 
 gulp.task('less', () => {
   gulp.src(lessPaths)
@@ -25,13 +25,15 @@ gulp.task('less', () => {
 gulp.task('script', () => {
   gulp.src(jsPaths)
     .pipe(sourcemaps.init())
-    .pipe(uglify())
+    .pipe(gulpIf(file => !/\.min\.js/.test(file.path), uglify({
+      output: { comments: '/!/' }
+    })))
     .pipe(rename({ suffix: '.min' }))
-    .pipe(sourcemaps.write('.'))
+    .pipe(gulpIf(file => !/\.min\.min/.test(file.path), sourcemaps.write('.')))
     .pipe(gulpIf(file => !/\.min\.min/.test(file.path), gulp.dest(f => f.base)));
 });
 
-gulp.task('default', ['less', 'script'], () => {
+gulp.task('default', [], () => {
   gulp.watch(lessPaths, ['less']).on('change', event => {
     console.log(`File ${event.path} was ${event.type}, running tasks...`);
   });
