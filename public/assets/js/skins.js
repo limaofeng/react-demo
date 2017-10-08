@@ -1,13 +1,18 @@
 ﻿/*Note: if you want to draw charts and sparkline with Theme Colors you must place skins.js in your page before beyond.js*/
 /*Do not use JQuery if you intend to use this file in Head element*/
 
+function changeSkin(skin) {
+  var a = document.createElement('link');
+  a.href = skin;
+  a.rel = "stylesheet";
+  document.getElementsByTagName("head")[0].appendChild(a);
+}
 
 //Handle Skins
 if (readCookie("current-skin")) {
-    var a = document.createElement('link');
-    a.href = readCookie("current-skin");
-    a.rel = "stylesheet";
-    document.getElementsByTagName("head")[0].appendChild(a);
+  setTimeout(function() {
+    changeSkin(readCookie("current-skin"));
+  }, 500);
 }
 
 //Handle RTL SUpport
