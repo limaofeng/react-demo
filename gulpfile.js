@@ -9,7 +9,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 
 const lessPaths = ['public/assets/css/skins/*.less'];
-const jsPaths = ['public/assets/js/*.js'];
+const jsPaths = ['public/assets/js/beyond.js', 'public/assets/js/bootstrap.js', 'public/assets/js/skins.js'];
 
 gulp.task('less', () => {
   gulp.src(lessPaths)
