@@ -315,7 +315,7 @@
     .btn-primary, .ant-btn-primary {
         &, &:focus {
             background-color: @themeprimary !important;
-            border-color: @btn-primary-border;
+            border-color: @btn-primary-border !important;
         }
 
         &.dropdown-toggle {
@@ -332,7 +332,7 @@
         }
     }
 
-    .btn-primary:hover, .open .btn-primary.dropdown-toggle {
+    .btn-primary:hover, .ant-btn-primary:hover, .open .btn-primary.dropdown-toggle {
         background-color: @btn-primary-hover !important;
         border-color: @btn-primary-border;
     }
@@ -847,5 +847,10 @@
                 }
             }
         }
+    }
+
+    // And
+    .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+        border-color: @themeprimary !important;
     }
 }
