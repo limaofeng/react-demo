@@ -1,4 +1,3 @@
-// Less configuration
 // npm install gulp gulp-less gulp-clean-css gulp-rename gulp-if gulp-sourcemaps gulp-uglify less
 const gulp = require('gulp');
 const less = require('gulp-less');
@@ -11,6 +10,7 @@ const uglify = require('gulp-uglify');
 const lessPaths = ['public/assets/css/skins/*.less'];
 const jsPaths = ['public/assets/js/beyond.js', 'public/assets/js/skins.js'];
 
+// Less configuration
 gulp.task('less', () => {
   gulp.src(lessPaths)
     .pipe(sourcemaps.init())
@@ -22,6 +22,7 @@ gulp.task('less', () => {
     .pipe(gulpIf('*.css', gulp.dest(f => f.base)));
 });
 
+// JavaScript configuration
 gulp.task('script', () => {
   gulp.src(jsPaths)
     .pipe(sourcemaps.init())
