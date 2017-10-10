@@ -1,0 +1,13 @@
+query ($categoryId: ID, $page: Int, $pageSize: Int, $sort: Sort, $filters: [Filter]) {
+  pager: articlesConnection(categoryId: $categoryId, page: $page, pageSize: $pageSize, sort: $sort, filters: $filters) {
+    total: count
+    current: page
+    pageSize: per_page
+    items {
+      id
+      title
+      publishDate(format: "YYYY-MM-DD")
+      status
+    }
+  }
+}

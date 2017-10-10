@@ -1,0 +1,31 @@
+fragment ArticleInfo on Article {
+    id
+    sn
+    title
+    summary
+    status
+    cover {
+      path
+      name
+      ext
+      description
+      size
+    }
+    author
+    publishDate(format:"YYYY-MM-DD HH:mm:ss")
+    category {
+      id
+      name
+    }
+    content
+    metaData {
+      title
+      description
+    }
+    tags
+    uuid
+    creator
+    modifier
+    createTime
+    modifyTime
+}
