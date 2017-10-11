@@ -1,0 +1,7 @@
+#import "./Article.gql"
+
+mutation($entity: submitArticleInput!, $push: SubmitArticlePushInput) {
+  article: submitArticle(entity: $entity, push: $push) {
+    ...ArticleInfo
+  }
+}

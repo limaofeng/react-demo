@@ -1,4 +1,4 @@
-query ($categoryId: ID, $page: Int, $pageSize: Int, $sort: Sort, $filters: [Filter]) {
+query($categoryId: ID, $page: Int, $pageSize: Int, $sort: Sort, $filters: [Filter]) {
   pager: articlesConnection(categoryId: $categoryId, page: $page, pageSize: $pageSize, sort: $sort, filters: $filters) {
     total: count
     current: page

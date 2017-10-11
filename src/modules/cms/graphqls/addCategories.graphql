@@ -1,13 +1,13 @@
-query ($id: String!) {
-  category:articleCategory(id: $id) {
+mutation($entity: submitCategoryInput!) {
+  category: submitCategory(entity: $entity) {
     id
-    type
     name
+    type
     layer
     path
     description
     sort
-    parent{
+    parent {
       id
     }
     cover {

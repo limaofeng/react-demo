@@ -13,11 +13,7 @@ import reducers from './reducers';
 import modules from './modules';
 
 @withRedux({
-  middlewares: [
-    apolloMiddleware(),
-    routerMiddleware(),
-    compatibleRouterMiddleware()
-  ],
+  middlewares: [apolloMiddleware(), routerMiddleware(), compatibleRouterMiddleware()],
   reducers: {
     ...reducers,
     ...modules.reducers,
@@ -28,11 +24,11 @@ import modules from './modules';
 @withApollo()
 @withRouter({ routes: modules.routes })
 export default class App extends Component {
-    static propTypes = {
-      children: PropTypes.element.isRequired
-    }
-    render() {
-      const { children } = this.props;
-      return <div>{children}</div>;
-    }
+  static propTypes = {
+    children: PropTypes.element.isRequired
+  };
+  render() {
+    const { children } = this.props;
+    return <div>{children}</div>;
+  }
 }

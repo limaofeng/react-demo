@@ -1,3 +1,0 @@
-mutation ($id: Int!) {
-    removeArticle(id: $id)
-}

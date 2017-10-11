@@ -1,0 +1,7 @@
+#import "./Article.gql"
+
+mutation($id: ID!, $entity: updateArticleInput!) {
+  patchArticle(id: $id, entity: $entity) {
+    ...ArticleInfo
+  }
+}
