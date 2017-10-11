@@ -15,32 +15,30 @@ import modules from '../modules';
   user
 }))
 class MainContainer extends Component {
-    static propTypes = {
-      user: PropTypes.object.isRequired
-    }
-    render() {
-      const { routes, user,children } = this.props;// eslint-disable-line
-      return (
-        <LoadContainer>
-          <LockContainer>
-            <div>
-              <Navbar />
-              <div className="main-container container-fluid">
-                <div className="page-container">
-                  <PageSidebar uid={user.id} />
-                  <ChatBar />
-                  <PageContent breadcrumbs={modules.navItems}>
-                    <Switch>
-                      {modules.pages}
-                    </Switch>
-                  </PageContent>
-                </div>
+  static propTypes = {
+    user: PropTypes.object.isRequired
+  };
+  render() {
+    const { routes, user, children } = this.props; // eslint-disable-line
+    return (
+      <LoadContainer>
+        <LockContainer>
+          <div>
+            <Navbar />
+            <div className="main-container container-fluid">
+              <div className="page-container">
+                <PageSidebar uid={user.id} />
+                <ChatBar />
+                <PageContent breadcrumbs={modules.navItems}>
+                  <Switch>{modules.pages}</Switch>
+                </PageContent>
               </div>
             </div>
-          </LockContainer>
-        </LoadContainer>
-      );
-    }
+          </div>
+        </LockContainer>
+      </LoadContainer>
+    );
+  }
 }
 
 export default new Feature({

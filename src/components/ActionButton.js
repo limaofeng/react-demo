@@ -6,20 +6,21 @@ import { withRouter } from 'react-router-dom';
 
 @withRouter
 class Add extends Component {
-    static propTypes = {
-      history: PropTypes.object.isRequired,
-      to: PropTypes.any,
-      onClick: PropTypes.func
-    }
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+    to: PropTypes.any,
+    onClick: PropTypes.func
+  };
 
-    static defaultProps = {
-      onClick: null,
-      to: null
-    }
+  static defaultProps = {
+    onClick: null,
+    to: null
+  };
 
-    handleClick = () => {
-      const { onClick: forward, to, history: { push } } = this.props;
-      (forward || (() => {
+  handleClick = () => {
+    const { onClick: forward, to, history: { push } } = this.props;
+    (forward ||
+      (() => {
         if (typeof to === 'string') {
           push(to);
         } else {
@@ -27,17 +28,19 @@ class Add extends Component {
           push(path, state);
         }
       }))(this.props);
-    }
+  };
 
-    render() {
-      return (<div className="fixed-bottom">
+  render() {
+    return (
+      <div className="fixed-bottom">
         {/*
             <FloatingActionButton secondary onClick={this.handleClick} >
                 <ContentAdd />
             </FloatingActionButton>
             */}
-      </div>);
-    }
+      </div>
+    );
+  }
 }
 
 export default { Add };

@@ -13,7 +13,7 @@ function getDebugSessionKey() {
   // You can write custom logic here!
   // By default we try to read the key from ?debug_session=<key> in the address bar
   const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/);
-  return (matches && matches.length > 0) ? matches[1] : null;
+  return matches && matches.length > 0 ? matches[1] : null;
 }
 
 const createReduxStore = (usageMiddlewares = [], reducer = {}) => {
@@ -43,10 +43,12 @@ export default function withRedux({ policy = 'only', middlewares = [], reducers 
   }
   return WrappedComponent => () => {
     if (process.env.NODE_ENV === 'development' && !window.devToolsExtension) {
-      return (<div>
-        <DevTools store={store} />
-        <WrappedComponent store={store} />
-      </div>);
+      return (
+        <div>
+          <DevTools store={store} />
+          <WrappedComponent store={store} />
+        </div>
+      );
     }
     return <WrappedComponent store={store} />;
   };

@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { ConnectedRouter, routerReducer as OriginRouterReducer, routerMiddleware as OriginRouterMiddleware } from 'react-router-redux';
+import {
+  ConnectedRouter,
+  routerReducer as OriginRouterReducer,
+  routerMiddleware as OriginRouterMiddleware
+} from 'react-router-redux';
 import { Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
@@ -14,10 +18,10 @@ function parseQueryString(url) {
   for (let i = 0; i < pairs.length; i++) {
     const KeyVal = pairs[i].split('=');
     if (!KeyVal || KeyVal.length !== 2) {
-            continue; // eslint-disable-line
+      continue; // eslint-disable-line
     }
-    const key = decodeURIComponent(KeyVal[0]);// decodeURIComponent
-    const val = decodeURIComponent(KeyVal[1]);// unescape
+    const key = decodeURIComponent(KeyVal[0]); // decodeURIComponent
+    const val = decodeURIComponent(KeyVal[1]); // unescape
     if (data[key]) {
       if (Object.prototype.toString.call(data[key]) !== '[object Array]') {
         data[key] = [data[key]];
@@ -47,11 +51,11 @@ export const routerReducer = OriginRouterReducer;
 export const history = createHistory();
 
 export default function withRouter({ routes }) {
-  return WrappedComponent => props => (<ConnectedRouter history={history}>
-    <WrappedComponent {...props}>
-      <Switch>
-        {routes}
-      </Switch>
-    </WrappedComponent>
-  </ConnectedRouter>);
+  return WrappedComponent => props => (
+    <ConnectedRouter history={history}>
+      <WrappedComponent {...props}>
+        <Switch>{routes}</Switch>
+      </WrappedComponent>
+    </ConnectedRouter>
+  );
 }

@@ -22,7 +22,9 @@ export default class {
   }
 
   get pages() {
-    return this.page.map((component, idx) => React.cloneElement(component, { key: component.key ? component.key : idx + this.page.length }));
+    return this.page.map((component, idx) =>
+      React.cloneElement(component, { key: component.key ? component.key : idx + this.page.length })
+    );
   }
 
   get navItems() {

@@ -3,21 +3,21 @@ import React, { Component, PropTypes } from 'react';
 class Widget extends Component {
   render() {
     const { title, children } = this.props;
-    return (<div className="widget">
-      <div className="widget-header bordered-bottom bordered-blue">
-        <span className="widget-caption">{title}</span>
-        <div className="widget-buttons">
-          <a data-toggle="maximize">
-            <i className="fa fa-expand" />
-          </a>
+    return (
+      <div className="widget">
+        <div className="widget-header bordered-bottom bordered-blue">
+          <span className="widget-caption">{title}</span>
+          <div className="widget-buttons">
+            <a data-toggle="maximize">
+              <i className="fa fa-expand" />
+            </a>
+          </div>
+        </div>
+        <div className="widget-body">
+          <div>{children}</div>
         </div>
       </div>
-      <div className="widget-body">
-        <div>
-          {children}
-        </div>
-      </div>
-    </div>);
+    );
   }
 }
 

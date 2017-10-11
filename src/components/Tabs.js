@@ -5,9 +5,11 @@ import classnames from 'classnames';
 export class Tab extends Component {
   render() {
     const { className, id, children } = this.props;
-    return (<div id={id} className={classnames({ 'tab-pane': true, active: className && className.includes('active') })}>
-      {children}
-    </div>);
+    return (
+      <div id={id} className={classnames({ 'tab-pane': true, active: className && className.includes('active') })}>
+        {children}
+      </div>
+    );
   }
 }
 
@@ -33,20 +35,20 @@ class Tabs extends Component {
   render() {
     const { children } = this.props;
 
-    return (<div className="tabbable">
-      <ul className="nav nav-tabs" id="myTab">
-        {
-          React.Children.map(children, child => (<li className={classnames(child.props.className)} onClick={child.props.onClick}>
-            <a data-toggle="tab" href={`#${child.props.id}`}>
-              {child.props.title}
-            </a>
-          </li>))
-        }
-      </ul>
-      <div className="tab-content">
-        {children}
+    return (
+      <div className="tabbable">
+        <ul className="nav nav-tabs" id="myTab">
+          {React.Children.map(children, child => (
+            <li className={classnames(child.props.className)} onClick={child.props.onClick}>
+              <a data-toggle="tab" href={`#${child.props.id}`}>
+                {child.props.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div className="tab-content">{children}</div>
       </div>
-    </div>);
+    );
   }
 }
 

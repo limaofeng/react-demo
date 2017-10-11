@@ -7,9 +7,17 @@ class Button extends Component {
 
     switch (type) {
       case 'submit' || 'button':
-        return <button onClick={onClick} type="submit" className={classnames('btn', className)}>{name || children}</button>;
+        return (
+          <button onClick={onClick} type="submit" className={classnames('btn', className)}>
+            {name || children}
+          </button>
+        );
       default:
-        return <a onClick={onClick} href="javascript:void(0);" className={classnames('btn', className)}>{name || children}</a>;
+        return (
+          <a onClick={onClick} href="javascript:void(0);" className={classnames('btn', className)}>
+            {name || children}
+          </a>
+        );
     }
   }
 }

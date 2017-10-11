@@ -9,49 +9,54 @@ export default class CitySelect extends Component {
     this.state = {
       address: '',
       city: [],
-      options: [{
-        value: '',
-        label: '请选择',
-        isLeaf: false
-      }]
+      options: [
+        {
+          value: '',
+          label: '请选择',
+          isLeaf: false
+        }
+      ]
     };
   }
 
   componentDidMount() {
     // 获取省
-    getAreas({ per_page: 200, EQI_layer: 0 }).then(d => {
-      const items = d.items.map((v, i) => ({
-        value: v.id,
-        label: v.display_name,
-        isLeaf: false
-      }));
-      this.setState({ options: items });
-    }).catch(e => {
-      console.error(e);
-      message.error('获取省错误');
-    });
+    getAreas({ per_page: 200, EQI_layer: 0 })
+      .then(d => {
+        const items = d.items.map((v, i) => ({
+          value: v.id,
+          label: v.display_name,
+          isLeaf: false
+        }));
+        this.setState({ options: items });
+      })
+      .catch(e => {
+        console.error(e);
+        message.error('获取省错误');
+      });
   }
 
-    onChange = (value, selectedOptions) => {
-      this.setState({ city: value });
-      this.props.onChange && this.props.onChange(value, this.state.address);
-    }
+  onChange = (value, selectedOptions) => {
+    this.setState({ city: value });
+    this.props.onChange && this.props.onChange(value, this.state.address);
+  };
 
-    changeHandle = e => {
-      this.setState({ address: e.target.value });
-      this.props.onChange && this.props.onChange(this.state.city, e.target.value);
-    }
+  changeHandle = e => {
+    this.setState({ address: e.target.value });
+    this.props.onChange && this.props.onChange(this.state.city, e.target.value);
+  };
 
-    emitEmpty = e => {
-      this.input.focus();
-      this.setState({ address: '' });
-    }
+  emitEmpty = e => {
+    this.input.focus();
+    this.setState({ address: '' });
+  };
 
-    loadData = selectedOptions => {
-      const targetOption = selectedOptions[selectedOptions.length - 1];
-      targetOption.loading = true;
+  loadData = selectedOptions => {
+    const targetOption = selectedOptions[selectedOptions.length - 1];
+    targetOption.loading = true;
 
-      getAreas({ per_page: 200, 'EQS_parent.id': targetOption.value }).then(d => {
+    getAreas({ per_page: 200, 'EQS_parent.id': targetOption.value })
+      .then(d => {
         targetOption.loading = false;
 
         const items = d.items.map((v, i) => ({
@@ -63,24 +68,26 @@ export default class CitySelect extends Component {
         targetOption.children = items;
 
         this.setState({
-          options: [...this.state.options],
+          options: [...this.state.options]
         });
-      }).catch(e => {
+      })
+      .catch(e => {
         console.error(e);
         message.error('获取省错误');
       });
-    }
+  };
 
-    render() {
-      const { isAddress, width, padding, selectPlaceholder, inputPlaceholder } = this.props;
-      const _width = width || '100%';
-      const _padding = padding || '10px 0';
-      const _selectPlaceholder = selectPlaceholder || '请选择';
-      const _inputPlaceholder = inputPlaceholder || '请输入';
-      const { address } = this.state;
-      const suffix = address ? <Icon type="close-circle" onClick={this.emitEmpty} /> : null;
+  render() {
+    const { isAddress, width, padding, selectPlaceholder, inputPlaceholder } = this.props;
+    const _width = width || '100%';
+    const _padding = padding || '10px 0';
+    const _selectPlaceholder = selectPlaceholder || '请选择';
+    const _inputPlaceholder = inputPlaceholder || '请输入';
+    const { address } = this.state;
+    const suffix = address ? <Icon type="close-circle" onClick={this.emitEmpty} /> : null;
 
-      return (<div style={{ width: _width }}>
+    return (
+      <div style={{ width: _width }}>
         <div style={{ padding: _padding }}>
           <Cascader
             options={this.state.options}
@@ -91,7 +98,7 @@ export default class CitySelect extends Component {
             placeholder={_selectPlaceholder}
           />
         </div>
-        {isAddress &&
+        {isAddress && (
           <div style={{ padding: _padding }}>
             <Input
               suffix={suffix}
@@ -99,12 +106,13 @@ export default class CitySelect extends Component {
               value={address}
               style={{ width: '100%' }}
               placeholder={_inputPlaceholder}
-              ref={node => this.input = node}
+              ref={node => (this.input = node)}
             />
           </div>
-        }
-      </div>);
-    }
+        )}
+      </div>
+    );
+  }
 }
 
 CitySelect.propTypes = {

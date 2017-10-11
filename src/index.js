@@ -7,12 +7,17 @@ import { AppContainer } from './containers';
 import './index.less';
 import Root from './App';
 import registerServiceWorker from './registerServiceWorker';
-import 'moment/locale/zh-cn';// eslint-disable-line
+import 'moment/locale/zh-cn'; // eslint-disable-line
 
 moment.locale('zh-cn');
 
 const render = Component => {
-  ReactDOM.render(<AppContainer><Component /></AppContainer>, document.getElementById('root'));
+  ReactDOM.render(
+    <AppContainer>
+      <Component />
+    </AppContainer>,
+    document.getElementById('root')
+  );
 };
 
 render(Root);
@@ -20,7 +25,7 @@ render(Root);
 if (module.hot) {
   module.hot.accept('./App', args => {
     if (args) {
-            console.log(args); // eslint-disable-line
+      console.log(args); // eslint-disable-line
     }
     render(Root);
   });

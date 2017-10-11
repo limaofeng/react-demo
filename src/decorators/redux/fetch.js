@@ -69,7 +69,6 @@ export function patch(url, body = {}) {
   });
 }
 
-
 /**
  * HTTP DELETE
  * @param  {string} url

@@ -21,20 +21,45 @@ class MetaData extends Component {
     return (
       <div>
         <dl>
-          <dt style={{ marginBottom: '5px' }}><b style={{ fontSize: '17px', color: '#000' }}>标题</b></dt>
+          <dt style={{ marginBottom: '5px' }}>
+            <b style={{ fontSize: '17px', color: '#000' }}>标题</b>
+          </dt>
           <dd style={{ marginBottom: '30px' }}>
-            <Input style={{ width: '100%', height: '40px', borderRadius: '4px', border: 'none', outline: 'none', fontSize: '20px', }} maxLength="70" />
+            <Input
+              style={{
+                width: '100%',
+                height: '40px',
+                borderRadius: '4px',
+                border: 'none',
+                outline: 'none',
+                fontSize: '20px'
+              }}
+              maxLength="70"
+            />
             <p>
-              <span style={{ color: 'rgb(192,192,192)' }}>建议: <b>70</b>个字符.</span>
-              <span style={{ float: 'right' }}>你已经使用<b style={{ color: 'rgb(158,184,90)', fontSize: '16px' }} /></span>
+              <span style={{ color: 'rgb(192,192,192)' }}>
+                建议: <b>70</b>个字符.
+              </span>
+              <span style={{ float: 'right' }}>
+                你已经使用<b style={{ color: 'rgb(158,184,90)', fontSize: '16px' }} />
+              </span>
             </p>
           </dd>
-          <dt style={{ marginBottom: '5px' }}><b style={{ fontSize: '17px', color: '#000' }}>描述</b></dt>
+          <dt style={{ marginBottom: '5px' }}>
+            <b style={{ fontSize: '17px', color: '#000' }}>描述</b>
+          </dt>
           <dd style={{ marginBottom: '5px' }}>
-            <TextArea style={{ width: '100%', maxWidth: '100%', height: '150px', maxHeight: '200px', borderRadius: '4px' }} maxLength="156" />
+            <TextArea
+              style={{ width: '100%', maxWidth: '100%', height: '150px', maxHeight: '200px', borderRadius: '4px' }}
+              maxLength="156"
+            />
             <p>
-              <span style={{ color: 'rgb(192,192,192)' }}>建议: <b>156</b>个字符.</span>
-              <span style={{ float: 'right' }}>你已经使用<b style={{ color: 'rgb(158,184,90)', fontSize: '16px' }} >1</b></span>
+              <span style={{ color: 'rgb(192,192,192)' }}>
+                建议: <b>156</b>个字符.
+              </span>
+              <span style={{ float: 'right' }}>
+                你已经使用<b style={{ color: 'rgb(158,184,90)', fontSize: '16px' }}>1</b>
+              </span>
             </p>
           </dd>
         </dl>
@@ -47,45 +72,47 @@ class MetaData extends Component {
 @graphql(ARTICLETAGS_QUERY)
 @withApollo
 export default class ArticleSettings extends Component {
-    static propTypes = {
-      client: PropTypes.object.isRequired,
-      data: PropTypes.object.isRequired,
-      article: PropTypes.object.isRequired,
-      handleClose: PropTypes.func.isRequired,
-      handleSave: PropTypes.func.isRequired
-    }
+  static propTypes = {
+    client: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
+    article: PropTypes.object.isRequired,
+    handleClose: PropTypes.func.isRequired,
+    handleSave: PropTypes.func.isRequired
+  };
 
-    constructor(props) {
-      super(props);
-      const { handleSave, article: { sn } } = props;
-      this.handleSavePublishDate = (autoSave => (date, dateString) => {
-        autoSave(dateString);
-      })(handleSave('publishDate'));
-      this.state = {
-        url: {
-          validateStatus: null,
-          help: null
-        }
-      };
-      this.handleSaveUrl = handleSave('sn');
-      this.lazyUrl = lazyUpdate(sn, { delay: 500 });
-    }
+  constructor(props) {
+    super(props);
+    const { handleSave, article: { sn } } = props;
+    this.handleSavePublishDate = (autoSave => (date, dateString) => {
+      autoSave(dateString);
+    })(handleSave('publishDate'));
+    this.state = {
+      url: {
+        validateStatus: null,
+        help: null
+      }
+    };
+    this.handleSaveUrl = handleSave('sn');
+    this.lazyUrl = lazyUpdate(sn, { delay: 500 });
+  }
 
-    handleUrl = e => {
-      const { client, article } = this.props;
-      const value = e.target.value;
-      this.lazyUrl(value).then(() => {
-        if (!value.trim()) {
-          this.setState({ url: { validateStatus: null, help: null } });
-          this.handleSaveUrl(value);
-          return;
-        }
-        this.setState({ url: { validateStatus: 'validating', help: null } });
-        client.query({
+  handleUrl = e => {
+    const { client, article } = this.props;
+    const value = e.target.value;
+    this.lazyUrl(value).then(() => {
+      if (!value.trim()) {
+        this.setState({ url: { validateStatus: null, help: null } });
+        this.handleSaveUrl(value);
+        return;
+      }
+      this.setState({ url: { validateStatus: 'validating', help: null } });
+      client
+        .query({
           query: ARITCLE_QUERY,
           variables: { id: value, type: 'sn' },
           fetchPolicy: 'network-only'
-        }).then(({ data: { article: check } }) => {
+        })
+        .then(({ data: { article: check } }) => {
           if (check && check.id !== article.id) {
             this.setState({ url: { validateStatus: 'error', help: '链接已存在!' } });
           } else {
@@ -93,21 +120,23 @@ export default class ArticleSettings extends Component {
             this.handleSaveUrl(value);
           }
         });
-      });
-    }
+    });
+  };
 
-    render() {
-      const { handleClose, handleSave, article: { cover, sn, tags: defaultTags = [], author, publishDate }, data: { tags = [] } } = this.props;
-      const { url: { validateStatus, help } } = this.state;
-      // 普通设置
-      const content = (<div>
+  render() {
+    const {
+      handleClose,
+      handleSave,
+      article: { cover, sn, tags: defaultTags = [], author, publishDate },
+      data: { tags = [] }
+    } = this.props;
+    const { url: { validateStatus, help } } = this.state;
+    // 普通设置
+    const content = (
+      <div>
         <Uploader mode="avatar" onChange={handleSave('cover')} defaultValue={cover && cover.path} />
         <FormGroup label="链接">
-          <FormItem
-            validateStatus={validateStatus}
-            hasFeedback
-            help={help}
-          >
+          <FormItem validateStatus={validateStatus} hasFeedback help={help}>
             <Input onChange={this.handleUrl} prefix={<Icon type="link" />} type="url" defaultValue={sn} />
           </FormItem>
         </FormGroup>
@@ -132,19 +161,27 @@ export default class ArticleSettings extends Component {
           </Select>
         </FormGroup>
         <FormGroup label="作者">
-          <Input onChange={handleSave('author')} className="Author" prefix={<Icon type="user" />} defaultValue={author} />
+          <Input
+            onChange={handleSave('author')}
+            className="Author"
+            prefix={<Icon type="user" />}
+            defaultValue={author}
+          />
         </FormGroup>
-      </div>);
+      </div>
+    );
 
-        // SEO 设置
-      const extras = [<ExtraSettings title="SEO 优化设置" summary="设置 SEO 优化相关内容">
+    // SEO 设置
+    const extras = [
+      <ExtraSettings title="SEO 优化设置" summary="设置 SEO 优化相关内容">
         <MetaData />
-      </ExtraSettings>];
+      </ExtraSettings>
+    ];
 
-      return (
-        <Settings title="文章设置" handleClose={handleClose} extras={extras}>
-          {content}
-        </Settings>
-      );
-    }
+    return (
+      <Settings title="文章设置" handleClose={handleClose} extras={extras}>
+        {content}
+      </Settings>
+    );
+  }
 }

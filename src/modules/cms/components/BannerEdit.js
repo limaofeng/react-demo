@@ -21,20 +21,18 @@ import BANNER_QUERY from './gql/banner.gql';
   })
 })
 class BannerEdit extends Component {
-    static propTypes = {
-      data: PropTypes.object.isRequired
-    }
+  static propTypes = {
+    data: PropTypes.object.isRequired
+  };
 
-    render() {
-      const { data: { loading, banner } } = this.props;
-      return (
-        <PageBody>
-          <Widget title=" 编辑 Banner ">
-            { loading ? '数据加载中...' : <BannerUpdateForm banner={banner} /> }
-          </Widget>
-        </PageBody>
-      );
-    }
+  render() {
+    const { data: { loading, banner } } = this.props;
+    return (
+      <PageBody>
+        <Widget title=" 编辑 Banner ">{loading ? '数据加载中...' : <BannerUpdateForm banner={banner} />}</Widget>
+      </PageBody>
+    );
+  }
 }
 
 export default BannerEdit;

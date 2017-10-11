@@ -17,11 +17,11 @@ import { save } from '../reducers';
 class Login extends Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
-    login: PropTypes.func.isRequired,
-  }
+    login: PropTypes.func.isRequired
+  };
   state = {
     redirectToReferrer: false
-  }
+  };
 
   login = async (username, password) => {
     const { login } = this.props;
@@ -29,7 +29,7 @@ class Login extends Component {
     return () => {
       this.setState({ redirectToReferrer: true });
     };
-  }
+  };
 
   render() {
     console.log(this.props);

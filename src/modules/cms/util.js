@@ -8,7 +8,7 @@
 
 export function getOrder(data, index) {
   const { page, per_page } = data;
-  const order = ((page - 1) * per_page) + index + 1;
+  const order = (page - 1) * per_page + index + 1;
   return order;
 }
 
@@ -19,20 +19,22 @@ export function getOrder(data, index) {
  * @param {boolean} [isObject] 是否返回object,默认array
  */
 export function filterHandle(datas, filters, isObject) {
-  const resultArray = Object.keys(datas).map(key => {
-    for (const filter of filters) {
-      if (key === filter) {
-        return '';
+  const resultArray = Object.keys(datas)
+    .map(key => {
+      for (const filter of filters) {
+        if (key === filter) {
+          return '';
+        }
       }
-    }
-    return { [key]: datas[key] };
-  }).filter(v => v);
+      return { [key]: datas[key] };
+    })
+    .filter(v => v);
 
   const resultObject = {};
 
   if (isObject) {
     for (const data of resultArray) {
-      Object.keys(data).forEach(key => resultObject[key] = data[key]);
+      Object.keys(data).forEach(key => (resultObject[key] = data[key]));
     }
     return resultObject;
   }
@@ -87,26 +89,56 @@ export function filterTAB(introduction = '') {
 // 获取货物状态
 export function getInvoiceStatus(key) {
   switch (key) {
-    case 'create': return '新增'; break;
-    case 'pickFinsh': return '拣货完成'; break;
-    case 'pichPart': return '部分拣货'; break;
-    case 'reviewFinsh': return '复核完成'; break;
-    case 'reviewPart': return '部分复核'; break;
-    case 'transferFinsh': return '交接完成'; break;
-    case 'transferPart': return '部分交接'; break;
-    case 'close': return '关闭'; break;
-    case 'cancel': return '取消'; break;
-    case 'reversePickFinsh': return '反确认拣货'; break;
-    default : return ' '; break;
+    case 'create':
+      return '新增';
+      break;
+    case 'pickFinsh':
+      return '拣货完成';
+      break;
+    case 'pichPart':
+      return '部分拣货';
+      break;
+    case 'reviewFinsh':
+      return '复核完成';
+      break;
+    case 'reviewPart':
+      return '部分复核';
+      break;
+    case 'transferFinsh':
+      return '交接完成';
+      break;
+    case 'transferPart':
+      return '部分交接';
+      break;
+    case 'close':
+      return '关闭';
+      break;
+    case 'cancel':
+      return '取消';
+      break;
+    case 'reversePickFinsh':
+      return '反确认拣货';
+      break;
+    default:
+      return ' ';
+      break;
   }
 }
 // 筛选文件类型
 export function filterDocumentType(key) {
   switch (key) {
-    case 'saleOut': return '销售出库'; break;
-    case 'purchaseReturn': return '采购退货'; break;
-    case 'otherOut': return '其他出库'; break;
-    default : return ' '; break;
+    case 'saleOut':
+      return '销售出库';
+      break;
+    case 'purchaseReturn':
+      return '采购退货';
+      break;
+    case 'otherOut':
+      return '其他出库';
+      break;
+    default:
+      return ' ';
+      break;
   }
 }
 // 处理传入数据
@@ -142,7 +174,6 @@ export function dataProces(value) {
     });
   }
 
-
   // 判断是否寻选择框是否为空
   if (value.depotBillType) {
     filters.push({
@@ -169,8 +200,12 @@ export function dataProces(value) {
   // 判断日期框
   function dataGet(value, type) {
     if (value[type]) {
-      const startDay = `${value[type][0]._d.getFullYear()}-${value[type][0]._d.getMonth() + 1}-${value[type][0]._d.getDate()}`;
-      const endDay = `${value[type][1]._d.getFullYear()}-${value[type][1]._d.getMonth() + 1}-${value[type][1]._d.getDate()}`;
+      const startDay = `${value[type][0]._d.getFullYear()}-${value[type][0]._d.getMonth() + 1}-${value[
+        type
+      ][0]._d.getDate()}`;
+      const endDay = `${value[type][1]._d.getFullYear()}-${value[type][1]._d.getMonth() + 1}-${value[
+        type
+      ][1]._d.getDate()}`;
       filters.push({
         field: `${type}`,
         matchType: 'between',
@@ -191,14 +226,14 @@ export function formatDateTime(inputTime) {
   const date = new Date(inputTime);
   const y = date.getFullYear();
   let m = date.getMonth() + 1;
-  m = m < 10 ? (`0${m}`) : m;
+  m = m < 10 ? `0${m}` : m;
   let d = date.getDate();
-  d = d < 10 ? (`0${d}`) : d;
+  d = d < 10 ? `0${d}` : d;
   let h = date.getHours();
-  h = h < 10 ? (`0${h}`) : h;
+  h = h < 10 ? `0${h}` : h;
   let minute = date.getMinutes();
   let second = date.getSeconds();
-  minute = minute < 10 ? (`0${minute}`) : minute;
-  second = second < 10 ? (`0${second}`) : second;
+  minute = minute < 10 ? `0${minute}` : minute;
+  second = second < 10 ? `0${second}` : second;
   return `${y}-${m}-${d} ${h}:${minute}:${second}`;
 }

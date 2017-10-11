@@ -4,32 +4,37 @@ import classnames from 'classnames';
 
 import { unload } from './../reducers/ui';
 
-@connect(({ ui: { loading } }) => ({
-  loading
-}), dispatch => ({
-  loadOver: () => dispatch(unload()),
-}))
+@connect(
+  ({ ui: { loading } }) => ({
+    loading
+  }),
+  dispatch => ({
+    loadOver: () => dispatch(unload())
+  })
+)
 class LoadContainer extends Component {
-    static propTypes = {
-      children: PropTypes.element.isRequired,
-      loading: PropTypes.bool.isRequired,
-      loadOver: PropTypes.func.isRequired
+  static propTypes = {
+    children: PropTypes.element.isRequired,
+    loading: PropTypes.bool.isRequired,
+    loadOver: PropTypes.func.isRequired
+  };
+  componentDidMount() {
+    const { loading, loadOver } = this.props;
+    if (loading) {
+      setTimeout(loadOver, 1000);
     }
-    componentDidMount() {
-      const { loading, loadOver } = this.props;
-      if (loading) {
-        setTimeout(loadOver, 1000);
-      }
-    }
-    render() {
-      const { children, loading } = this.props;
-      return (<div>
+  }
+  render() {
+    const { children, loading } = this.props;
+    return (
+      <div>
         <div className={classnames('loading-container', { 'loading-inactive': !loading })}>
           <div className="loader" />
         </div>
         {children}
-      </div>);
-    }
+      </div>
+    );
+  }
 }
 
 export default LoadContainer;

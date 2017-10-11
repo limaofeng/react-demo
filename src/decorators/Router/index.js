@@ -19,16 +19,17 @@ const fakeAuth = {
 // const WithPrivateRoute = connect(({ auth: user }) => ({ user }))(PrivateRoute);
 
 export const RouteWithSubRoutes = route => {
-  if (route.access === 'Public') { // default Protected
-    return (<Route
-      path={route.path}
-      exact={route.exact}
-      render={props => (
-        <route.component {...props} routes={route.routes} />
-      )}
-    />);
+  if (route.access === 'Public') {
+    // default Protected
+    return (
+      <Route
+        path={route.path}
+        exact={route.exact}
+        render={props => <route.component {...props} routes={route.routes} />}
+      />
+    );
   }
-  return (<PrivateRoute {...route} />);
+  return <PrivateRoute {...route} />;
 };
 
 export default { RouteWithSubRoutes };

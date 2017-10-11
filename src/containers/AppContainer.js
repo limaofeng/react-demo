@@ -17,16 +17,16 @@ if (process.env.NODE_ENV === 'development') {
 } */
 
 class AppContainer extends Component {
-    static propTypes = {
-      children: PropTypes.any.isRequired
+  static propTypes = {
+    children: PropTypes.any.isRequired
+  };
+  render() {
+    const { children } = this.props;
+    if (process.env.NODE_ENV === 'development') {
+      return <ReactHotContainer>{children}</ReactHotContainer>;
     }
-    render() {
-      const { children } = this.props;
-      if (process.env.NODE_ENV === 'development') {
-        return <ReactHotContainer>{children}</ReactHotContainer>;
-      }
-      return children;
-    }
+    return children;
+  }
 }
 
 export default AppContainer;

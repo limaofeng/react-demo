@@ -1,20 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 
 class LockContainer extends Component {
-    static propTypes = {
-      children: PropTypes.element.isRequired,
-    }
-    componentDidMount() {
-      window.requestAnimationFrame(() => { $('.mask-container').prevAll('.main-container,.navbar').removeClass('unmasking').addClass('masking'); });
-    }
+  static propTypes = {
+    children: PropTypes.element.isRequired
+  };
+  componentDidMount() {
+    window.requestAnimationFrame(() => {
+      $('.mask-container')
+        .prevAll('.main-container,.navbar')
+        .removeClass('unmasking')
+        .addClass('masking');
+    });
+  }
 
-    render() {
-      const { children } = this.props;
-      const locking = false;
-      if (!locking) {
-        return children;
-      }
-      return (<div>
+  render() {
+    const { children } = this.props;
+    const locking = false;
+    if (!locking) {
+      return children;
+    }
+    return (
+      <div>
         <div className="masking">{children}</div>
         <div className="mask-container">
           <div className="lock-container animated fadeInDown">
@@ -38,8 +44,9 @@ class LockContainer extends Component {
             </div>
           </div>
         </div>
-      </div>);
-    }
+      </div>
+    );
+  }
 }
 
 export default LockContainer;

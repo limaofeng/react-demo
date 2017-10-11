@@ -52,7 +52,7 @@ export function defaultValue(value, defaultValue) {
   if (this.isArray(value) && value.length === 0) {
     return defaultValue || value;
   }
-  return value !== undefined && value !== '' && value !== null ? value : (defaultValue || '');
+  return value !== undefined && value !== '' && value !== null ? value : defaultValue || '';
 }
 
 /**
@@ -61,8 +61,13 @@ export function defaultValue(value, defaultValue) {
  * @return {String} 编码后的文本
  */
 export function htmlEncode(value) {
-  return !value ? value : String(value).replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;')
-    .replace(/"/g, '&quot;');
+  return !value
+    ? value
+    : String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/>/g, '&gt;')
+        .replace(/</g, '&lt;')
+        .replace(/"/g, '&quot;');
 }
 
 /**
@@ -71,8 +76,13 @@ export function htmlEncode(value) {
  * @return {String} 编码后的文本
  */
 export function htmlDecode(value) {
-  return !value ? value : String(value).replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&quot;/g, '"')
-    .replace(/&amp;/g, '&');
+  return !value
+    ? value
+    : String(value)
+        .replace(/&gt;/g, '>')
+        .replace(/&lt;/g, '<')
+        .replace(/&quot;/g, '"')
+        .replace(/&amp;/g, '&');
 }
 
 /**
@@ -128,11 +138,11 @@ export function capitalize(value) {
  * @returns {string} 已格式化的货币
  */
 export function usMoney(v) {
-  let iv = (Math.round((v - 0) * 100)) / 100;
-  if ((iv === Math.floor(iv))) {
+  let iv = Math.round((v - 0) * 100) / 100;
+  if (iv === Math.floor(iv)) {
     iv = `${iv}.00`;
   } else {
-    iv = ((iv * 10 === Math.floor(iv * 10)) ? `${iv}0` : iv);
+    iv = iv * 10 === Math.floor(iv * 10) ? `${iv}0` : iv;
   }
   iv = String(iv);
   const ps = iv.split('.');
@@ -171,20 +181,13 @@ export function date(date, formatter = 'yyyy-MM-dd HH:mm:ss') {
     }
     return result;
   };
-    /**
+  /**
      * 提取日期的年月日时分秒
      * @param {Object} d
      * @param {Object} isZero
      */
   const splitDate = (d, isZero) => {
-    let yyyy,
-      MM,
-      dd,
-      hh,
-      HH,
-      mm,
-      ss,
-      ms;// N
+    let yyyy, MM, dd, hh, HH, mm, ss, ms; // N
     if (isZero) {
       yyyy = d.getFullYear();
       MM = addZeroLeft(String(d.getMonth() + 1), 2);
@@ -240,7 +243,9 @@ export function date(date, formatter = 'yyyy-MM-dd HH:mm:ss') {
   for (let i = 0; i < formatters.length; i++) {
     formatValue = replaceAll(formatValue, formatters[i], dateObject[formatters[i]]);
   }
-  return formatValue.indexOf('yy') > -1 ? replaceAll(formatValue, 'yy', dateObject.yyyy.toString().substr(2, 2)) : formatValue;
+  return formatValue.indexOf('yy') > -1
+    ? replaceAll(formatValue, 'yy', dateObject.yyyy.toString().substr(2, 2))
+    : formatValue;
 }
 
 export function replaceAll(value, raRegExp, replaceText) {
@@ -262,7 +267,6 @@ export function stripTags(v) {
   return !v ? v : String(v).replace(this.stripTagsRE, '');
 }
 
-
 /**
  *剥去所有脚本（<script>...</script>）标签
  * @param v value 要剥去的文本
@@ -281,21 +285,20 @@ export function fileSize(size) {
   if (size < 1024) {
     return `${size} bytes`;
   } else if (size < 1048576) {
-    return `${Math.round(((size * 10) / 1024)) / 10} KB`;
+    return `${Math.round(size * 10 / 1024) / 10} KB`;
   }
-  return `${Math.round(((size * 10) / 1048576)) / 10} MB`;
+  return `${Math.round(size * 10 / 1048576) / 10} MB`;
 }
 
 export const math = (() => {
   const fns = {};
-  return function (v, a) {
+  return function(v, a) {
     if (!fns[a]) {
       fns[a] = new Function('v', `return v ${a};`);
     }
     return fns[a](v);
   };
 })();
-
 
 /**
  * 依据某种（字符串）格式来转换数字。
@@ -342,7 +345,7 @@ export function number(v, format) {
   if (psplit.length > 1) {
     v = v.toFixed(psplit[1].length);
   } else if (psplit.length > 2) {
-    throw (`NumberFormatException: invalid format, formats should have no more than 1 period: ${format}`);
+    throw `NumberFormatException: invalid format, formats should have no more than 1 period: ${format}`;
   } else {
     v = v.toFixed(0);
   }
@@ -384,7 +387,7 @@ export function number(v, format) {
  * @returns {string}
  */
 export function plural(v, s, p) {
-  return `${v} ${v === 1 ? s : (p || `${s}s`)}`;
+  return `${v} ${v === 1 ? s : p || `${s}s`}`;
 }
 
 export function parseQueryString(url) {
@@ -399,8 +402,8 @@ export function parseQueryString(url) {
     if (!KeyVal || KeyVal.length !== 2) {
       continue;
     }
-    const key = decodeURIComponent(KeyVal[0]);// decodeURIComponent
-    const val = decodeURIComponent(KeyVal[1]);// unescape
+    const key = decodeURIComponent(KeyVal[0]); // decodeURIComponent
+    const val = decodeURIComponent(KeyVal[1]); // unescape
     if (data[key]) {
       if (Object.prototype.toString.call(data[key]) !== '[object Array]') {
         data[key] = [data[key]];
@@ -414,7 +417,13 @@ export function parseQueryString(url) {
 }
 
 export function querystring(data) {
-  return (data && Object.keys(data).map(key => `${key}=${data[key]}`).join('&')) || '';
+  return (
+    (data &&
+      Object.keys(data)
+        .map(key => `${key}=${data[key]}`)
+        .join('&')) ||
+    ''
+  );
 }
 
 /**
@@ -431,9 +440,9 @@ export function param(params) {
   Object.key(params).forEach(p => {
     const setParams = (v, i, array) => {
       const _isarray = _t.test(v);
-      let name,
-        index;
-      if (_isarray) { // is Array
+      let name, index;
+      if (_isarray) {
+        // is Array
         index = _t.exec(v)[1];
         name = v.substr(0, v.length - index.length - 2);
       } else {
@@ -443,14 +452,14 @@ export function param(params) {
         obj[name] = params[p];
       }
       if (_isarray) {
-        obj = !obj[name] ? obj[name] = [] : obj[name];
+        obj = !obj[name] ? (obj[name] = []) : obj[name];
         if (array.length !== i + 1) {
-          obj = !obj[parseInt(index, 10)] ? obj[parseInt(index, 10)] = {} : obj[parseInt(index, 10)];
+          obj = !obj[parseInt(index, 10)] ? (obj[parseInt(index, 10)] = {}) : obj[parseInt(index, 10)];
         } else {
           obj[parseInt(index, 10)] = params[p];
         }
       } else {
-        obj = obj[name] == null ? obj[name] = {} : obj[name];
+        obj = obj[name] == null ? (obj[name] = {}) : obj[name];
       }
     };
     if (p.indexOf('.') !== -1) {
@@ -465,9 +474,9 @@ export function param(params) {
 }
 
 export function tableToExcel(table, name) {
-    let uri = 'data:application/vnd.ms-excel;base64,',// eslint-disable-line
+  let uri = 'data:application/vnd.ms-excel;base64,', // eslint-disable-line
     // eslint-disable-next-line
-        template = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+    template = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
                 <head>
                     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
                     <!--[if gte mso 9]>
@@ -490,10 +499,12 @@ export function tableToExcel(table, name) {
                     </Workbook>
                     </body>
                     </html>`,
-        base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))); },// eslint-disable-line
-        format = function (s, c) {// eslint-disable-line
-      return s.replace(/{(\w+)}/g,
-        (m, p) => c[p]);
+    base64 = function(s) {
+      return window.btoa(unescape(encodeURIComponent(s)));
+    }, // eslint-disable-line
+    format = function(s, c) {
+      // eslint-disable-line
+      return s.replace(/{(\w+)}/g, (m, p) => c[p]);
     };
   if (!table) return false;
   const ctx = { worksheet: name || 'Worksheet', table };
@@ -501,11 +512,14 @@ export function tableToExcel(table, name) {
 }
 
 export function xmlToExcel(xml, name) {
-    let uri = 'data:application/vnd.ms-excel;base64,',// eslint-disable-line
+  let uri = 'data:application/vnd.ms-excel;base64,', // eslint-disable-line
     // eslint-disable-next-line
-        template = `<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">{xml}</Workbook>`,
-        base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))); },// eslint-disable-line
-        format = function (s, c) {// eslint-disable-line
+    template = `<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">{xml}</Workbook>`,
+    base64 = function(s) {
+      return window.btoa(unescape(encodeURIComponent(s)));
+    }, // eslint-disable-line
+    format = function(s, c) {
+      // eslint-disable-line
       return s.replace(/{(\w+)}/g, (m, p) => {
         console.log(c[p]);
         return c[p];
@@ -525,11 +539,11 @@ export function xmlToExcel(xml, name) {
  * @returns {string} 已格式化的货币
  */
 export function fmoney(v) {
-  v = (Math.round((v - 0) * 100)) / 100;
+  v = Math.round((v - 0) * 100) / 100;
   if (v === Math.floor(v)) {
     v = `${v}.00`;
   } else {
-    v = (v * 10 === Math.floor(v * 10)) ? `${v}0` : v;
+    v = v * 10 === Math.floor(v * 10) ? `${v}0` : v;
   }
   v = String(v);
   const ps = v.split('.');
@@ -552,7 +566,9 @@ export function addZeroLeft(value, resultLength) {
     let i = result.length;
     while (i++ < resultLength) {
       result = `0${result}`;
-      if (result.length === resultLength) { break; }
+      if (result.length === resultLength) {
+        break;
+      }
     }
   }
   return result;
@@ -564,27 +580,33 @@ export function deleteProps(props, ...names) {
   });
 }
 
-export function tree(list, {
-  rootKey = item => item.layer === 1,
-  sort = () => false,
-  idKey = 'id',
-  pidKey = 'parent_id',
-  childrenKey = 'children',
-  converter = item => ({ ...item })
-}) {
+export function tree(
+  list,
+  {
+    rootKey = item => item.layer === 1,
+    sort = () => false,
+    idKey = 'id',
+    pidKey = 'parent_id',
+    childrenKey = 'children',
+    converter = item => ({ ...item })
+  }
+) {
   const start = new Date().getTime();
   try {
-    return (nlist => nlist.filter(item => {
-      nlist.filter(sitem => sitem[idKey] === (typeof pidKey === 'function' ? pidKey(item) : item[pidKey])).forEach(sitem => {
-        if (!sitem[childrenKey]) {
-          sitem[childrenKey] = [];
-        }
-        if (!sitem[childrenKey].some(cv => cv[idKey] === item[idKey])) {
-          sitem[childrenKey].push(item);
-        }
-      });
-      return rootKey(item);
-    }))(list.map(converter).sort(sort));
+    return (nlist =>
+      nlist.filter(item => {
+        nlist
+          .filter(sitem => sitem[idKey] === (typeof pidKey === 'function' ? pidKey(item) : item[pidKey]))
+          .forEach(sitem => {
+            if (!sitem[childrenKey]) {
+              sitem[childrenKey] = [];
+            }
+            if (!sitem[childrenKey].some(cv => cv[idKey] === item[idKey])) {
+              sitem[childrenKey].push(item);
+            }
+          });
+        return rootKey(item);
+      }))(list.map(converter).sort(sort));
   } finally {
     console.log('list -> tree 耗时', new Date().getTime() - start, 'ms');
   }

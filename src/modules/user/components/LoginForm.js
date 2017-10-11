@@ -7,7 +7,7 @@ const FormItem = Form.Item;
 class LoginForm extends Component {
   static propTypes = {
     form: PropTypes.object.isRequired,
-    login: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -18,14 +18,19 @@ class LoginForm extends Component {
         return;
       }
       submit(reset => {
-        login(username, password).then(next => {
-          $('.loginbox').removeClass('animated fadeInDown').addClass('animated fadeOutUp')
-            .delay(1000, 'mx')
-            .queue('mx', next)
-            .dequeue('mx');
-        }).catch(error => {
-          message.error(error);
-        }).then(reset)
+        login(username, password)
+          .then(next => {
+            $('.loginbox')
+              .removeClass('animated fadeInDown')
+              .addClass('animated fadeOutUp')
+              .delay(1000, 'mx')
+              .queue('mx', next)
+              .dequeue('mx');
+          })
+          .catch(error => {
+            message.error(error);
+          })
+          .then(reset)
           .catch(reset);
       });
     });
@@ -37,23 +42,19 @@ class LoginForm extends Component {
       <Form name="login" onSubmit={this.handleSubmit}>
         <FormItem className="loginbox-textbox">
           {getFieldDecorator('username', {
-            rules: [{ required: true, message: '请输入您的用户名!' }],
-          })(
-            <Input prefix={<Icon type="user" style={{ fontSize: 14 }} />} placeholder="Username" />
-          )}
+            rules: [{ required: true, message: '请输入您的用户名!' }]
+          })(<Input prefix={<Icon type="user" style={{ fontSize: 14 }} />} placeholder="Username" />)}
         </FormItem>
         <FormItem className="loginbox-textbox">
           {getFieldDecorator('password', {
-            rules: [{ required: true, message: '请输入您的密码!' }],
-          })(
-            <Input prefix={<Icon type="lock" style={{ fontSize: 14 }} />} type="password" placeholder="Password" />
-          )}
+            rules: [{ required: true, message: '请输入您的密码!' }]
+          })(<Input prefix={<Icon type="lock" style={{ fontSize: 14 }} />} type="password" placeholder="Password" />)}
         </FormItem>
         <div className="loginbox-submit">
           <input type="button" className="btn btn-primary btn-block" value="Login" />
           {/* btn btn-primary  */}
           <Button type="primary" disabled={submitting} htmlType="submit" className="btn-block">
-            { submitting ? <i className="fa fa-circle-o-notch fa-spin" /> : '登录' }
+            {submitting ? <i className="fa fa-circle-o-notch fa-spin" /> : '登录'}
           </Button>
         </div>
       </Form>

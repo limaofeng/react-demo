@@ -8,11 +8,11 @@ import { start, done } from './apollo/middleware/nprogress';
 
 const urls = {
   wsapi: process.env.REACT_APP_URLS_WSAPI,
-  api: process.env.REACT_APP_URLS_API,
+  api: process.env.REACT_APP_URLS_API
 };
 
 const wsClient = new SubscriptionClient(`${urls.wsapi}/subscribe`, {
-  reconnect: true,
+  reconnect: true
 });
 
 const networkInterface = createNetworkInterface({ uri: `${urls.api}/graphql` });
@@ -30,38 +30,46 @@ const networkInterface = createNetworkInterface({ uri: `${urls.api}/graphql` });
 }
 */
 
-networkInterface.use([start, {
-  applyMiddleware(req, next) {
-    if (!req.options.headers) {
-      req.options.headers = {}; // Create the header object if needed.
-    }
-    next();
-  }
-}]).useAfter([{
-  applyAfterware({ response }, next) {
-    // 解决 TypeError: Already read 异常
-    response.json = (prom => () => new Promise((resolve, reject) => {
-      prom.then(resolve).catch(reject);
-    }))(response.json().then(result => {
-      const { errors } = result;
-      if (errors) {
-        console.error(errors); // eslint-disable-line
-        if (errors.some(({ statusCode }) => statusCode === 401)) {
-          console.error('logout', errors) // eslint-disable-line
+networkInterface
+  .use([
+    start,
+    {
+      applyMiddleware(req, next) {
+        if (!req.options.headers) {
+          req.options.headers = {}; // Create the header object if needed.
         }
-        if (errors.some(({ data: { code } }) => code === 100503)) {
-          console.error('logout', errors) // eslint-disable-line
-        }
+        next();
       }
-      return result;
-    }));
-    next();
-  }
-}, done]);
-const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
-  networkInterface,
-  wsClient
-);
+    }
+  ])
+  .useAfter([
+    {
+      applyAfterware({ response }, next) {
+        // 解决 TypeError: Already read 异常
+        response.json = (prom => () =>
+          new Promise((resolve, reject) => {
+            prom.then(resolve).catch(reject);
+          }))(
+          response.json().then(result => {
+            const { errors } = result;
+            if (errors) {
+              console.error(errors); // eslint-disable-line
+              if (errors.some(({ statusCode }) => statusCode === 401)) {
+                console.error('logout', errors); // eslint-disable-line
+              }
+              if (errors.some(({ data: { code } }) => code === 100503)) {
+                console.error('logout', errors); // eslint-disable-line
+              }
+            }
+            return result;
+          })
+        );
+        next();
+      }
+    },
+    done
+  ]);
+const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(networkInterface, wsClient);
 const client = new ApolloClient({
   networkInterface: networkInterfaceWithSubscriptions,
   dataIdFromObject: r => (r.id && `${r.__typename}:${r.id}`) || null,
@@ -74,15 +82,19 @@ export const apolloMiddleware = () => client.middleware();
 export const apolloReducer = client.reducer();
 
 export default function withApollo() {
-    return WrappedComponent => class Provider extends Component {// eslint-disable-line
-        static propTypes = {
-          store: PropTypes.object.isRequired,
-        }
-        render() {
-          const { store } = this.props;
-          return (<ApolloProvider store={store} client={client}>
+  return WrappedComponent =>
+    class Provider extends Component {
+      // eslint-disable-line
+      static propTypes = {
+        store: PropTypes.object.isRequired
+      };
+      render() {
+        const { store } = this.props;
+        return (
+          <ApolloProvider store={store} client={client}>
             <WrappedComponent store={store} client={client} />
-          </ApolloProvider>);
-        }
-  };
+          </ApolloProvider>
+        );
+      }
+    };
 }
