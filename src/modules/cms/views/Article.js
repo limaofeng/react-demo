@@ -12,9 +12,9 @@ import * as Format from '../../../helpers/Format';
 import { CategorySubmitForm, CategoryUpdateForm } from '../components/CategoryForm';
 
 // 查询分类
-import CATEGORYS_QUERY from '../graphqls/articleCategorys.gql';
+import CATEGORYS_QUERY from '../graphqls/articleCategorys.graphql';
 // 删除分类
-import CATEGORY_REMOVE from '../graphqls/article_category_remove.gql';
+import CATEGORY_REMOVE from '../graphqls/article_category_remove.graphql';
 
 const { Tree, TreeItem, TreeItemGroup } = TreeSidebar;
 const confirm = Modal.confirm;

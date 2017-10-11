@@ -15,9 +15,9 @@ import ArticleSettings from '../components/ArticleSettings';
 
 import './ArticleEdit.less';
 
-import ARITCLE_QUERY from '../graphqls/ArticleQuery.gql';
-import ARTICLE_UPDATE from '../graphqls/article_update.gql';
-import ARTICLE_REMOVE from '../graphqls/article_remove.gql';
+import ARITCLE_QUERY from '../graphqls/ArticleQuery.graphql';
+import ARTICLE_UPDATE from '../graphqls/article_update.graphql';
+import ARTICLE_REMOVE from '../graphqls/article_remove.graphql';
 
 const confirm = Modal.confirm;
 

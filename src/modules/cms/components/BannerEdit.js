@@ -10,7 +10,7 @@ import BannerItems from './BannerItems';
 
 import { BannerUpdateForm } from './BannerForm';
 
-import BANNER_QUERY from './gql/banner.gql';
+import BANNER_QUERY from './gql/banner.graphql';
 
 @graphql(BANNER_QUERY, {
   options: ({ match: { params: { id } } }) => ({

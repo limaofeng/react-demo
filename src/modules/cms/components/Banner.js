@@ -27,8 +27,8 @@ import {
 import DropDownButton from '../../components/button/DropDownButton';
 // 分页
 import Pagnation from '../../components/Pagnation';
-import BANNERS_QUERY from './gql/banners.gql';
-import REMOVE_BANNER from './gql/removeBeanner.gql';
+import BANNERS_QUERY from './gql/banners.graphql';
+import REMOVE_BANNER from './gql/removeBeanner.graphql';
 
 // 删除
 @graphql(REMOVE_BANNER, {

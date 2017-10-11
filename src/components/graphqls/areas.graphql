@@ -1,0 +1,10 @@
+query($limit: Int) {
+  areas(limit: $limit) {
+    id
+    name
+    path
+    parentId
+    displayName
+    layer
+  }
+}

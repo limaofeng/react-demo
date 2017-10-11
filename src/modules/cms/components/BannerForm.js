@@ -12,10 +12,10 @@ import { PageBody, TabPanel, Widget, FormGroup } from '../../components';
 
 import BannerItems from './BannerItems';
 
-import BANNERS_QUERY from './gql/banners.gql';
-import BANNER_QUERY from './gql/banner.gql';
-import BANNER_SUBMIT from './gql/banner_submit.gql';
-import BANNER_UPDATE from './gql/banner_update.gql';
+import BANNERS_QUERY from './gql/banners.graphql';
+import BANNER_QUERY from './gql/banner.graphql';
+import BANNER_SUBMIT from './gql/banner_submit.graphql';
+import BANNER_UPDATE from './gql/banner_update.graphql';
 
 const FormItem = Form.Item;
 const Option = Select.Option;

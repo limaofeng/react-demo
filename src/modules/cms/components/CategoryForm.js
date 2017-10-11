@@ -4,11 +4,10 @@ import { isEqual } from 'lodash';
 import { Modal, Form, Input, TreeSelect, Radio, Icon, message } from 'antd';
 
 import { Uploader } from '../../../components';
-
-import CATEGORYS_QUERY from '../graphqls/articleCategorys.gql';
-import CATEGORY_QUERY from '../graphqls/articleCategory.gql';
-import CATEGORY_SUBMIT from '../graphqls/addCategories.gql';
-import CATEGORY_UPDATE from '../graphqls/article_category_update.gql';
+import CATEGORYS_QUERY from '../graphqls/articleCategorys.graphql';
+import CATEGORY_QUERY from '../graphqls/articleCategory.graphql';
+import CATEGORY_SUBMIT from '../graphqls/addCategories.graphql';
+import CATEGORY_UPDATE from '../graphqls/article_category_update.graphql';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;

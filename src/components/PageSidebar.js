@@ -6,7 +6,7 @@ import { isEqual } from 'lodash';
 
 import * as Format from '../helpers/Format';
 
-import QUERY_MENUS from './graphqls/menus.gql';
+import QUERY_MENUS from './graphqls/menus.graphql';
 
 class MenuItem extends Component {
   static propTypes = {

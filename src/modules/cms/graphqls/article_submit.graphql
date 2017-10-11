@@ -1,4 +1,4 @@
-#import "./Article.gql"
+#import "./Article.graphql"
 
 mutation($entity: submitArticleInput!, $push: SubmitArticlePushInput) {
   article: submitArticle(entity: $entity, push: $push) {

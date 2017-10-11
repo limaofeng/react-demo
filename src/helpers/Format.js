@@ -8,6 +8,7 @@
 /* eslint no-unused-vars: 0 */
 /* eslint no-new-func: 0 */
 /* eslint max-len:0 */
+/* eslint one-var-declaration-per-line: 0 */
 
 const trimRe = /^\s+|\s+$/g;
 const stripTagsRE = /<\/?[^>]+>/gi;
@@ -498,12 +499,11 @@ export function tableToExcel(table, name) {
                         {xml}
                     </Workbook>
                     </body>
-                    </html>`,
-    base64 = function(s) {
+                    </html>`;
+  const base64 = function(s) {
       return window.btoa(unescape(encodeURIComponent(s)));
-    }, // eslint-disable-line
+    },
     format = function(s, c) {
-      // eslint-disable-line
       return s.replace(/{(\w+)}/g, (m, p) => c[p]);
     };
   if (!table) return false;
@@ -514,8 +514,8 @@ export function tableToExcel(table, name) {
 export function xmlToExcel(xml, name) {
   let uri = 'data:application/vnd.ms-excel;base64,', // eslint-disable-line
     // eslint-disable-next-line
-    template = `<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">{xml}</Workbook>`,
-    base64 = function(s) {
+    template = `<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">{xml}</Workbook>`;
+  const base64 = function(s) {
       return window.btoa(unescape(encodeURIComponent(s)));
     }, // eslint-disable-line
     format = function(s, c) {

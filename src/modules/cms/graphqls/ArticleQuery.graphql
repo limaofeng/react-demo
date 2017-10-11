@@ -1,4 +1,4 @@
-#import "./Article.gql"
+#import "./Article.graphql"
 
 query($id: ID!, $type: String) {
   article(id: $id, type: $type) {

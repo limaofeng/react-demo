@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { graphql, withApollo } from 'react-apollo';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 
-import GRQPHQL_LOGIN from './../graphqls/login.gql';
+import GRQPHQL_LOGIN from './../graphqls/login.graphql';
 
 import { save } from '../reducers/auth';
 

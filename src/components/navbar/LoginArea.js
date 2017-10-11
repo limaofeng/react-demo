@@ -128,8 +128,8 @@ class LoginArea extends Component {
     this.hidden();
   };
   hidden = () => {};
+  // eslint-disable-next-line
   initiateSettings = e => {
-    // eslint-disable-line
     // Handle RTL SUpport for Changer CheckBox
     $('#skin-changer li a').click(e => {
       e.preventDefault();

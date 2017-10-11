@@ -10,7 +10,7 @@ import { graphql, compose } from 'react-apollo';
 // Components
 import LoginView from '../components/LoginView';
 
-import LOGIN from '../graphqls/Login.gql';
+import LOGIN from '../graphqls/Login.graphql';
 
 import { save } from '../reducers';
 
