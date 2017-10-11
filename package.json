@@ -10,17 +10,11 @@
   "bugs": {
     "url": "https://github.com/limaofeng/react-demo/issues"
   },
-  "keywords": [
-    "apollo",
-    "graphql",
-    "react",
-    "redux",
-    "webpack",
-    "router"
-  ],
+  "keywords": ["apollo", "graphql", "react", "redux", "webpack", "router"],
   "author": "limapfeng",
   "license": "MIT",
   "scripts": {
+    "precommit": "lint-staged",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
@@ -34,10 +28,13 @@
     "graphql-tag": "^2.4.2",
     "graphql-tools": "^1.2.2",
     "history": "^4.7.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.2.3",
     "logrocket": "^0.5.4",
     "logrocket-react": "^0.0.4",
     "nprogress": "^0.2.0",
     "object-assign": "4.1.1",
+    "prettier": "^1.7.4",
     "promise": "^8.0.1",
     "react": "^15.6.1",
     "react-apollo": "^1.4.15",
@@ -68,6 +65,7 @@
     "dotenv": "^4.0.0",
     "eslint": "^4.4.1",
     "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-prettier": "^2.6.0",
     "eslint-config-react-app": "^2.0.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-flowtype": "^2.35.0",
@@ -100,12 +98,8 @@
     "why-did-you-update": "^0.0.8"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"],
+    "setupFiles": ["<rootDir>/config/polyfills.js"],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
       "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
@@ -117,25 +111,14 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ]
+    "moduleFileExtensions": ["web.js", "js", "json", "web.jsx", "jsx", "node"]
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ],
+    "presets": ["react-app"],
     "plugins": [
       [
         "import",
@@ -147,13 +130,16 @@
       "transform-decorators-legacy"
     ]
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": ["prettier --single-quote --write", "git add"]
+  },
   "eslintConfig": {
     "env": {
       "browser": true,
       "jest": true,
       "jquery": true
     },
-    "extends": "airbnb",
+    "extends": ["prettier", "airbnb"],
     "parser": "babel-eslint",
     "settings": {
       "import/resolver": {
@@ -169,15 +155,8 @@
       "no-param-reassign": "warn",
       "react/prefer-stateless-function": "warn",
       "no-console": 1,
-      "max-len": [
-        2,
-        180,
-        4
-      ],
-      "arrow-parens": [
-        "error",
-        "as-needed"
-      ],
+      "max-len": [2, 180, 4],
+      "arrow-parens": ["error", "as-needed"],
       "consistent-return": 0,
       "no-confusing-arrow": 0,
       "no-shadow": 0,
@@ -195,17 +174,12 @@
       "import/prefer-default-export": 0,
       "import/no-duplicates": 0,
       "react/no-multi-comp": 0,
-      "react/no-array-index-key": [
-        1
-      ],
+      "react/no-array-index-key": [1],
       "react/forbid-prop-types": 0,
       "react/jsx-filename-extension": [
         1,
         {
-          "extensions": [
-            ".js",
-            ".jsx"
-          ]
+          "extensions": [".js", ".jsx"]
         }
       ]
     }
