@@ -17,8 +17,7 @@
     "precommit": "lint-staged",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "lint": "eslint --fix --ext .js src"
+    "test": "node scripts/test.js --env=jsdom"
   },
   "dependencies": {
     "add-graphql-subscriptions": "^1.0.1",
