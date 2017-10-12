@@ -12,7 +12,8 @@ const jsPaths = ['public/assets/js/beyond.js', 'public/assets/js/skins.js'];
 
 // Less configuration
 gulp.task('less', () => {
-  gulp.src(lessPaths)
+  gulp
+    .src(lessPaths)
     .pipe(sourcemaps.init())
     .pipe(less())
     .pipe(sourcemaps.write('.'))
@@ -24,11 +25,17 @@ gulp.task('less', () => {
 
 // JavaScript configuration
 gulp.task('script', () => {
-  gulp.src(jsPaths)
+  gulp
+    .src(jsPaths)
     .pipe(sourcemaps.init())
-    .pipe(gulpIf(file => !/\.min\.js/.test(file.path), uglify({
-      output: { comments: '/!/' }
-    })))
+    .pipe(
+      gulpIf(
+        file => !/\.min\.js/.test(file.path),
+        uglify({
+          output: { comments: '/!/' }
+        })
+      )
+    )
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulpIf(file => !/\.min\.min/.test(file.path), sourcemaps.write('.')))
     .pipe(gulpIf(file => !/\.min\.min/.test(file.path), gulp.dest(f => f.base)));
