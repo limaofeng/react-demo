@@ -20,18 +20,17 @@ const stripTagsRE = /<\/?[^>]+>/gi;
  * @param {Boolean} word True表示尝试以一个单词来结束
  * @return {String} 转换后的文本
  */
-export const ellipsis = (value, len, word) => {
-  let ivalue = defaultValue(value, '');
-  const iword = defaultValue(word, '');
+export const ellipsis = (value = '', len, word = '...') => {
+  let ivalue = value;
   let ilen = len;
-  if (this.length(ivalue) <= ilen) {
+  if (length(ivalue) <= ilen) {
     return ivalue;
   }
-  ilen -= this.length(iword);
+  ilen -= length(word);
   do {
     ivalue = ivalue.substr(0, ivalue.length - 1);
-  } while (this.length(ivalue) > len);
-  return ivalue + iword;
+  } while (length(ivalue) > len);
+  return ivalue + word;
 };
 
 export const length = value => value.replace(/[^\x00-\xff]/g, 'rr').length;
