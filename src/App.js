@@ -12,6 +12,8 @@ import reducers from './reducers';
 // Router 与 Redux 配置
 import modules from './modules';
 
+import './App.less';
+
 @withRedux({
   middlewares: [apolloMiddleware(), routerMiddleware(), compatibleRouterMiddleware()],
   reducers: {
