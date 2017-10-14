@@ -5,30 +5,13 @@ import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
 import { start, done } from './apollo/middleware/nprogress';
-
-const urls = {
-  wsapi: process.env.REACT_APP_URLS_WSAPI,
-  api: process.env.REACT_APP_URLS_API
-};
+import { urls } from '../helpers';
 
 const wsClient = new SubscriptionClient(`${urls.wsapi}/subscribe`, {
   reconnect: true
 });
 
 const networkInterface = createNetworkInterface({ uri: `${urls.api}/graphql` });
-
-// NProgress.configure({ easing: 'ease', speed: 500 });
-
-/*
-{
-    applyMiddleware(req, next) {
-        const nanobar = new Nanobar(options);
-        console.log('-------nanobar------');
-        nanobar.go(30);
-        next();
-    }
-}
-*/
 
 networkInterface
   .use([

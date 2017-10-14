@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import React, { Component, PropTypes } from 'react';
 import { Upload, Modal, Icon } from 'antd';
-import * as urls from '../helpers/urls';
+import { picturePath, api } from '../helpers/urls';
 
 class Uploader extends Component {
   static propTypes = {
@@ -44,13 +44,13 @@ class Uploader extends Component {
             // uid为0删除时会全删
             uid: item,
             status: 'done',
-            url: `${urls.picturePath}${item}`,
+            url: `${picturePath}${item}`,
             path: item,
             response: {
               path: item
             }
           }))
-        : [{ uid: -1, status: 'done', url: `${urls.picturePath}${value}`, path: value, response: { path: value } }]
+        : [{ uid: -1, status: 'done', url: `${picturePath}${value}`, path: value, response: { path: value } }]
     };
     return this.state;
   }
@@ -84,7 +84,7 @@ class Uploader extends Component {
     }
 
     if (file.status === 'done' || file.status === 'removed') {
-      file.url = `${urls.picturePath}${file.response.path}`;
+      file.url = `${picturePath}${file.response.path}`;
       file.path = file.response.path;
       onChange(multiple ? fileList.map(item => item.path || item.response.path) : file.path);
     }
@@ -133,7 +133,7 @@ class Uploader extends Component {
       <div className="uploader">
         <Upload
           multiple={multiple}
-          action={`${urls.api}/files?dir=team`}
+          action={`${api}/files?dir=team`}
           name="attach"
           listType="picture-card"
           fileList={fileList}
