@@ -21,8 +21,7 @@ function ensureSlash(path, needsSlash) {
   return path;
 }
 
-const getPublicUrl = appPackageJson =>
-    envPublicUrl || require(appPackageJson).homepage;// eslint-disable-line
+const getPublicUrl = appPackageJson => envPublicUrl || require(appPackageJson).homepage; // eslint-disable-line
 
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
 // "public path" at which the app is served.
@@ -32,21 +31,20 @@ const getPublicUrl = appPackageJson =>
 // like /todos/42/static/js/bundle.7289d.js. We have to know the root.
 function getServedPath(appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson);
-  const servedUrl =
-    envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
+  const servedUrl = envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
   return ensureSlash(servedUrl, true);
 }
 
 function getTheme(appPackageJson) {
-  const pkgTheme = require(appPackageJson).theme;// eslint-disable-line
+  const pkgTheme = require(appPackageJson).theme; // eslint-disable-line
   let theme = {};
-  if (pkgTheme && typeof (pkgTheme) === 'string') {
+  if (pkgTheme && typeof pkgTheme === 'string') {
     let cfgPath = pkgTheme;
     if (cfgPath.charAt(0) === '.') {
       cfgPath = path.resolve(process.cwd(), cfgPath);
     }
-    theme = require(cfgPath);// eslint-disable-line
-  } else if (pkgTheme && typeof (pkgTheme) === 'object') {
+    theme = require(cfgPath); // eslint-disable-line
+  } else if (pkgTheme && typeof pkgTheme === 'object') {
     theme = pkgTheme;
   }
   return theme;

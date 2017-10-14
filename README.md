@@ -1828,14 +1828,10 @@ Now, whenever you run `npm run build`, you will see a cheat sheet with instructi
 
 To publish it at [https://myusername.github.io/my-app](https://myusername.github.io/my-app), run:
 
-```sh
-npm install --save gh-pages
-```
-
 Alternatively you may use `yarn`:
 
 ```sh
-yarn add gh-pages
+yarn add gh-pages --dev
 ```
 
 Add the following scripts in your `package.json`:
@@ -1855,7 +1851,7 @@ The `predeploy` script will run automatically before `deploy` is run.
 Then run:
 
 ```sh
-npm run deploy
+yarn deploy
 ```
 
 #### Step 4: Ensure your project’s settings use `gh-pages`
