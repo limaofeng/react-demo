@@ -1958,7 +1958,12 @@ GENERATE_SOURCEMAP | :x: | :white_check_mark: | When set to `false`, source maps
 
 为了方便测试，添加了如下依赖
 ```
-yarn apollo-cache-inmemory apollo-link apollo-logger apollo-utilities babel-plugin-inline-import enzyme enzyme-adapter-react-16 jest-transform-graphql jquery jsdom react-test-renderer
+yarn add apollo-cache-inmemory apollo-link apollo-logger apollo-utilities babel-plugin-inline-import enzyme enzyme-adapter-react-16 jest-transform-graphql jquery jsdom react-test-renderer --dev
+
+yarn remove apollo-cache-inmemory apollo-link apollo-logger apollo-utilities babel-plugin-inline-import enzyme enzyme-adapter-react-16 jest-transform-graphql jquery jsdom react-test-renderer
+
+# 应该只有保留 enzyme enzyme-adapter-react-16， 导入的测试依赖有点多。暂不使用
+
 ```
 
 ```diff
@@ -1990,7 +1995,7 @@ yarn apollo-cache-inmemory apollo-link apollo-logger apollo-utilities babel-plug
     "testEnvironment": "node",
     "testURL": "http://localhost",
     "transform": {
-+     "\\.(gql|graphql)$": "jest-transform-graphql",
++     "\\.(gql|graphql)$": "<rootDir>/node_modules/jest-transform-graphql",
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
