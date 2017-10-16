@@ -6,11 +6,7 @@ import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
 import { start, done } from './apollo/middleware/nprogress';
-
-const urls = {
-  wsapi: process.env.REACT_APP_URLS_WSAPI,
-  api: process.env.REACT_APP_URLS_API
-};
+import { urls } from '../helpers';
 
 let networkInterface = createNetworkInterface({ uri: `${urls.api}/graphql` });
 
