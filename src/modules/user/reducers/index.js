@@ -3,7 +3,6 @@ import { push } from 'react-router-redux';
 const SAVE_USER = 'auth/SAVE_USER';
 const REMOVE_USER = 'auth/REMOVE_USER';
 // import LogRocket from 'logrocket';
-
 const initialState = localStorage.getItem('auth');
 
 let timer;

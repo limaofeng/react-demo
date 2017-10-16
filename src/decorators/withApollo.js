@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { addGraphQLSubscriptions } from 'add-graphql-subscriptions';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
@@ -11,24 +12,7 @@ const urls = {
   api: process.env.REACT_APP_URLS_API
 };
 
-const wsClient = new SubscriptionClient(`${urls.wsapi}/subscribe`, {
-  reconnect: true
-});
-
-const networkInterface = createNetworkInterface({ uri: `${urls.api}/graphql` });
-
-// NProgress.configure({ easing: 'ease', speed: 500 });
-
-/*
-{
-    applyMiddleware(req, next) {
-        const nanobar = new Nanobar(options);
-        console.log('-------nanobar------');
-        nanobar.go(30);
-        next();
-    }
-}
-*/
+let networkInterface = createNetworkInterface({ uri: `${urls.api}/graphql` });
 
 networkInterface
   .use([
@@ -44,8 +28,8 @@ networkInterface
   ])
   .useAfter([
     {
+      // 解决 TypeError: Already read 异常
       applyAfterware({ response }, next) {
-        // 解决 TypeError: Already read 异常
         response.json = (prom => () =>
           new Promise((resolve, reject) => {
             prom.then(resolve).catch(reject);
@@ -53,12 +37,12 @@ networkInterface
           response.json().then(result => {
             const { errors } = result;
             if (errors) {
-              console.error(errors); // eslint-disable-line
+              console.error(errors);
               if (errors.some(({ statusCode }) => statusCode === 401)) {
-                console.error('logout', errors); // eslint-disable-line
+                console.error('logout', errors);
               }
               if (errors.some(({ data: { code } }) => code === 100503)) {
-                console.error('logout', errors); // eslint-disable-line
+                console.error('logout', errors);
               }
             }
             return result;
@@ -69,9 +53,16 @@ networkInterface
     },
     done
   ]);
-const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(networkInterface, wsClient);
+
+if (process.env.NODE_ENV !== 'test') {
+  const wsClient = new SubscriptionClient(`${urls.wsapi}/subscribe`, {
+    reconnect: true
+  });
+  networkInterface = addGraphQLSubscriptions(networkInterface, wsClient);
+}
+
 const client = new ApolloClient({
-  networkInterface: networkInterfaceWithSubscriptions,
+  networkInterface,
   dataIdFromObject: r => (r.id && `${r.__typename}:${r.id}`) || null,
   reduxRootSelector: state => state.apollo,
   connectToDevTools: process.env.NODE_ENV === 'development'
@@ -83,8 +74,8 @@ export const apolloReducer = client.reducer();
 
 export default function withApollo() {
   return WrappedComponent =>
+    // eslint-disable-next-line
     class Provider extends Component {
-      // eslint-disable-line
       static propTypes = {
         store: PropTypes.object.isRequired
       };

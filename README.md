@@ -1974,3 +1974,46 @@ REACT_EDITOR | :white_check_mark: | :x: | When an app crashes in development, yo
 CHOKIDAR_USEPOLLING | :white_check_mark: | :x: | When set to `true`, the watcher runs in polling mode, as necessary inside a VM. Use this option if `npm start` isn't detecting changes.
 GENERATE_SOURCEMAP | :x: | :white_check_mark: | When set to `false`, source maps are not generated for a production build. This solves OOM issues on some smaller machines.
 
+### CHANGELOG
+
+为了方便测试，添加了如下依赖
+```
+yarn apollo-cache-inmemory apollo-link apollo-logger apollo-utilities babel-plugin-inline-import enzyme enzyme-adapter-react-16 jest-transform-graphql jquery jsdom react-test-renderer
+```
+
+```diff
+"babel": {
+  // ...
+  "plugins": [
+    // ...
+    "transform-decorators-legacy",
++    [
++      "babel-plugin-inline-import",
++      {
++        "extensions": [
++          ".graphqls"
++        ]
++      }
++    ]
+  ]
+},
+```
+
+```diff
+ "jest": {
+    // ...
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js",
++     "raf/polyfill",
++     "<rootDir>/src/testHelpers/env.js"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
++     "\\.(gql|graphql)$": "jest-transform-graphql",
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    // ...
+```
