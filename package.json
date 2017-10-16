@@ -148,15 +148,6 @@
           "libraryName": "antd",
           "style": true
         }
-      ],
-      "transform-decorators-legacy",
-      [
-        "babel-plugin-inline-import",
-        {
-          "extensions": [
-            ".graphqls"
-          ]
-        }
       ]
     ]
   },
