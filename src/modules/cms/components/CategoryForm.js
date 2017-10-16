@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import { isEqual } from 'lodash';
 import { Modal, Form, Input, TreeSelect, Radio, Icon, message } from 'antd';

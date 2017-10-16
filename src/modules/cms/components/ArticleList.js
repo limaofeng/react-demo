@@ -1,4 +1,5 @@
-import React, { PropTypes, Component, PureComponent } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { graphql, withApollo } from 'react-apollo';
 import { isEqual } from 'lodash';
@@ -166,7 +167,7 @@ class ArticleSearch extends Component {
   }
 }
 
-class ArticleList extends PureComponent {
+class ArticleList extends Component {
   static propTypes = {
     refresh: PropTypes.func.isRequired,
     search: PropTypes.func.isRequired,

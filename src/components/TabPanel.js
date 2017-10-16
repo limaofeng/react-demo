@@ -1,5 +1,6 @@
 /* eslint-disable */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Handlebars from 'handlebars';
 import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';

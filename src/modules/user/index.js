@@ -10,7 +10,6 @@ import Login from './containers/Login';
 import reducers from './reducers';
 
 // import { AuthRoute, AuthNav, AuthLogin, AuthProfile } from './containers/Auth';
-
 import Feature from '../connector';
 
 function tokenMiddleware(req, options) {
