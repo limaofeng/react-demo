@@ -1,3 +1,5 @@
+# React Web Demo [![Dependency Status](https://gemnasium.com/badges/github.com/limaofeng/react-demo.svg)](https://gemnasium.com/github.com/limaofeng/react-demo)
+
 该项目基于 [Create React App](https://github.com/facebookincubator/create-react-app) 创建
 
 ## 目录
