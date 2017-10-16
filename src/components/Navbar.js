@@ -1,5 +1,6 @@
 // import { Link } from 'react-router-dom';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import { Upload, Icon, message } from 'antd';
 
@@ -275,7 +276,7 @@ class NavbarHeaderRight extends Component {
   };
   render() {
     const { user } = this.props;
-    console.log(user);
+    console.log(user.nickName);
     return (
       <div className="navbar-header pull-right">
         <div id="editPasswordDiv" style={{ display: 'none' }}>

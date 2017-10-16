@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Upload, Modal, Icon } from 'antd';
 import * as urls from '../helpers/urls';
 

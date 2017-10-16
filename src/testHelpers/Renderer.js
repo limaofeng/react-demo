@@ -1,22 +1,26 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ApolloClient from 'apollo-client';
 import { ApolloLink, Observable } from 'apollo-link';
 import InMemoryCache from 'apollo-cache-inmemory';
 import { addTypenameToDocument } from 'apollo-utilities';
 import { LoggingLink } from 'apollo-logger';
-import { Router, Switch } from 'react-router-dom';
-import createHistory from 'history/createMemoryHistory';
 import { JSDOM } from 'jsdom';
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
-import { combineReducers, createStore } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
 import { graphql, print, getOperationAST } from 'graphql';
-
-import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
+import typeDefs from './schema.graphqls';
 
-import rootSchema from '../../server/api/rootSchema.graphqls';
-import serverModules from '../../server/modules';
-import settings from '../../../settings';
+// 集成 React-Router
+import withRouter, {
+  history,
+  routerMiddleware,
+  routerReducer,
+  compatibleRouterMiddleware
+} from '../decorators/withRouter';
+
+import middleware from '../decorators/redux/middleware';
 
 const dom = new JSDOM('<!doctype html><html><body><div id="root"><div></body></html>');
 global.document = dom.window.document;
@@ -24,11 +28,38 @@ global.window = dom.window;
 global.navigator = dom.window.navigator;
 
 // React imports MUST come after `global.document =` in order for enzyme `unmount` to work
-const React = require('react');
 const ReactEnzymeAdapter = require('enzyme-adapter-react-16');
 const { ApolloProvider } = require('react-apollo');
 const Enzyme = require('enzyme');
-const clientModules = require('../modules').default;
+
+function storageMock() {
+  const storage = {};
+  return {
+    setItem(key, value) {
+      storage[key] = value || '';
+    },
+    getItem(key) {
+      return key in storage ? storage[key] : null;
+    },
+    removeItem(key) {
+      delete storage[key];
+    },
+    get length() {
+      return Object.keys(storage).length;
+    },
+    key(i) {
+      const keys = Object.keys(storage);
+      return keys[i] || null;
+    }
+  };
+}
+
+// mock the localStorage
+window.localStorage = storageMock();
+// mock the sessionStorage
+window.sessionStorage = storageMock();
+
+const modules = require('../modules').default;
 
 const mount = Enzyme.mount;
 
@@ -37,6 +68,16 @@ Enzyme.configure({ adapter: new ReactEnzymeAdapter() });
 process.on('uncaughtException', ex => {
   console.error('Uncaught error', ex.stack);
 });
+
+class AppTest extends Component {
+  static propTypes = {
+    children: PropTypes.element.isRequired
+  };
+  render() {
+    const { children } = this.props;
+    return <div>{children}</div>;
+  }
+}
 
 class MockLink extends ApolloLink {
   constructor(schema) {
@@ -64,7 +105,7 @@ class MockLink extends ApolloLink {
             });
             self.handlers[subId] = {
               handler,
-              key: key,
+              key,
               query: queryStr,
               variables: request.variables
             };
@@ -95,22 +136,21 @@ class MockLink extends ApolloLink {
           }
         }
       };
-    } else {
-      return new Observable(observer => {
-        graphql(schema, print(request.query), {}, {}, request.variables, request.operationName)
-          .then(data => {
-            if (!observer.closed) {
-              observer.next(data);
-              observer.complete();
-            }
-          })
-          .catch(error => {
-            if (!observer.closed) {
-              observer.error(error);
-            }
-          });
-      });
     }
+    return new Observable(observer => {
+      graphql(schema, print(request.query), {}, {}, request.variables, request.operationName)
+        .then(data => {
+          if (!observer.closed) {
+            observer.next(data);
+            observer.complete();
+          }
+        })
+        .catch(error => {
+          if (!observer.closed) {
+            observer.error(error);
+          }
+        });
+    });
   }
 
   _getSubscriptions(query, variables) {
@@ -143,27 +183,28 @@ class MockLink extends ApolloLink {
 export default class Renderer {
   constructor(graphqlMocks, reduxState) {
     const schema = makeExecutableSchema({
-      typeDefs: [rootSchema, ...serverModules.schemas]
+      typeDefs
     });
     addMockFunctionsToSchema({ schema, mocks: graphqlMocks });
 
     const cache = new InMemoryCache();
-    let link = new MockLink(schema);
+    const link = new MockLink(schema);
 
     const client = new ApolloClient({
-      link: ApolloLink.from((settings.app.logging.apolloLogging ? [new LoggingLink()] : []).concat([link])),
+      link: ApolloLink.from([new LoggingLink()].concat([link])),
       cache
     });
 
-    const store = createStore(
+    const store = compose(
+      applyMiddleware.apply(this, middleware.concat([routerMiddleware(), compatibleRouterMiddleware()]))
+    )(createStore)(
       combineReducers({
-        form: formReducer,
-        ...clientModules.reducers
+        ...modules.reducers,
+        apollo: client.reducer(),
+        routing: routerReducer
       }),
       reduxState
     );
-
-    const history = createHistory();
 
     this.client = client;
     this.store = store;
@@ -172,15 +213,15 @@ export default class Renderer {
     // this.networkInterface = mockNetworkInterface;
   }
 
-  withApollo(component) {
+  withApollo(WrappedComponent) {
     const { store, client } = this;
 
     return (
-      <CookiesProvider>
-        <Provider store={store}>
-          <ApolloProvider client={client}>{component}</ApolloProvider>
-        </Provider>
-      </CookiesProvider>
+      <Provider store={store}>
+        <ApolloProvider client={client}>
+          <WrappedComponent />
+        </ApolloProvider>
+      </Provider>
     );
   }
 
@@ -188,13 +229,7 @@ export default class Renderer {
     return this.mockLink._getSubscriptions(query, variables);
   }
 
-  mount() {
-    return mount(
-      this.withApollo(
-        <Router history={this.history}>
-          <Switch>{clientModules.routes}</Switch>
-        </Router>
-      )
-    );
+  mount(routes) {
+    return mount(this.withApollo(withRouter({ routes })(AppTest)));
   }
 }

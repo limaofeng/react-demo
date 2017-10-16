@@ -1,8 +1,5 @@
-// Web only component
-
-// React
-import React, { PropTypes } from 'react';
-// import PropTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 // import PageLayout from '../../../app/PageLayout';

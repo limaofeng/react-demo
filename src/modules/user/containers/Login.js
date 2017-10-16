@@ -32,7 +32,6 @@ class Login extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { location: { state } } = this.props;
 
     const { from } = state || { from: { pathname: '/' } };

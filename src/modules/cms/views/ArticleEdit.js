@@ -1,4 +1,5 @@
-import React, { PropTypes, Component, PureComponent } from 'react';
+import React, { Component, PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { graphql, withApollo } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 import Helmet from 'react-helmet';
