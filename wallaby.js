@@ -12,5 +12,10 @@ module.exports = wallaby => ({
     runner: 'node'
   },
   testFramework: 'jest',
+  setup(wallaby) {
+    const jestConfig = require('./package.json').jest;
+    jestConfig.globals = { __DEV__: true, testEnvironment: 'jsdom' };
+    wallaby.testFramework.configure(jestConfig);
+  },
   debug: true
 });
