@@ -67,7 +67,7 @@ export class Tree extends PureComponent {
     const { children } = this.props;
     return (
       <ul className="fan-menu">
-        {children.map(o =>
+        {React.Children.map(children, o =>
           React.cloneElement(o, {
             onSelect: this.handleSelect,
             onOpenChange: this.handleOpenChange,
@@ -162,7 +162,7 @@ export class TreeItemGroup extends PureComponent {
           }}
           className={classnames('fan-menu-item-group-list', { 'fan-menu-hidden': !open })}
         >
-          {children.map(o =>
+          {React.Children.map(children, o =>
             React.cloneElement(o, {
               onSelect,
               onOpenChange,
