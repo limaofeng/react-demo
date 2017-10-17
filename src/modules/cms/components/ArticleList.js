@@ -13,8 +13,8 @@ import ARTICLES_QUERY from '../graphqls/ArticlesConnection.graphql';
 import ARTICLE_REMOVE from '../graphqls/article_remove.graphql';
 import ARTICLE_SUBMIT from '../graphqls/article_submit.graphql';
 
-const Search = Input.Search;
-const Option = Select.Option;
+const { Search } = Input;
+const { Option } = Select;
 
 const NewArticle = graphql(ARTICLE_SUBMIT, {
   props: ({ ownProps: { categoryId }, ...props }) => ({

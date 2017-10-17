@@ -190,7 +190,6 @@
       "no-param-reassign": "warn",
       "object-curly-newline": "off",
       "function-paren-newline": "off",
-      "prefer-destructuring": 1,
       "react/prefer-stateless-function": "warn",
       "no-console": 1,
       "max-len": [

@@ -444,7 +444,7 @@ export function param(params) {
       const _isarray = _t.test(v);
       let name, index;
       if (_isarray) {
-        // is Array
+        // eslint-disable-next-line
         index = _t.exec(v)[1];
         name = v.substr(0, v.length - index.length - 2);
       } else {

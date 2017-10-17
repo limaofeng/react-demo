@@ -1,4 +1,4 @@
-import { ellipsis, lowercase, uppercase } from './Format';
+import { ellipsis, lowercase, uppercase, fileSize } from './Format';
 
 describe(' format utils ', () => {
   it('string ellipsis', () => {
@@ -11,5 +11,9 @@ describe(' format utils ', () => {
 
   it('string uppercase', () => {
     expect(uppercase('to uppercase')).toBe('TO UPPERCASE');
+  });
+
+  it('file size', () => {
+    expect(fileSize(2000)).toBe('TO UPPERCASE');
   });
 });

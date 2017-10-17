@@ -18,7 +18,7 @@ import CATEGORYS_QUERY from '../graphqls/articleCategorys.graphql';
 import CATEGORY_REMOVE from '../graphqls/article_category_remove.graphql';
 
 const { Tree, TreeItem, TreeItemGroup } = TreeSidebar;
-const confirm = Modal.confirm;
+const { confirm } = Modal;
 
 @withApollo
 class MenuTreeAction extends PureComponent {

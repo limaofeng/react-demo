@@ -20,7 +20,7 @@ import ARITCLE_QUERY from '../graphqls/ArticleQuery.graphql';
 import ARTICLE_UPDATE from '../graphqls/article_update.graphql';
 import ARTICLE_REMOVE from '../graphqls/article_remove.graphql';
 
-const confirm = Modal.confirm;
+const { confirm } = Modal;
 
 @withRouter
 @graphql(ARTICLE_REMOVE, {
