@@ -1,8 +1,6 @@
 fragment UserInfo on User {
   id
   username
-  isAdmin
-  email
 }
 
 fragment LoginUserInfo on LoginUser {
