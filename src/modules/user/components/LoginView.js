@@ -20,6 +20,7 @@ class LoginView extends React.PureComponent {
 
   render() {
     const { login } = this.props;
+    const { errors } = this.state;
     const renderMetaData = () => (
       <Helmet
         title="Login"
@@ -50,6 +51,7 @@ class LoginView extends React.PureComponent {
           <div className="loginbox-submit">
             <input type="button" className="btn btn-primary btn-block" value="Login" />
           </div>
+          <div className="error">{errors}</div>
           <div className="loginbox-signup">
             <a href="register.html">通过邮箱注册</a>
           </div>

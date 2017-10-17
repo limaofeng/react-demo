@@ -22,9 +22,7 @@ class MenuItem extends Component {
   static defaultProps = {
     id: null,
     icon: null,
-    children: [],
     onSelect: () => {},
-    isOpen: () => {},
     selected: false
   };
 

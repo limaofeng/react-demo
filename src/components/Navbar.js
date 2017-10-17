@@ -8,7 +8,7 @@ import LoginArea from './navbar/LoginArea';
 import { lazy } from './../helpers/lazy';
 // import { logout, resetpwd } from '../reducers/auth';
 
-/* global themeprimary readCookie setCookiesForFixedSettings */
+/* global themeprimary setCookiesForFixedSettings location */
 
 class AccountItem extends Component {
   componentDidMount() {}
@@ -113,15 +113,9 @@ class SideBar extends Component {
     if (b) {
       $('.open > .submenu').removeClass('open');
     } else if ($('.page-sidebar').hasClass('sidebar-fixed')) {
-      const position =
-        readCookie('rtl-support') ||
-        location.pathname === '/index-rtl-fa.html' ||
-        location.pathname === '/index-rtl-ar.html'
-          ? 'right'
-          : 'left';
       $('.sidebar-menu').slimscroll({
         height: 'auto',
-        position,
+        position: 'left',
         size: '3px',
         color: themeprimary
       });

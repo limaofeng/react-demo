@@ -43,10 +43,6 @@ class ArticleDelete extends Component {
     remove: PropTypes.func.isRequired
   };
 
-  static defaultProps = {
-    onDelete: () => {}
-  };
-
   handleDelete = e => {
     e.preventDefault();
     const { article: { title }, remove } = this.props;
