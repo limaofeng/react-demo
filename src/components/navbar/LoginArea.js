@@ -50,7 +50,7 @@ class Avatar extends Component {
           onChange={this.handleChange}
         >
           <div>
-            <img alt="" src="/assets/img/avatars/adam-jansen.jpg" className="avatar" />
+            <img alt="" src={`${__PUBLIC_URL__}/assets/img/avatars/adam-jansen.jpg`} className="avatar" />
             <span className="caption">修改照片</span>
           </div>
         </Upload>
@@ -161,7 +161,7 @@ class LoginArea extends Component {
         <a className="login-area" data-toggle="dropdown" role="none">
           <div title="View your public profile">
             <div className="avatar" title="View your public profile">
-              <img src="/assets/img/avatars/adam-jansen.jpg" alt="" />
+              <img src={`${__PUBLIC_URL__}/assets/img/avatars/adam-jansen.jpg`} alt="" />
             </div>
             <section>
               <h2>

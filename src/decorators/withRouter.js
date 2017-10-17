@@ -1,4 +1,3 @@
-/* global __PUBLIC_URL__ */
 import React from 'react';
 
 import {

@@ -171,6 +171,9 @@
       "jest": true,
       "jquery": true
     },
+    "globals": {
+      "__PUBLIC_URL__": true
+    },
     "extends": "airbnb",
     "parser": "babel-eslint",
     "settings": {
