@@ -1,17 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class PageContent extends Component {
-  // { key: 'pay', text: '仪表盘' }
-  static defaultProps = {
-    breadcrumbs: [],
-    title: '仪表盘'
-  };
   static propTypes = {
     breadcrumbs: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     children: PropTypes.any.isRequired
-    // noPadding: PropTypes.bool,
   };
   componentDidMount() {}
   componentWillUnmount() {}
@@ -59,13 +54,6 @@ class PageContent extends Component {
               <Link to="/">Home</Link>
             </li>
             {breadcrumbs}
-            {/*
-                breadcrumbs.map((item, i) => {
-                  if (i === breadcrumbs.length - 1) {
-                    return (<li key={i} className="active">{item.text}</li>);
-                  }
-                  return (<li key={i}><a href="">{item.text}</a></li>);
-                }) */}
           </ul>
         </div>
         <div className="page-header position-relative" style={{ display: 'none' }}>

@@ -6,7 +6,7 @@ import { merge, map, union, without, castArray } from 'lodash';
 const combine = (features, extractor) => without(union(...map(features, res => castArray(extractor(res)))), undefined);
 
 export default class {
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line
   constructor({ route, page, navItem, reducer }, ...features) {
     this.route = combine(arguments, arg => arg.route);
     this.page = combine(arguments, arg => arg.page);

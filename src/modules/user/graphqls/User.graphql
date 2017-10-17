@@ -4,3 +4,20 @@ fragment UserInfo on User {
   isAdmin
   email
 }
+
+fragment LoginUserInfo on LoginUser {
+  id
+  nickName
+  profile {
+    name
+    mobile
+  }
+  roles
+  token(clientId: "ff80808155005dfb0155005e4fb90000") {
+    accessToken
+    refreshToken
+    tokenCreationTime
+    reExpiresIn
+    expiresIn
+  }
+}

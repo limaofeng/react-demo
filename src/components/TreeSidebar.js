@@ -1,4 +1,5 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { Component, PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { isEqual } from 'lodash';
 
@@ -178,7 +179,7 @@ export class TreeItemGroup extends PureComponent {
   }
 }
 
-export class TreeItem extends PureComponent {
+export class TreeItem extends Component {
   static propTypes = {
     id: PropTypes.string,
     title: PropTypes.string.isRequired,
@@ -189,9 +190,7 @@ export class TreeItem extends PureComponent {
 
   static defaultProps = {
     id: null,
-    children: [],
     onSelect: () => {},
-    isOpen: () => {},
     selected: false
   };
 

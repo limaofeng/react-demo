@@ -32,7 +32,7 @@ export function load() {
       payload: 'loading'
     });
     return new Promise(resolve => {
-      resolve(status);
+      resolve('loading');
     });
   };
 }
@@ -44,7 +44,7 @@ export function unload() {
       payload: 'none'
     });
     return new Promise(resolve => {
-      resolve(status);
+      resolve('none');
     });
   };
 }
@@ -56,7 +56,7 @@ export function lock() {
       payload: 'locking'
     });
     return new Promise(resolve => {
-      resolve(status);
+      resolve('locking');
     });
   };
 }
@@ -68,7 +68,7 @@ export function unlock() {
       payload: 'none'
     });
     return new Promise(resolve => {
-      resolve(status);
+      resolve('none');
     });
   };
 }

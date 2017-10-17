@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
@@ -21,9 +22,7 @@ class MenuItem extends Component {
   static defaultProps = {
     id: null,
     icon: null,
-    children: [],
     onSelect: () => {},
-    isOpen: () => {},
     selected: false
   };
 

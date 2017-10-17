@@ -204,7 +204,7 @@ module.exports = {
                 {
                   loader: require.resolve('less-loader'),
                   options: {
-                    modifyVars: paths.theme // { 'primary-color': '#C278DD' }
+                    modifyVars: paths.theme
                   }
                 }
               ]

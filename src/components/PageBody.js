@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 
@@ -65,15 +66,9 @@ Container.propTypes = {
   children: PropTypes.any.isRequired
 };
 
-function getWindowHeight() {
-  return $(window).height() - 125;
-}
-
 export default class PageBody extends Component {
   static propTypes = {
     fullscreen: PropTypes.bool,
-    // menus: PropTypes.array,
-    // location: PropTypes.object,
     children: PropTypes.any.isRequired
   };
 
@@ -83,25 +78,8 @@ export default class PageBody extends Component {
     location: null
   };
 
-  constructor(props) {
-    super(props);
-    this.state = { height: getWindowHeight() };
-    this.restHeight = () => {
-      this.setState({ height: getWindowHeight() });
-    };
-  }
-
-  componentDidMount() {
-    $(window).bind('resize', this.restHeight);
-  }
-
-  componentWillUnmount() {
-    $(window).unbind('resize', this.restHeight);
-  }
-
   render() {
-    // <Container location={location} height={height} menus={menus}>  </Container>
-    const { fullscreen, children } = this.props; // location, menus const { height } = this.state;
+    const { fullscreen, children } = this.props;
     if (fullscreen) {
       return (
         <div className="page-body no-padding" style={{ display: children.length ? 'flex' : 'block' }}>

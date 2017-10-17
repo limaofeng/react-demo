@@ -1,4 +1,5 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { Component, PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { graphql, withApollo } from 'react-apollo';
 import { isEqual } from 'lodash';
 
@@ -114,6 +115,7 @@ class MenuTreeAction extends PureComponent {
   };
 
   render() {
+    console.log('argicles ...');
     const { getCategoryTree, client } = this.props;
     const { visible, isnew, category } = this.state;
     return (
@@ -146,7 +148,7 @@ class MenuTreeAction extends PureComponent {
   }
 }
 
-class Sider extends PureComponent {
+class Sider extends Component {
   static propTypes = {
     categorys: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -169,8 +171,7 @@ class Sider extends PureComponent {
     });
     this.state = {
       categoryTree,
-      selectedKey,
-      category: {}
+      selectedKey
     };
   }
 

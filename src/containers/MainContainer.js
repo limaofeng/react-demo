@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -10,6 +11,8 @@ import LockContainer from './LockContainer';
 
 import Feature from '../modules/connector';
 import modules from '../modules';
+
+import reducers from './reducers';
 
 @connect(({ currentUser: user }) => ({
   user
@@ -42,5 +45,6 @@ class MainContainer extends Component {
 }
 
 export default new Feature({
-  route: <PrivateRoute path="/" component={MainContainer} />
+  route: <PrivateRoute path="/" component={MainContainer} />,
+  reducer: { ui: reducers }
 });

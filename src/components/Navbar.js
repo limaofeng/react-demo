@@ -1,5 +1,6 @@
 // import { Link } from 'react-router-dom';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import { Upload, Icon, message } from 'antd';
 
@@ -7,7 +8,7 @@ import LoginArea from './navbar/LoginArea';
 import { lazy } from './../helpers/lazy';
 // import { logout, resetpwd } from '../reducers/auth';
 
-/* global themeprimary readCookie setCookiesForFixedSettings */
+/* global themeprimary setCookiesForFixedSettings location */
 
 class AccountItem extends Component {
   componentDidMount() {}
@@ -112,15 +113,9 @@ class SideBar extends Component {
     if (b) {
       $('.open > .submenu').removeClass('open');
     } else if ($('.page-sidebar').hasClass('sidebar-fixed')) {
-      const position =
-        readCookie('rtl-support') ||
-        location.pathname === '/index-rtl-fa.html' ||
-        location.pathname === '/index-rtl-ar.html'
-          ? 'right'
-          : 'left';
       $('.sidebar-menu').slimscroll({
         height: 'auto',
-        position,
+        position: 'left',
         size: '3px',
         color: themeprimary
       });
@@ -275,7 +270,7 @@ class NavbarHeaderRight extends Component {
   };
   render() {
     const { user } = this.props;
-    console.log(user);
+    console.log(user.nickName);
     return (
       <div className="navbar-header pull-right">
         <div id="editPasswordDiv" style={{ display: 'none' }}>

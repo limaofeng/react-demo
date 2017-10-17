@@ -1,10 +1,7 @@
+#import "./User.graphql"
+
 mutation($username: String!, $password: String) {
-  login(username: $username, password: $password) {
-    id
-    nickName
-    profile {
-      name
-      mobile
-    }
+  login(username: $username, password: $password, scope: user) {
+    ...LoginUserInfo
   }
 }

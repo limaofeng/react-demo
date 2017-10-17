@@ -1,6 +1,6 @@
-/* global readCookie themeprimary */
-import React, { Component, PropTypes } from 'react';
-
+/* global readCookie themeprimary location */
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { lazy } from './../helpers/lazy';
 
 class Contact extends Component {
@@ -54,7 +54,9 @@ class ContactList extends Component {
       }
       const position =
         readCookie('rtl-support') ||
+        // eslint-disable-next-line
         location.pathname === '/index-rtl-fa.html' ||
+        // eslint-disable-next-line
         location.pathname === '/index-rtl-ar.html'
           ? 'right'
           : 'left';
@@ -166,7 +168,9 @@ class ChatList extends Component {
     this.lazy($(window).height()).then(() => {
       const position =
         readCookie('rtl-support') ||
+        // eslint-disable-next-line
         location.pathname === '/index-rtl-fa.html' ||
+        // eslint-disable-next-line
         location.pathname === '/index-rtl-ar.html'
           ? 'right'
           : 'left';

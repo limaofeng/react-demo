@@ -1,3 +1,4 @@
+/* global __PUBLIC_URL__ */
 import React from 'react';
 
 import {
@@ -48,7 +49,9 @@ export const routerMiddleware = () => OriginRouterMiddleware();
 
 export const routerReducer = OriginRouterReducer;
 
-export const history = createHistory();
+export const history = createHistory({
+  basename: __PUBLIC_URL__
+});
 
 export default function withRouter({ routes }) {
   return WrappedComponent => props => (

@@ -1,3 +1,5 @@
+# React Web Demo [![Dependency Status](https://gemnasium.com/badges/github.com/limaofeng/react-demo.svg)](https://gemnasium.com/github.com/limaofeng/react-demo) [![Build Status](https://travis-ci.org/limaofeng/react-demo.svg?branch=master)](https://travis-ci.org/limaofeng/react-demo)
+
 该项目基于 [Create React App](https://github.com/facebookincubator/create-react-app) 创建
 
 ## 目录
@@ -1952,6 +1954,53 @@ REACT_EDITOR | :white_check_mark: | :x: | When an app crashes in development, yo
 CHOKIDAR_USEPOLLING | :white_check_mark: | :x: | When set to `true`, the watcher runs in polling mode, as necessary inside a VM. Use this option if `npm start` isn't detecting changes.
 GENERATE_SOURCEMAP | :x: | :white_check_mark: | When set to `false`, source maps are not generated for a production build. This solves OOM issues on some smaller machines.
 
+### CHANGELOG
+
+为了方便测试，添加了如下依赖
+```
+yarn add apollo-cache-inmemory apollo-link apollo-logger apollo-utilities babel-plugin-inline-import enzyme enzyme-adapter-react-16 jest-transform-graphql jquery jsdom react-test-renderer --dev
+
+yarn remove apollo-cache-inmemory apollo-link apollo-logger apollo-utilities babel-plugin-inline-import enzyme enzyme-adapter-react-16 jest-transform-graphql jquery jsdom react-test-renderer
+
+# 应该只有保留 enzyme enzyme-adapter-react-16， 导入的测试依赖有点多。暂不使用
+
+```
+
+```diff
+"babel": {
+  // ...
+  "plugins": [
+    // ...
+    "transform-decorators-legacy",
++    [
++      "babel-plugin-inline-import",
++      {
++        "extensions": [
++          ".graphqls"
++        ]
++      }
++    ]
+  ]
+},
+```
+
+```diff
+ "jest": {
+    // ...
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js",
++     "raf/polyfill",
++     "<rootDir>/src/testHelpers/env.js"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
++     "\\.(gql|graphql)$": "<rootDir>/node_modules/jest-transform-graphql",
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    // ...
 ### Visual Studio Code 设置
 
 开发中，如果想获得更好的开发体验。建议对 `VSCode` 设置进行调整

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { graphql, withApollo } from 'react-apollo';
 
 import moment from 'moment';
@@ -11,10 +12,10 @@ import ARTICLETAGS_QUERY from '../graphqls/article_tags.graphql';
 
 import { lazy as lazyUpdate } from './../../../helpers/lazy';
 
-const ExtraSettings = Settings.ExtraSettings;
-const FormItem = Form.Item;
+const { ExtraSettings } = Settings;
+const { FormItem } = Form;
 const { TextArea } = Input;
-const Option = Select.Option;
+const { Option } = Select;
 
 class MetaData extends Component {
   render() {
@@ -98,7 +99,7 @@ export default class ArticleSettings extends Component {
 
   handleUrl = e => {
     const { client, article } = this.props;
-    const value = e.target.value;
+    const { value } = e.target;
     this.lazyUrl(value).then(() => {
       if (!value.trim()) {
         this.setState({ url: { validateStatus: null, help: null } });

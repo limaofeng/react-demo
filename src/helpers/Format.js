@@ -9,6 +9,7 @@
 /* eslint no-new-func: 0 */
 /* eslint max-len:0 */
 /* eslint one-var-declaration-per-line: 0 */
+/* eslint no-control-regex: 0 */
 
 const trimRe = /^\s+|\s+$/g;
 const stripTagsRE = /<\/?[^>]+>/gi;
@@ -325,6 +326,7 @@ export function number(v, format) {
     return v;
   }
   v *= 1;
+  // eslint-disable-next-line
   if (typeof v !== 'number' || isNaN(v)) {
     return '';
   }
