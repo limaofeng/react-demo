@@ -15,7 +15,7 @@ class LoginForm extends Component {
     const { login, form: { validateFields, submit } } = this.props;
     validateFields((err, { username, password }) => {
       if (err) {
-        console.error(err);
+        message.error(err);
         return;
       }
       submit(reset => {

@@ -65,9 +65,14 @@ class Settings extends Component {
             <div className="settings-menu-content">
               {children}
               <ul className="nav-list-block">
-                {extras.map(({ props: { title: extTitle, summary } }, i) => {
+                {extras.map(({ props: { title: extTitle, summary }, type: { name } }, i) => {
                   const lis = [
-                    <li className="nav-list-item" onClick={this.handleOpenNextSettings(i)} role="none">
+                    <li
+                      key={String(`${i}-${name}`)}
+                      className="nav-list-item"
+                      onClick={this.handleOpenNextSettings(i)}
+                      role="none"
+                    >
                       <button type="button">
                         <b>{extTitle}</b>
                         <span>{summary}</span>
@@ -76,7 +81,7 @@ class Settings extends Component {
                     </li>
                   ];
                   if (i !== extras.length - 1) {
-                    lis.push(<li className="divider" />);
+                    lis.push(<li key={String(`${i}-${name}-divider`)} className="divider" />);
                   }
                   return lis;
                 })}

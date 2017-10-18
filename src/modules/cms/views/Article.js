@@ -101,8 +101,7 @@ class MenuTreeAction extends PureComponent {
             onSuccess(parentId);
           })
           .catch(error => {
-            console.error(error);
-            message.error('保存失败！');
+            message.error('保存失败！', error);
           });
       }
     });
@@ -115,7 +114,6 @@ class MenuTreeAction extends PureComponent {
   };
 
   render() {
-    console.log('argicles ...');
     const { getCategoryTree, client } = this.props;
     const { visible, isnew, category } = this.state;
     return (

@@ -18,7 +18,7 @@ export default class {
   }
 
   get routes() {
-    return this.route.map((component, idx) => React.cloneElement(component, { key: idx + this.route.length }));
+    return this.route.map((component, idx) => React.cloneElement(component, { key: String(idx + this.route.length) }));
   }
 
   get pages() {
