@@ -19,7 +19,7 @@ class Contact extends Component {
     return (
       <li className="contact" onClick={this.handleClick} role="none">
         <div className="contact-avatar">
-          <img alt="" src="/assets/img/avatars/John-Smith.jpg" />
+          <img alt="" src={`${__PUBLIC_URL__}/assets/img/avatars/John-Smith.jpg`} />
         </div>
         <div className="contact-info">
           <div className="contact-name">{name}</div>
@@ -228,7 +228,7 @@ class ChatBarContact extends Component {
     return (
       <div className="messages-contact">
         <div className="contact-avatar">
-          <img src="/assets/img/avatars/divyia.jpg" alt="avatar" />
+          <img src={`${__PUBLIC_URL__}/assets/img/avatars/divyia.jpg`} alt="avatar" />
         </div>
         <div className="contact-info">
           <div className="contact-name">{name}</div>
