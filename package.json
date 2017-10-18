@@ -24,9 +24,7 @@
     "precommit": "lint-staged",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test": "node scripts/test.js --env=jsdom"
   },
   "dependencies": {
     "add-graphql-subscriptions": "^1.0.1",
@@ -86,7 +84,6 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.5",
     "fs-extra": "^4.0.2",
-    "gh-pages": "^1.0.0",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.1",
     "less": "^2.7.2",
