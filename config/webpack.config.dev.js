@@ -66,7 +66,7 @@ module.exports = {
     // containing code from all our entry points, and the Webpack runtime.
     filename: 'static/js/[name].bundle.js',
     // There are also additional JS chunk files if you use code splitting.
-    chunkFilename: 'static/js/[name]-[id].chunk.js',
+    chunkFilename: 'static/js/[name]-[chunkhash:5].chunk.js',
     // This is the URL that app is served from. We use "/" in development.
     publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -126,6 +126,11 @@ module.exports = {
           }
         ],
         include: paths.appSrc
+      },
+      {
+        test: /src\/modules\/(.*)\/views\/(.*)\.js$/,
+        include: paths.appSrc,
+        loader: 'bundle-loader?lazy&name=[name]'
       },
       {
         test: /\.graphql$/,
