@@ -13,7 +13,7 @@ import ARTICLETAGS_QUERY from '../graphqls/article_tags.graphql';
 import { lazy as lazyUpdate } from './../../../helpers/lazy';
 
 const { ExtraSettings } = Settings;
-const { FormItem } = Form;
+const { Item: FormItem } = Form;
 const { TextArea } = Input;
 const { Option } = Select;
 
@@ -100,7 +100,7 @@ export default class ArticleSettings extends Component {
   handleUrl = e => {
     const { client, article } = this.props;
     const { value } = e.target;
-    this.lazyUrl(value).then(() => {
+    this.lazyUrl(value).then(value => {
       if (!value.trim()) {
         this.setState({ url: { validateStatus: null, help: null } });
         this.handleSaveUrl(value);
