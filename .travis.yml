@@ -14,7 +14,7 @@ install:
 script:
   - node scripts/test.js --env=jsdom --coverage
   - codecov
-  - codacy-coverage
+  - cat coverage/lcov.info | codacy-coverage
 
 deploy:
   script:
