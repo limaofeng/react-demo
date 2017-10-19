@@ -12,7 +12,6 @@ install:
   
 script:
   - node scripts/test.js --env=jsdom --coverage
-  - ls
   - codecov
 
 deploy:
