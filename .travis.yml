@@ -12,6 +12,7 @@ install:
   
 script:
   - yarn test --coverage
+  - ls
   - codecov
 
 deploy:
