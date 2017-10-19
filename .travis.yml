@@ -9,6 +9,9 @@ cache:
 
 install:
   - yarn global add codecov
+  
+script:
+  - npm test
   - codecov
 
 deploy:
