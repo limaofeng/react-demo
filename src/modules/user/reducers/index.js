@@ -1,8 +1,9 @@
 import { push } from 'react-router-redux';
+import LogRocket from 'logrocket';
 
 const SAVE_USER = 'auth/SAVE_USER';
 const REMOVE_USER = 'auth/REMOVE_USER';
-// import LogRocket from 'logrocket';
+
 const initialState = localStorage.getItem('auth');
 
 let timer;
@@ -13,14 +14,11 @@ export default function reducer(state = initialState, action = {}) {
   if (typeof state === 'string') {
     newstate = JSON.parse(state);
   }
-  if (newstate && process.env.NODE_ENV === 'production') {
-    /* LogRocket.identify('b62az1/shzbsg-admin', {
-            name: newstate.nickName,
-            email: newstate.email,
-
-            // Add your own custom user variables here, ie:
-            subscriptionType: 'pro'
-        }); */
+  if (newstate) {
+    LogRocket.identify(newstate.id, {
+      name: newstate.nickName,
+      email: newstate.email
+    });
   }
   switch (type) {
     case SAVE_USER:
