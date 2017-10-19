@@ -11,10 +11,9 @@ install:
   - yarn global add codecov
   - codecov
 
-script:
-  - yarn build
-
 deploy:
+  script:
+    - yarn build
   local_dir: build
   provider: pages
   skip_cleanup: true
