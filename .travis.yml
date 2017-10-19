@@ -8,6 +8,7 @@ cache:
     - "node_modules"
 
 install:
+  - yarn
 #  - yarn global add codecov
   - yarn global add codacy-coverage
   
