@@ -1,4 +1,4 @@
-# React Web Demo [![Dependency Status](https://gemnasium.com/badges/github.com/limaofeng/react-demo.svg)](https://gemnasium.com/github.com/limaofeng/react-demo) [![Build Status](https://travis-ci.org/limaofeng/react-demo.svg?branch=master)](https://travis-ci.org/limaofeng/react-demo)
+# React Web Demo [![Dependency Status](https://gemnasium.com/badges/github.com/limaofeng/react-demo.svg)](https://gemnasium.com/github.com/limaofeng/react-demo) [![Build Status](https://travis-ci.org/limaofeng/react-demo.svg?branch=master)](https://travis-ci.org/limaofeng/react-demo) [![codecov](https://codecov.io/gh/limaofeng/react-demo/branch/master/graph/badge.svg)](https://codecov.io/gh/limaofeng/react-demo)
 
 该项目基于 [Create React App](https://github.com/facebookincubator/create-react-app) 创建
 
