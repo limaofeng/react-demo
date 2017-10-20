@@ -9,12 +9,10 @@ cache:
 
 install:
   - yarn
-  - yarn global add codecov
   - yarn global add codacy-coverage
   
 script:
   - node scripts/test.js --env=jsdom --coverage
-  - codecov
   - cat coverage/lcov.info | codacy-coverage
 
 deploy:
