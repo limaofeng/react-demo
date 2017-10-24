@@ -30,7 +30,7 @@ const fetch = {
     networkInterface.use(
       middlewares.map(middleware => ({
         applyMiddleware: ({ request, options }, next) => {
-          const retval = middleware(request, options);
+          const retval = middleware(request, options, client);
           if (retval instanceof Promise) {
             retval.then(next);
           } else {
@@ -46,7 +46,7 @@ const fetch = {
     networkInterface.useAfter(
       afterwares.map(afterware => ({
         applyAfterware: ({ response, options }, next) => {
-          const retval = afterware(response, options);
+          const retval = afterware(response, options, client);
           if (retval instanceof Promise) {
             retval.then(next);
           } else {

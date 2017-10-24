@@ -1,4 +1,3 @@
-// React
 import React from 'react';
 import { Route } from 'react-router-dom';
 
@@ -12,11 +11,56 @@ import reducers from './reducers';
 // import { AuthRoute, AuthNav, AuthLogin, AuthProfile } from './containers/Auth';
 import Feature from '../connector';
 
-function tokenMiddleware(req, options) {
-  // const options = { headers: {} };
-  // options.headers['x-token'] = window.localStorage.getItem('token');
-  // options.headers['x-refresh-token'] = window.localStorage.getItem('refreshToken');
-  console.log(req, options);
+import REFRESHTOKEN from './graphqls/refreshToken.graphql';
+
+const loadToken = (() => {
+  let status = 'ready';
+  const currentUser = () => JSON.parse(localStorage.getItem('auth'));
+  let cache = new Promise(resolve => {
+    const user = currentUser();
+    resolve(user && user.token);
+  });
+  return client => {
+    const user = currentUser();
+    if (!user) {
+      return cache;
+    }
+    const { token: { tokenCreationTime, reExpiresIn, refreshToken, expiresIn } } = user;
+    if ((Date.now() - tokenCreationTime) / 1000 < expiresIn - 10) {
+      // Token 即将过期时，自动刷新
+      console.log((Date.now() - tokenCreationTime) / 1000, expiresIn);
+      return cache;
+    }
+    if ((Date.now() - tokenCreationTime) / 1000 > reExpiresIn - 10) {
+      // 超出刷新时间
+      localStorage.removeItem('auth');
+      cache = new Promise(resolve => {
+        resolve();
+      });
+      return cache;
+    }
+    if (status === 'ready') {
+      status = 'pending';
+      cache = client
+        .mutate({
+          mutation: REFRESHTOKEN,
+          variables: { clientId: 'ff80808155005dfb0155005e4fb90000', refreshToken }
+        })
+        .then(({ data: { token } }) => {
+          status = 'ready';
+          localStorage.setItem('auth', JSON.stringify({ ...user, token }));
+          return token;
+        });
+    }
+    return cache;
+  };
+})();
+
+async function tokenMiddleware(req, options, client) {
+  const token = await loadToken(client);
+  if (token) {
+    options.headers.Authorization = `Token ${token.accessToken}`;
+  }
 }
 
 async function tokenAfterware(res, options) {

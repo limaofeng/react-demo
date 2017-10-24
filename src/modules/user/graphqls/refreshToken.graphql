@@ -1,0 +1,9 @@
+mutation($clientId: String!, $refreshToken: String!) {
+  token: refreshToken(clientId: $clientId, refreshToken: $refreshToken) {
+    accessToken
+    refreshToken
+    tokenCreationTime
+    reExpiresIn
+    expiresIn
+  }
+}
