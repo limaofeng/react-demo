@@ -5,7 +5,7 @@ import React from 'react';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { persistState } from 'redux-devtools';
 // import LogRocket from 'logrocket';
-import middleware from './redux/middleware';
+import defaultMiddleware from './redux/middleware';
 // import reducer from './modules/reducer';
 import DevTools from './redux/DevTools';
 
@@ -16,11 +16,11 @@ function getDebugSessionKey() {
   return matches && matches.length > 0 ? matches[1] : null;
 }
 
-const createReduxStore = (usageMiddlewares = [], reducer = {}) => {
+const createReduxStore = (middlewares = [], reducers = {}, debug) => {
   let finalCreateStore;
-  if (process.env.NODE_ENV === 'development') {
+  if (debug) {
     finalCreateStore = compose(
-      applyMiddleware.apply(this, middleware.concat(usageMiddlewares)),
+      applyMiddleware.apply(this, defaultMiddleware.concat(middlewares)),
       // Provides support for DevTools:
       window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
       // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
@@ -28,21 +28,22 @@ const createReduxStore = (usageMiddlewares = [], reducer = {}) => {
     )(createStore);
   } else {
     finalCreateStore = compose(
-      applyMiddleware.apply(this, middleware.concat(usageMiddlewares)) // .concat(LogRocket.reduxMiddleware())
+      applyMiddleware.apply(this, defaultMiddleware.concat(middlewares)) // .concat(LogRocket.reduxMiddleware())
     )(createStore);
   }
-  return finalCreateStore(combineReducers(reducer));
+  return finalCreateStore(combineReducers(reducers));
 };
 
 let store = null;
 
-// policy = ( only | recreate )
-export default function withRedux({ policy = 'only', middlewares = [], reducers = {} }) {
-  if (!store || policy === 'recreate') {
-    store = createReduxStore(middlewares, reducers);
+export default function withRedux({ middlewares = [], reducers = {}, debug = false }) {
+  if (!store) {
+    store = createReduxStore(middlewares, reducers, debug);
+  } else {
+    store.replaceReducer(combineReducers(reducers));
   }
   return WrappedComponent => () => {
-    if (process.env.NODE_ENV === 'development' && !window.devToolsExtension) {
+    if (debug && !window.devToolsExtension) {
       return (
         <div>
           <DevTools store={store} />

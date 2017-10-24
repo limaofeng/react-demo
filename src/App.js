@@ -13,16 +13,25 @@ import modules from './modules';
 
 import './App.less';
 
+const debug = process.env.NODE_ENV === 'development';
+
+const { reducers, routes, middlewares, afterwares } = modules;
+
 @withRedux({
   middlewares: [LogRocket.reduxMiddleware(), apolloMiddleware(), routerMiddleware(), compatibleRouterMiddleware()],
   reducers: {
-    ...modules.reducers,
+    ...reducers,
     apollo: apolloReducer,
     routing: routerReducer
-  }
+  },
+  debug
 })
-@withApollo()
-@withRouter({ routes: modules.routes })
+@withApollo({
+  middlewares,
+  afterwares,
+  debug
+})
+@withRouter({ routes })
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired

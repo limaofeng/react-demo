@@ -13,11 +13,14 @@ import reducers from './reducers';
 import Feature from '../connector';
 
 function tokenMiddleware(req, options) {
-  options.headers['x-token'] = window.localStorage.getItem('token');
-  options.headers['x-refresh-token'] = window.localStorage.getItem('refreshToken');
+  // const options = { headers: {} };
+  // options.headers['x-token'] = window.localStorage.getItem('token');
+  // options.headers['x-refresh-token'] = window.localStorage.getItem('refreshToken');
+  console.log(req, options);
 }
 
-function tokenAfterware(res, options) {
+async function tokenAfterware(res, options) {
+  /* const options = {};
   const token = options.headers['x-token'];
   const refreshToken = options.headers['x-refresh-token'];
   if (token) {
@@ -25,7 +28,8 @@ function tokenAfterware(res, options) {
   }
   if (refreshToken) {
     window.localStorage.setItem('refreshToken', refreshToken);
-  }
+  } */
+  console.log(res, options);
 }
 
 function connectionParam() {

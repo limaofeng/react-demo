@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom';
 class PageContent extends Component {
   static propTypes = {
     breadcrumbs: PropTypes.array.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     children: PropTypes.any.isRequired
+  };
+  static defaultProps = {
+    title: null
   };
   componentDidMount() {}
   componentWillUnmount() {}
