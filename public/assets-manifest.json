@@ -1,0 +1,16 @@
+{
+  "bootstrap.min.css": "assets/css/bootstrap.min.css",
+  "font-awesome.min.css": "assets/css/font-awesome.min.css",
+  "weather-icons.min.css": "assets/css/weather-icons.min.css",
+  "beyond.min.css": "assets/css/beyond.min.css",
+  "typicons.min.css": "assets/css/typicons.min.css",
+  "animate.min.css": "assets/css/animate.min.css",
+  "skins.min.js": "assets/js/skins.min.js",
+  "jquery.min.js":"assets/js/jquery.min.js",
+  "bootstrap.min.js":"assets/js/bootstrap.min.js",
+  "jquery.slimscroll.min.js":"assets/js/slimscroll/jquery.slimscroll.min.js",
+  "beyond.min.js":"assets/js/beyond.min.js",
+  "ueditor.config.js":"static/ueditor/ueditor.config.js",
+  "ueditor.all.min.js":"static/ueditor/ueditor.all.min.js",
+  "zh-cn.js":"static/ueditor/lang/zh-cn/zh-cn.js"
+}
