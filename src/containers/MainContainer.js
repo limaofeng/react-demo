@@ -14,9 +14,7 @@ import modules from '../modules';
 
 import reducers from './reducers';
 
-@connect(({ currentUser: user }) => ({
-  user
-}))
+@connect(({ modules }) => ({ user: modules.get('currentUser').toObject() }))
 class MainContainer extends Component {
   static propTypes = {
     user: PropTypes.object.isRequired

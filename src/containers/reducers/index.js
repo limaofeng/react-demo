@@ -1,28 +1,37 @@
+import Immutable from 'immutable';
+
 const CHANGE_STATUS = 'ui/CHANGE_STATUS';
 
-const initialState = { status: 'loading', loading: true };
+const initialState = Immutable.fromJS({ status: 'loading', loading: true });
 
-const changeStatus = status => {
+const changeStatus = (state, status) => {
   switch (status) {
     case 'loading':
-      return { status: 'loading', loading: true, locking: false };
+      state.set('status', 'loading');
+      state.set('loading', true);
+      state.set('locking', false);
+      return state;
     case 'locking':
-      return { status: 'locking', loading: false, locking: true };
+      state.set('status', 'loading');
+      state.set('loading', false);
+      state.set('locking', true);
+      return state;
     case 'none':
-      return { status: 'none', loading: false, locking: false };
+      state.set('status', 'none');
+      state.set('loading', false);
+      state.set('locking', false);
+      return state;
     default:
-      return {};
+      return state;
   }
 };
 
 export default function reducer(state = initialState, action = {}) {
   const { type, payload } = action;
-  switch (type) {
-    case CHANGE_STATUS:
-      return { ...state, ...changeStatus(payload) };
-    default:
-      return state;
+  if (type === CHANGE_STATUS) {
+    changeStatus(state, payload);
   }
+  return state;
 }
 
 export function load() {

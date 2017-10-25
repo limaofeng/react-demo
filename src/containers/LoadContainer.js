@@ -6,8 +6,8 @@ import classnames from 'classnames';
 import { unload } from './reducers';
 
 @connect(
-  ({ ui: { loading } }) => ({
-    loading
+  ({ modules }) => ({
+    loading: modules.get('ui').get('loading')
   }),
   dispatch => ({
     loadOver: () => dispatch(unload())

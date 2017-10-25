@@ -1,7 +1,7 @@
 import React from 'react';
+import Immutable from 'immutable';
 // import createHistory from 'history/createBrowserHistory';
 
-// import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { persistState } from 'redux-devtools';
 // import LogRocket from 'logrocket';
@@ -16,25 +16,30 @@ function getDebugSessionKey() {
   return matches && matches.length > 0 ? matches[1] : null;
 }
 
+const initialState = Immutable.Map();
+
 const createReduxStore = (middlewares = [], reducers = {}, debug) => {
-  let finalCreateStore;
-  if (debug) {
-    finalCreateStore = compose(
-      applyMiddleware.apply(this, defaultMiddleware.concat(middlewares)),
+  if (!debug) {
+    return createStore(
+      combineReducers(reducers),
+      initialState,
+      applyMiddleware(...defaultMiddleware.concat(middlewares)) // LogRocket.reduxMiddleware()
+    );
+  }
+  return createStore(
+    combineReducers(reducers),
+    {},
+    compose(
+      applyMiddleware(...defaultMiddleware.concat(middlewares)),
       // Provides support for DevTools:
       window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
       // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
       persistState(getDebugSessionKey())
-    )(createStore);
-  } else {
-    finalCreateStore = compose(
-      applyMiddleware.apply(this, defaultMiddleware.concat(middlewares)) // .concat(LogRocket.reduxMiddleware())
-    )(createStore);
-  }
-  return finalCreateStore(combineReducers(reducers));
+    )
+  );
 };
 
-let store = null;
+let store: any;
 
 export default function withRedux({ middlewares = [], reducers = {}, debug = false }) {
   if (!store) {

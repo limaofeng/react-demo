@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LogRocket from 'logrocket';
+import { combineReducers } from 'redux-immutable';
 // 集成 Redux
 import withRedux from './decorators/withRedux';
 // 集成 Apollo
@@ -20,7 +21,7 @@ const { reducers, routes, middlewares, afterwares } = modules;
 @withRedux({
   middlewares: [LogRocket.reduxMiddleware(), apolloMiddleware(), routerMiddleware(), compatibleRouterMiddleware()],
   reducers: {
-    ...reducers,
+    modules: combineReducers(reducers),
     apollo: apolloReducer,
     routing: routerReducer
   },
