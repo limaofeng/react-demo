@@ -9,13 +9,9 @@ import Root from './App';
 import registerServiceWorker from './registerServiceWorker';
 import 'moment/locale/zh-cn'; // eslint-disable-line
 
-/* global drift */
 moment.locale('zh-cn');
 LogRocketReact(LogRocket);
 LogRocket.init('b62az1/react-demo');
-LogRocket.getSessionURL(sessionURL => {
-  drift.track('LogRocket', { sessionURL });
-});
 
 const render = Component => {
   ReactDOM.render(

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import LogRocket from 'logrocket';
 import { combineReducers } from 'redux-immutable';
@@ -38,7 +38,6 @@ export default class App extends Component {
     children: PropTypes.element.isRequired
   };
   render() {
-    const { children } = this.props;
-    return <div>{children}</div>;
+    return this.props.children;
   }
 }
