@@ -1,51 +1,60 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 
 class LockContainer extends Component {
-  static propTypes = {
-    children: PropTypes.element.isRequired
-  };
-  componentDidMount() {
-    window.requestAnimationFrame(() => {
-      $('.mask-container')
-        .prevAll('.main-container,.navbar')
-        .removeClass('unmasking')
-        .addClass('masking');
-    });
+  constructor(props) {
+    super(props);
+    this.container = document.createElement('div');
+    this.container.className = 'mask-container';
+    document.body.appendChild(this.container);
   }
 
+  componentDidMount() {
+    this.masking();
+  }
+
+  componentWillUnmount() {
+    this.unmasking();
+  }
+
+  masking = () => {
+    window.requestAnimationFrame(() => {
+      $('.mask-container')
+        .siblings('div')
+        .addClass('masking');
+    });
+  };
+
+  unmasking = () => {
+    $('.mask-container')
+      .siblings('div')
+      .removeClass('masking');
+    document.body.removeChild(this.container);
+  };
+
   render() {
-    const { children } = this.props;
-    const locking = false;
-    if (!locking) {
-      return children;
-    }
-    return (
-      <div>
-        <div className="masking">{children}</div>
-        <div className="mask-container">
-          <div className="lock-container animated fadeInDown">
-            <div className="lock-box text-align-center">
-              <div className="lock-username">DIVYIA PHILLIPS</div>
-              <img src={`${__PUBLIC_URL__}/assets/img/avatars/divyia.jpg`} alt="divyia avatar" />
-              <div className="lock-password">
-                <form className="form-inline" action="index.html">
-                  <div className="form-group">
-                    <span className="input-icon icon-right">
-                      <input className="form-control" placeholder="Password" type="password" />
-                      <i className="glyphicon glyphicon-log-in themeprimary" />
-                    </span>
-                  </div>
-                </form>
+    return ReactDOM.createPortal(
+      <div className="lock-container animated fadeInDown">
+        <div className="lock-box text-align-center">
+          <div className="lock-username">DIVYIA PHILLIPS</div>
+          <img src={`${__PUBLIC_URL__}/assets/img/avatars/divyia.jpg`} alt="divyia avatar" />
+          <div className="lock-password">
+            <form className="form-inline" action="index.html">
+              <div className="form-group">
+                <span className="input-icon icon-right">
+                  <input className="form-control" placeholder="Password" type="password" />
+                  <i className="glyphicon glyphicon-log-in themeprimary" />
+                </span>
               </div>
-            </div>
-            <div className="signinbox">
-              <span>切换其他用户登录?</span>
-              <a>去登录</a>
-            </div>
+            </form>
           </div>
         </div>
-      </div>
+        <div className="signinbox">
+          <span>切换其他用户登录?</span>
+          <a>去登录</a>
+        </div>
+      </div>,
+      this.container
     );
   }
 }

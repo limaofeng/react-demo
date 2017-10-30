@@ -1,40 +1,25 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import classnames from 'classnames';
+import ReactDOM from 'react-dom';
 
-import { unload } from './reducers';
-
-@connect(
-  ({ ui: { loading } }) => ({
-    loading
-  }),
-  dispatch => ({
-    loadOver: () => dispatch(unload())
-  })
-)
 class LoadContainer extends Component {
-  static propTypes = {
-    children: PropTypes.element.isRequired,
-    loading: PropTypes.bool.isRequired,
-    loadOver: PropTypes.func.isRequired
-  };
-  componentDidMount() {
-    const { loading, loadOver } = this.props;
-    if (loading) {
-      setTimeout(loadOver, 1000);
-    }
+  constructor(props) {
+    super(props);
+    this.container = document.createElement('div');
+    this.container.className = 'loading-container';
+    document.body.appendChild(this.container);
   }
+  componentWillUnmount() {
+    document.body.removeChild(this.container);
+  }
+
   render() {
-    const { children, loading } = this.props;
-    return (
-      <div>
-        <div className={classnames('loading-container', { 'loading-inactive': !loading })}>
-          <div className="loader" />
-        </div>
-        {children}
-      </div>
-    );
+    return ReactDOM.createPortal(<div className="loader" />, this.container);
+    /* [
+      <div className={classnames('loading-container', { 'loading-inactive': !loading })}>
+        <div className="loader" />
+      </div>,
+      children
+    ]; */
   }
 }
 
