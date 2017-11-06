@@ -1,5 +1,6 @@
 import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import Immutable from 'immutable';
 import classnames from 'classnames';
 import { isEqual } from 'lodash';
 
@@ -23,45 +24,44 @@ export class Tree extends PureComponent {
     super(props);
     const { defaultOpenKeys: openKeys = [], defaultSelectedKey: selectedKey } = this.props;
     this.state = {
-      selectedKey,
-      openKeys
+      data: Immutable.Map({
+        selectedKey,
+        openKeys
+      })
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (!isEqual(this.props, nextProps)) {
       const { defaultOpenKeys: openKeys = [], defaultSelectedKey: selectedKey } = nextProps;
-      this.setState({ selectedKey, openKeys });
+      this.setState(({ data }) => {
+        data.update('selectedKey', () => selectedKey);
+        data.update('openKeys', () => openKeys);
+      });
     }
   }
 
   handleSelect = key => {
     const { onSelect } = this.props;
-    this.setState({ selectedKey: key });
+    this.setState(({ data }) => data.update('selectedKey', () => key));
     onSelect(key);
   };
 
   handleOpenChange = (key, open) => {
     const { onOpenChange } = this.props;
-    const { openKeys } = this.state;
+    const openKeys = this.state.data.get('openKeys');
     if (open) {
       openKeys.push(key);
     } else {
       openKeys.splice(openKeys.indexOf(key), 1);
     }
-    this.setState({ openKeys });
+    this.setState(({ data }) => data.update('openKeys', () => openKeys));
     onOpenChange(openKeys);
   };
 
-  isSelected = key => {
-    const { selectedKey } = this.state;
-    return selectedKey === key;
-  };
+  isSelected = key => this.state.data.get('selectedKey') === key;
 
-  isOpen = key => {
-    const { openKeys } = this.state;
-    return openKeys.includes(key);
-  };
+  isOpen = key => this.state.data.get('openKeys').includes(key);
 
   render() {
     const { children } = this.props;

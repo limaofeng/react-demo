@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
-@connect(({ modules }) => ({ user: modules.get('currentUser').toObject() }))
+@connect(({ modules }) => ({ user: modules.get('currentUser') ? modules.get('currentUser').toObject() : null }))
 export default class PrivateRoute extends Route {
   render() {
     const { user, ...route } = this.props;
