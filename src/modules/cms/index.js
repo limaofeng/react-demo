@@ -1,5 +1,5 @@
 import React from 'react';
-import Route from '../../decorators/router/Route';
+import { connector as Feature, Route } from 'walkuere';
 
 import './index.less';
 
@@ -7,8 +7,6 @@ import Articles from './views/Article';
 import ArticleEdit from './views/ArticleEdit';
 
 import reducers from './reducers';
-
-import Feature from '../connector';
 
 export default new Feature({
   navItem: [

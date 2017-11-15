@@ -183,10 +183,10 @@ export function date(date, formatter = 'yyyy-MM-dd HH:mm:ss') {
     return result;
   };
   /**
-     * 提取日期的年月日时分秒
-     * @param {Object} d
-     * @param {Object} isZero
-     */
+   * 提取日期的年月日时分秒
+   * @param {Object} d
+   * @param {Object} isZero
+   */
   const splitDate = (d, isZero) => {
     let yyyy, MM, dd, hh, HH, mm, ss, ms; // N
     if (isZero) {

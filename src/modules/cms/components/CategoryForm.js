@@ -115,7 +115,9 @@ class CategoryForm extends Component {
                       message: '编码不能为空!'
                     }
                   ]
-            })(<Input disabled={isedit} prefix={<Icon type="book" style={{ fontSize: 13 }} />} placeholder="栏目编码" />)}
+            })(
+              <Input disabled={isedit} prefix={<Icon type="book" style={{ fontSize: 13 }} />} placeholder="栏目编码" />
+            )}
           </FormItem>
           <FormItem label="栏目类型">
             {getFieldDecorator('type')(

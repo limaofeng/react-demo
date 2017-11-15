@@ -1,4 +1,4 @@
-import Feature from './connector';
+import { connector as Feature } from 'walkuere';
 
 import cms from './cms';
 import user from './user';

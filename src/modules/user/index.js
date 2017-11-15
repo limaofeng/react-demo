@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { connector as Feature } from 'walkuere';
 
 // Component and helpers
 // import Profile from './containers/Profile';
@@ -9,7 +10,6 @@ import Login from './containers/Login';
 import reducers from './reducers';
 
 // import { AuthRoute, AuthNav, AuthLogin, AuthProfile } from './containers/Auth';
-import Feature from '../connector';
 
 import REFRESHTOKEN from './graphqls/refreshToken.graphql';
 
@@ -64,7 +64,6 @@ async function tokenMiddleware(req, options, client) {
 }
 
 async function tokenAfterware(res, options) {
-  /* const options = {};
   const token = options.headers['x-token'];
   const refreshToken = options.headers['x-refresh-token'];
   if (token) {
@@ -72,9 +71,11 @@ async function tokenAfterware(res, options) {
   }
   if (refreshToken) {
     window.localStorage.setItem('refreshToken', refreshToken);
-  } */
+  }
   console.log(res, options);
 }
+
+console.log(tokenMiddleware, tokenAfterware);
 
 function connectionParam() {
   return {
@@ -120,7 +121,7 @@ export default new Feature({
   ],
   */
   reducer: { currentUser: reducers },
-  middleware: tokenMiddleware,
-  afterware: tokenAfterware,
+  // middleware: tokenMiddleware,
+  // afterware: tokenAfterware,
   connectionParam
 });

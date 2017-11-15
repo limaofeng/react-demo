@@ -294,7 +294,9 @@ export default class ArticleListWrapper extends Component {
 
   handleNewArticle = ({ submit }) => {
     const { history: { push } } = this.props;
-    submit({ title: '未命名标题', content: '默认内容' }).then(({ data: { article: { id } } }) => push(`/articles/${id}`));
+    submit({ title: '未命名标题', content: '默认内容' }).then(({ data: { article: { id } } }) =>
+      push(`/articles/${id}`)
+    );
   };
 
   render() {

@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import PrivateRoute from '../decorators/router/PrivateRoute';
+import { connector as Feature, PrivateRoute } from 'walkuere';
 
 import { PageSidebar, Navbar, ChatBar, PageContent } from '../components';
 import LoadContainer from './LoadContainer';
 import LockContainer from './LockContainer';
 
-import Feature from '../modules/connector';
 import modules from '../modules';
 
 import reducers, { unload } from './reducers';
