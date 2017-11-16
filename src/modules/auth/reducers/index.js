@@ -1,30 +1,24 @@
 import { push } from 'react-router-redux';
-import LogRocket from 'logrocket';
-import Immutable from 'immutable';
 
 const SAVE_USER = 'auth/SAVE_USER';
 const REMOVE_USER = 'auth/REMOVE_USER';
 
-const authstr = localStorage.getItem('auth');
-const initialState = Immutable.fromJS(authstr ? JSON.parse(authstr) : null);
-
-let timer;
+// const authstr = localStorage.getItem('auth');
+const initialState = {
+  user: null,
+  isAuthenticated: false,
+  scope: [],
+  token: null
+};
 
 export default function reducer(state = initialState, action = {}) {
   const { type, payload } = action;
-  if (state) {
-    LogRocket.identify(state.get('id'), {
-      name: state.get('nickName'),
-      email: state.get('email')
-    });
-  }
   switch (type) {
     case SAVE_USER:
       localStorage.setItem('auth', JSON.stringify(payload));
-      return Immutable.fromJS(payload);
+      return { ...state, user: payload, isAuthenticated: true };
     case REMOVE_USER:
-      clearInterval(timer);
-      return null;
+      return { ...state, user: null, isAuthenticated: false };
     default:
       return state;
   }

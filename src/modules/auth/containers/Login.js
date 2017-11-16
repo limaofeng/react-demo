@@ -19,9 +19,13 @@ class Login extends Component {
     location: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired
   };
-  state = {
-    redirectToReferrer: false
-  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      redirectToReferrer: false
+    };
+  }
 
   login = async (username, password) => {
     const { login } = this.props;

@@ -59,7 +59,7 @@ class Avatar extends Component {
   }
 }
 
-@connect(({ modules }) => ({ user: modules.get('currentUser').toObject() }))
+@connect(({ auth: { user } }) => ({ user }))
 class LoginArea extends Component {
   static propTypes = {
     user: PropTypes.object.isRequired

@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { combineReducers } from 'redux-immutable';
 // 集成 Redux + Apollo + React-Router
 import {
   redux as withRedux,
@@ -14,19 +13,15 @@ import modules from './modules';
 
 import { api, wsapi } from './helpers/urls';
 
-// import withRouter, { routerMiddleware, routerReducer, compatibleRouterMiddleware } from './decorators/withRouter';
-
 import './App.less';
 
-const debug = process.env.NODE_ENV === 'development';
-
 const { reducers, routes, middlewares, afterwares } = modules;
-console.log(withApollo, reducers, withRedux, routes, combineReducers);
 
+const debug = process.env.NODE_ENV === 'development';
 @withRedux({
   middlewares: routerMiddlewares(),
   reducers: {
-    modules: combineReducers(reducers),
+    ...reducers,
     routing: routerReducer
   },
   debug

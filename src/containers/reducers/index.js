@@ -1,28 +1,17 @@
-import Immutable from 'immutable';
-
 const CHANGE_STATUS = 'ui/CHANGE_STATUS';
 
-const initialState = Immutable.fromJS({ status: 'loading', loading: true, locking: false });
+const initialState = { status: 'loading', loading: true, locking: false };
 
 const changeStatus = (state, status) => {
   switch (status) {
     case 'loading':
-      return state
-        .set('status', 'loading')
-        .set('loading', true)
-        .set('locking', false);
+      return { ...state, status: 'loading', loading: true, locking: false };
     case 'locking':
-      return state
-        .set('status', 'loading')
-        .set('loading', false)
-        .set('locking', true);
+      return { ...state, status: 'locking', loading: false, locking: true };
     case 'none':
-      return state
-        .set('status', 'none')
-        .set('loading', false)
-        .set('locking', false);
+      return { ...state, status: 'none', loading: false, locking: false };
     default:
-      return state;
+      return { ...state };
   }
 };
 

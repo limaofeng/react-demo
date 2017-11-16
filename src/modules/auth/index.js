@@ -120,7 +120,7 @@ export default new Feature({
     </NavItem>
   ],
   */
-  reducer: { currentUser: reducers },
+  reducer: { auth: reducers },
   // middleware: tokenMiddleware,
   // afterware: tokenAfterware,
   connectionParam

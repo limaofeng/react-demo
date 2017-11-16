@@ -132,7 +132,7 @@ class SideBar extends Component {
   }
 }
 
-@connect(({ modules }) => ({ user: modules.get('currentUser').toObject() }))
+@connect(({ auth: { user } }) => ({ user }))
 class NavbarHeaderRight extends Component {
   static propTypes = {
     user: PropTypes.object.isRequired

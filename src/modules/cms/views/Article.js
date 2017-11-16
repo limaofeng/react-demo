@@ -274,6 +274,7 @@ export default class Article extends PureComponent {
 
   render() {
     const { location: { query: { categoryid } }, location, history } = this.props;
+    console.log(location);
     return (
       <PageBody fullscreen>
         <div className="frame-container">

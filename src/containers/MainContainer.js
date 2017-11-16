@@ -13,9 +13,9 @@ import modules from '../modules';
 import reducers, { unload } from './reducers';
 
 @connect(
-  ({ modules }) => ({
-    user: modules.get('currentUser') ? modules.get('currentUser').toObject() : null,
-    loading: modules.get('ui').get('loading')
+  ({ auth: { user }, ui: { loading } }) => ({
+    user,
+    loading
   }),
   dispatch => ({
     loadOver: () => dispatch(unload())
@@ -36,8 +36,8 @@ class MainContainer extends Component {
   render() {
     const { routes, user, loading, children } = this.props; // eslint-disable-line
     const containers = [
-      <Navbar />,
-      <div className="main-container container-fluid">
+      <Navbar key="navbar" />,
+      <div key="main-container" className="main-container container-fluid">
         <div className="page-container">
           <PageSidebar uid={user.id} />
           <ChatBar />

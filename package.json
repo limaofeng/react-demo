@@ -35,8 +35,6 @@
     "graphql-tools": "^2.5.1",
     "history": "^4.7.2",
     "husky": "^0.14.3",
-    "logrocket": "^0.5.5",
-    "logrocket-react": "^0.0.4",
     "nprogress": "^0.2.0",
     "object-assign": "4.1.1",
     "promise": "^8.0.1",
@@ -50,9 +48,9 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.7",
     "redux": "^3.7.2",
-    "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.2.0",
-    "walkuere": "^1.0.7-27"
+    "subscriptions-transport-ws": "^0.9.1",
+    "walkuere": "^1.0.7-36"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",

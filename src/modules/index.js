@@ -1,7 +1,7 @@
 import { connector as Feature } from 'walkuere';
 
 import cms from './cms';
-import user from './user';
+import user from './auth';
 
 import main from './../containers/MainContainer';
 
