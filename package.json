@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "add-graphql-subscriptions": "^1.0.1",
-    "antd": "^2.13.9",
-    "apollo-client": "^1.9.3",
+    "antd": "^2.13.10",
+    "apollo-client": "^2.0.3",
     "graphql": "^0.11.3",
     "graphql-tag": "^2.5.0",
     "graphql-tools": "^2.5.1",
@@ -39,18 +39,18 @@
     "object-assign": "4.1.1",
     "promise": "^8.0.1",
     "prop-types": "^15.6.0",
-    "react": "^16.0.0",
-    "react-apollo": "^1.4.16",
+    "react": "^16.1.1",
+    "react-apollo": "^2.0.1",
     "react-dom": "^16.0.0",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-router-redux": "^5.0.0-alpha.7",
+    "react-router-redux": "^5.0.0-alpha.8",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "subscriptions-transport-ws": "^0.9.1",
-    "walkuere": "^1.0.7-36"
+    "walkuere": "^1.0.8"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
