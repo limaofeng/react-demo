@@ -3535,7 +3535,15 @@ graphql-tag@^2.5.0:
   version "2.5.0"
   resolved "http://registry.npm.taobao.org/graphql-tag/download/graphql-tag-2.5.0.tgz#b43bfd8b5babcd2c205ad680c03e98b238934e0f"
 
-graphql-tools@^2.5.1, graphql-tools@^2.7.2:
+graphql-tools@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-2.11.0.tgz#be86d14acfe4ca9411967c6b54bac2eedc0dbb72"
+  dependencies:
+    apollo-utilities "^1.0.1"
+    deprecated-decorator "^0.1.6"
+    uuid "^3.1.0"
+
+graphql-tools@^2.7.2:
   version "2.7.2"
   resolved "http://registry.npm.taobao.org/graphql-tools/download/graphql-tools-2.7.2.tgz#03104a155b15f8441b0e5a7113b12b9512341a9e"
   dependencies:
