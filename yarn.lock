@@ -7844,7 +7844,7 @@ style-loader@^0.19.0:
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
 
-subscriptions-transport-ws@^0.9.2:
+subscriptions-transport-ws@^0.9.1, subscriptions-transport-ws@^0.9.2:
   version "0.9.2"
   resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.2.tgz#b3605f99d0bf4251760abbd5fdd6b73d72a57d5b"
   dependencies:
@@ -8297,9 +8297,9 @@ walker@~1.0.5:
   dependencies:
     makeerror "1.0.x"
 
-walkuere@^1.0.8:
-  version "1.0.8"
-  resolved "http://registry.npm.taobao.org/walkuere/download/walkuere-1.0.8.tgz#c23b57294f1e5cfaa42093af0d5e4ec163147430"
+walkuere@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/walkuere/-/walkuere-1.0.14.tgz#5af89f3523a3e3cba0b48ec8143a63e01473f740"
   dependencies:
     apollo-cache-inmemory "^1.1.1"
     apollo-client "^2.0.3"
@@ -8322,6 +8322,7 @@ walkuere@^1.0.8:
     react-router-redux "^5.0.0-alpha.8"
     redux "^3.7.2"
     redux-thunk "^2.2.0"
+    subscriptions-transport-ws "^0.9.1"
 
 warning@2.x:
   version "2.1.0"
