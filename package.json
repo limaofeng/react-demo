@@ -31,7 +31,7 @@
     "antd": "^2.13.11",
     "apollo-client": "^2.1.0",
     "graphql": "^0.11.3",
-    "graphql-tag": "^2.5.0",
+    "graphql-tag": "^2.6.0",
     "graphql-tools": "^2.11.0",
     "history": "^4.7.2",
     "husky": "^0.14.3",
