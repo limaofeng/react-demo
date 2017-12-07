@@ -1,5 +1,7 @@
 # React Web Demo [![Dependency Status](https://gemnasium.com/badges/github.com/limaofeng/react-demo.svg)](https://gemnasium.com/github.com/limaofeng/react-demo) [![Build Status](https://travis-ci.org/limaofeng/react-demo.svg?branch=master)](https://travis-ci.org/limaofeng/react-demo) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/dbb23c729068422189963de3142e8847)](https://www.codacy.com/app/limaofeng/react-demo?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=limaofeng/react-demo&amp;utm_campaign=Badge_Coverage)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/limaofeng/react-demo.svg)](https://greenkeeper.io/)
+
 该项目基于 [Create React App](https://github.com/facebookincubator/create-react-app) 创建
 
 ## 目录
