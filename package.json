@@ -30,7 +30,7 @@
     "add-graphql-subscriptions": "^1.0.1",
     "antd": "^3.0.1",
     "apollo-client": "^2.1.0",
-    "graphql": "^0.11.3",
+    "graphql": "^0.12.0",
     "graphql-tag": "^2.6.0",
     "graphql-tools": "^2.12.0",
     "history": "^4.7.2",
