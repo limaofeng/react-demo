@@ -1,15 +1,16 @@
 import ReactEnzymeAdapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme';
-import { jsdom } from 'jsdom';
+import { JSDOM } from 'jsdom';
 
 const exposedProperties = ['window', 'navigator', 'document'];
 
-global.document = jsdom('<!doctype html><html><body><div id="root"><div></body></html>');
-global.window = document.defaultView;
-Object.keys(document.defaultView).forEach(property => {
+const jsdom = new JSDOM('<!doctype html><html><body><div id="root"><div></body></html>');
+global.window = jsdom.window;
+global.document = jsdom.document;
+Object.keys(jsdom.window).forEach(property => {
   if (typeof global[property] === 'undefined') {
     exposedProperties.push(property);
-    global[property] = document.defaultView[property];
+    global[property] = jsdom.window[property];
   }
 });
 
