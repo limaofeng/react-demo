@@ -49,7 +49,7 @@
     "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "subscriptions-transport-ws": "^0.9.5",
+    "subscriptions-transport-ws": "^0.9.9",
     "walkuere": "^1.0.14"
   },
   "devDependencies": {
